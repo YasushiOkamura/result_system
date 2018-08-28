@@ -1,2 +1,4 @@
-# result_system
-result system for track and field
+# リザルトシステム
+陸上競技用の結果管理システム
+
+いろいろできるといいなぁ（）

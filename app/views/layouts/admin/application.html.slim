@@ -1,0 +1,98 @@
+doctype html
+html
+  head
+    title
+      | リザルトシステム -管理画面
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .ui.inverted.left.vertical.visible.sidebar.menu
+      = link_to admin_root_path, class: 'item' do
+        h3 リザルトシステム管理画面
+      .item.ui.inverted
+        .ui.inverted.accordion
+          .title.active
+            h5
+              i.dropdown.icon
+              | 結果管理
+          .content.active
+            .item.inverted
+              .inverted.accordion
+                .title.active
+                  h5
+                    i.dropdown.icon
+                    | 短距離種目(〜400m)
+                .content.active
+                  = link_to nil, class: 'item' do
+                    | 新規作成
+                  = link_to nil, class: 'item' do
+                    | 一覧
+            .item.inverted
+              .inverted.accordion
+                .title.active
+                  h5
+                    i.dropdown.icon
+                    | 中長距離種目(800m〜)
+                .content.active
+                  = link_to nil, class: 'item' do
+                    | 新規作成
+                  = link_to nil, class: 'item' do
+                    | 一覧
+            .item.inverted
+              .inverted.accordion
+                .title.active
+                  h5
+                    i.dropdown.icon
+                    | フィールド種目
+                .content.active
+                  = link_to nil, class: 'item' do
+                    | 新規作成
+                  = link_to nil, class: 'item' do
+                    | 一覧
+            .item.inverted
+              .inverted.accordion
+                .title.active
+                  h5
+                    i.dropdown.icon
+                    | 十種競技
+                .content
+                  = link_to nil, class: 'item' do
+                    | 新規作成
+                  = link_to nil, class: 'item' do
+                    | 一覧
+      .item.ui.inverted
+        .ui.inverted
+          .content
+            = link_to admin_tournaments_path, class: 'item' do
+              | 大会管理
+      .item.ui.inverted
+        .ui.inverted
+          .content
+            = link_to admin_athletes_path, class: 'item' do
+              | 選手管理
+      .item.ui.inverted
+        .ui.inverted.accordion
+          .title.active
+            h5
+              i.dropdown.icon
+              | 一年間の結果
+          .content
+            = link_to nil, class: 'item' do
+              | 2018年
+            = link_to nil, class: 'item' do
+              | 2017年
+            = link_to nil, class: 'item' do
+              | 2016年
+            = link_to nil, class: 'item' do
+              | 2015年
+      
+      = link_to nil, method: :delete, class: 'item ui inverted' do
+        .title
+          i.sign.out.icon
+          | ログアウト
+
+    .pusher
+      .ui.container
+        == yield

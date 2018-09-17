@@ -14,3 +14,14 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require semantic-ui
+
+$(function() {
+  $('#sidebar').click(function() {
+    $('.ui.sidebar').sidebar('toggle');
+  });
+  $('.ui.accordion').accordion();
+});

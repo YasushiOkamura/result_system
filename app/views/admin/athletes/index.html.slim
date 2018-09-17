@@ -1,0 +1,32 @@
+h1 選手一覧
+
+table
+  thead
+    tr
+      th 名前
+      th 学年
+      th 性別
+      th 学科・専攻
+      th 現役
+      th
+      th
+      th
+      th
+
+  tbody
+    - @athletes.each do |athlete|
+      tr
+        td = athlete.name
+        td = athlete&.grade.text
+        td = athlete&.sex.text
+        td = athlete.major
+        td
+          - if athlete.active
+            | ✓
+        td = link_to 'Show', athlete
+        td = link_to 'Edit', edit_athlete_path(athlete)
+        td = link_to 'Destroy', athlete, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Athlete', new_admin_athlete_path

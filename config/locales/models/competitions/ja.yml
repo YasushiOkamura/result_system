@@ -1,0 +1,60 @@
+ja:
+  activerecord:
+    models:
+      competition: 競技
+    attributes:
+      competition:
+        name: 競技名
+        kind: 競技種別
+  enumerize:
+    competition:
+      kind:
+        short: 短距離
+        long: 中・長距離
+        field: フィールド
+        relay: リレー
+        decathlon: 十種
+      name:
+        man_100m: 男子100m
+        man_200m: 男子200m
+        man_400m: 男子400m
+        man_110mH: 男子110mH
+        man_400mH: 男子400mH
+        woman_100m: 女子100m
+        woman_200m: 女子200m
+        woman_400m: 女子400m
+        woman_100mH: 女子100mH
+        woman_400mH: 女子400mH
+        man_800m: 男子800m
+        man_1500m: 男子1500m
+        man_3000m: 男子3000m
+        man_5000m: 男子5000m
+        man_10000m: 男子10000m
+        man_3000mSC: 男子3000mSC
+        woman_800m: 女子800m
+        woman_1500m: 女子1500m
+        woman_3000m: 女子3000m
+        woman_5000m: 女子5000m
+        woman_10000m: 女子10000m
+        woman_3000mSC: 女子3000mSC
+        man_LJ: 男子走幅跳
+        man_HJ: 男子走高跳
+        man_PJ: 男子棒高跳
+        man_TJ: 男子三段跳
+        man_SP: 男子砲丸投
+        man_DT: 男子円盤投
+        man_JT: 男子やり投
+        man_HT: 男子ハンマー投
+        woman_LJ: 女子走幅跳
+        woman_HJ: 女子走高跳
+        woman_PJ: 女子棒高跳
+        woman_TJ: 女子三段跳
+        woman_SP: 女子砲丸投
+        woman_DT: 女子円盤投
+        woman_JT: 女子やり投
+        woman_HT: 女子ハンマー投
+        man_100mx4: 男子100m×4リレー
+        man_400mx4: 男子400m×4リレー
+        woman_100mx4: 女子100m×4リレー
+        woman_400mx4: 女子400m×4リレー
+        decathlon: 十種競技

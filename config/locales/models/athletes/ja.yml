@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      athlete: 選手
+    attributes:
+      athlete:
+        name: 名前
+        grade: 学年
+        sex: 性別
+        major: 学科・専攻
+        active: 現役
+  enumerize:
+    athlete:
+      grade:
+        b1: B1
+        b2: B2
+        b3: B3
+        b4: B4
+        m1: M1
+        m2: M2
+        d: D
+        ob: OB
+      sex:
+        man: 男子
+        woman: 女子

@@ -1,0 +1,2 @@
+class LongResult < ApplicationRecord
+end

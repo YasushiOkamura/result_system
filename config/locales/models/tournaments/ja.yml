@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      tournament: 大会
+    attributes:
+      tournament:
+        name: 大会名
+        place: 場所
+        start_day: 開始日
+        end_day: 終了日

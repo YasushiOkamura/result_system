@@ -1,8 +1,7 @@
-h1 Editing tournament
+h1 大会 - 編集
 
-== render 'form'
-
-=> link_to 'Show', @tournament
-'|
-=< link_to 'Back', admin_tournaments_path
-
+= form_for([:admin, @tournament], html: { class: 'ui form' })  do |f|
+  = render 'form', f: f
+  = f.submit '登録', class: 'ui button primary'
+.row
+  = link_to '大会一覧へ', admin_tournaments_path, class: 'ui gray button'

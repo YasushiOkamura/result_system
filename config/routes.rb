@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'home#index', as: :root
     resources :athletes
-    resources :tournaments
+    resources :tournaments, expect: [:show]
   end
 end

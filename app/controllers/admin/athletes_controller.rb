@@ -1,11 +1,8 @@
 class Admin::AthletesController < Admin::ApplicationController
-  before_action :set_athlete, only: [:show, :edit, :update, :destroy]
+  before_action :set_athlete, only: [:edit, :update, :destroy]
 
   def index
     @athletes = Athlete.all
-  end
-
-  def show
   end
 
   def new
@@ -20,7 +17,7 @@ class Admin::AthletesController < Admin::ApplicationController
     if @athlete.save
       redirect_to edit_admin_athlete_path(@athlete), notice: '選手を新たに作成しました'
     else
-      render :edit, error: '選手の作成に失敗しました'
+      render :new, error: '選手の作成に失敗しました'
     end
   end
 

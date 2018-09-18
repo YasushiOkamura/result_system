@@ -1,9 +1,31 @@
-= form_for @athlete do |f|
-  - if @athlete.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@athlete.errors.count, "error")} prohibited this athlete from being saved:"
-      ul
-        - @athlete.errors.full_messages.each do |message|
-          li = message
+- if @athlete.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(@athlete.errors.count, "error")} prohibited this athlete from being saved:"
+    ul
+      - @athlete.errors.full_messages.each do |message|
+        li = message
 
-  .actions = f.submit
+.field
+  = f.label :name
+  = f.text_field :name
+
+.field
+  = f.label :grade
+  = f.select :grade, Athlete.grade.options, {}, class: 'ui dropdown'
+
+.field
+  = f.label :sex
+  = f.select :sex, Athlete.sex.options, {}, class: 'ui dropdown'
+
+.field
+  = f.label :major
+  = f.text_field :major
+  
+.field
+  .ui.checkbox
+    = f.check_box :active
+    = f.label :active
+
+.field
+  = f.label :memo
+  = f.text_area :memo

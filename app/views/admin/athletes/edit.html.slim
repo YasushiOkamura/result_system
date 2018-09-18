@@ -1,8 +1,7 @@
-h1 Editing athlete
+h1 選手 - 編集
 
-== render 'form'
-
-=> link_to 'Show', @athlete
-'|
-=< link_to 'Back', admin_athletes_path
-
+= form_for([:admin, @athlete], html: { class: 'ui form' })  do |f|
+  = render 'form', f: f
+  = f.submit '更新', class: 'ui button primary'
+.row
+  = link_to '選手一覧へ', admin_athletes_path, class: 'ui gray button'

@@ -1,6 +1,8 @@
 h1 選手一覧
 
-table
+= link_to '選手登録', new_admin_athlete_path, class: 'ui button green'
+
+table.ui.celled.small.table
   thead
     tr
       th 名前
@@ -8,8 +10,6 @@ table
       th 性別
       th 学科・専攻
       th 現役
-      th
-      th
       th
       th
 
@@ -23,10 +23,5 @@ table
         td
           - if athlete.active
             | ✓
-        td = link_to 'Show', athlete
-        td = link_to 'Edit', edit_athlete_path(athlete)
-        td = link_to 'Destroy', athlete, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Athlete', new_admin_athlete_path
+        td = link_to '編集', edit_admin_athlete_path(athlete), class: 'ui green button'
+        td = link_to '削除', admin_athlete_path(athlete), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

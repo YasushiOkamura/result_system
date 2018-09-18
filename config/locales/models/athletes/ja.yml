@@ -9,6 +9,7 @@ ja:
         sex: 性別
         major: 学科・専攻
         active: 現役
+        memo: メモ
   enumerize:
     athlete:
       grade:

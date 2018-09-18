@@ -18,9 +18,9 @@ class Admin::AthletesController < Admin::ApplicationController
   def create
     @athlete = Athlete.new(athlete_params)
     if @athlete.save
-      redirect_to edit_admin_athlete_path(@athlete)
+      redirect_to edit_admin_athlete_path(@athlete), notice: '選手を新たに作成しました'
     else
-      render :edit
+      render :edit, error: '選手の作成に失敗しました'
     end
   end
 
@@ -33,8 +33,11 @@ class Admin::AthletesController < Admin::ApplicationController
   end
 
   def destroy
-    @athlete.destroy
-    redirect_to admin_athletes_url, notice: 'Athlete was successfully destroyed.'
+    if @athlete.destroy
+      redirect_to admin_athletes_path, notice: '削除しました'
+    else
+      redirect_to edit_admin_athletes_path(@athlete), error: '削除に失敗しました'
+    end
   end
 
   private
@@ -45,6 +48,6 @@ class Admin::AthletesController < Admin::ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def athlete_params
-      params.fetch(:athlete, {})
+      params.require(:athlete).permit(:name, :grade, :sex, :major, :active, :memo)
     end
 end

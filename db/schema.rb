@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.integer "tournament_id"
     t.string "grade"
     t.date "established_date"
-    t.string "infomation"
+    t.string "information"
     t.string "condition"
     t.integer "sprint_100m_id"
     t.integer "score_100m"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.integer "tournament_id"
     t.string "grade"
     t.date "established_date"
-    t.string "infomation"
+    t.string "information"
     t.string "condition"
   end
 
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.integer "tournament_id"
     t.string "grade"
     t.date "established_date"
-    t.string "infomation"
+    t.string "information"
     t.string "condition"
   end
 
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.string "third_athelete_grade"
     t.string "four_athlete_grade"
     t.date "established_date"
-    t.string "infomation"
+    t.string "information"
     t.string "condition"
   end
 
@@ -134,8 +134,10 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.integer "tournament_id"
     t.string "grade"
     t.date "established_date"
-    t.string "infomation"
+    t.string "information"
     t.string "condition"
+    t.index ["athlete_id"], name: "index_short_results_on_athlete_id"
+    t.index ["tournament_id"], name: "index_short_results_on_tournament_id"
   end
 
   create_table "tournaments", force: :cascade do |t|

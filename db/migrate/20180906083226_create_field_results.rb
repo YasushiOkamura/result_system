@@ -10,7 +10,7 @@ class CreateFieldResults < ActiveRecord::Migration[5.2]
       t.integer :tournament_id
       t.string :grade
       t.date :established_date
-      t.string :infomation
+      t.string :information
       t.string :condition
     end
   end

@@ -25,9 +25,9 @@ html
                     i.dropdown.icon
                     | 短距離種目(〜400m)
                 .content.active
-                  = link_to nil, class: 'item' do
+                  = link_to new_admin_short_result_path, class: 'item' do
                     | 新規作成
-                  = link_to nil, class: 'item' do
+                  = link_to admin_short_results_path, class: 'item' do
                     | 一覧
             .item.inverted
               .inverted.accordion

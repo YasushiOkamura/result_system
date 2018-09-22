@@ -1,0 +1,40 @@
+h1 短距離 結果一覧
+
+= link_to '短距離 結果登録', new_admin_short_result_path, class: 'ui button green'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th 種目
+      th 選手
+      th 結果
+      th ラウンド
+      th 組
+      th レーン
+      th 着順
+      th 大会
+      th 学年
+      th 樹立日
+      th 情報
+      th 環境
+      th
+      th
+
+  tbody
+    - @short_results.each do |short_result|
+      tr
+        td = I18n.t("enumerize.competition.name.#{short_result.competition}")
+        td 
+          = short_result&.athlete.name
+        td = short_result.result
+        td = short_result.round
+        td = short_result.group
+        td = short_result.rane
+        td = short_result.finish
+        td = short_result&.tournament.name
+        td = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
+        td = short_result.established_date
+        td = short_result.information
+        td = short_result.condition
+        td = link_to '編集', edit_admin_short_result_path(short_result), class: 'ui green button'
+        td = link_to '削除', admin_short_result_path(short_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

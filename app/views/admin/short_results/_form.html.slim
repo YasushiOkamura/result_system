@@ -1,0 +1,58 @@
+- if @short_result.errors.any?
+  .ui.segments
+    .ui.segment.tertiary.inverted.red
+      h2 エラー
+    .ui.segment
+      strong 以下の入力値を訂正してください。
+      ul
+      - @short_result.errors.full_messages.each do |message|
+        li 
+          = message
+
+.field
+  = f.label :competition
+  = f.select :competition, @competition_options, {}, class: 'ui dropdown'
+
+.field
+  = f.label :tournament_id
+  = f.select :tournament_id, Tournament.all.pluck(:name, :id), {}, class: 'ui dropdown'
+
+.field
+  = f.label :athlete_id
+  = f.select :athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+
+.field
+  = f.label :result
+  = f.number_field :result
+
+.field
+  = f.label :wind
+  = f.number_field :wind
+
+.field
+  = f.label :round
+  = f.text_field :round
+  
+.field
+  = f.label :group
+  = f.number_field :group
+  
+.field
+  = f.label :rane
+  = f.text_field :rane
+  
+.field
+  = f.label :finish
+  = f.number_field :finish
+
+.field
+  = f.label :established_date
+  = f.date_field :established_date
+
+.field
+  = f.label :information
+  = f.text_field :information
+
+.field
+  = f.label :condition
+  = f.text_field :condition

@@ -7,7 +7,7 @@ class CreateDecathlonResults < ActiveRecord::Migration[5.2]
       t.integer :tournament_id
       t.string :grade
       t.date :established_date
-      t.string :infomation
+      t.string :information
       t.string :condition
       t.integer :sprint_100m_id
       t.integer :score_100m

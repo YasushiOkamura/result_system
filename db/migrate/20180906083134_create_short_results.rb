@@ -8,11 +8,11 @@ class CreateShortResults < ActiveRecord::Migration[5.2]
       t.string :group
       t.string :rane
       t.integer :finish
-      t.integer :athlete_id
-      t.integer :tournament_id
+      t.integer :athlete_id, index: true
+      t.integer :tournament_id, index: true
       t.string :grade
       t.date :established_date
-      t.string :infomation
+      t.string :information
       t.string :condition
     end
   end

@@ -17,7 +17,7 @@ class CreateRelayResults < ActiveRecord::Migration[5.2]
       t.string :third_athelete_grade
       t.string :four_athlete_grade
       t.date :established_date
-      t.string :infomation
+      t.string :information
       t.string :condition
     end
   end

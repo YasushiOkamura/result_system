@@ -1,0 +1,19 @@
+ja:
+  activerecord:
+    models:
+      short_result: 短距離
+    attributes:
+      short_result:
+        competition: 種目
+        result: 結果
+        wind: 風
+        round: ラウンド
+        group: 組
+        rane: レーン
+        finish: 着順
+        athlete_id:  選手
+        tournament_id: 大会
+        grade: 学年
+        established_date: 樹立日
+        information: 情報
+        condition: 環境

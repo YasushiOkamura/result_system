@@ -6,6 +6,7 @@ table.ui.celled.small.table
   thead
     tr
       th 種目
+      th 学年
       th 選手
       th 結果
       th ラウンド
@@ -13,7 +14,6 @@ table.ui.celled.small.table
       th レーン
       th 着順
       th 大会
-      th 学年
       th 樹立日
       th 情報
       th 環境
@@ -24,15 +24,16 @@ table.ui.celled.small.table
     - @short_results.each do |short_result|
       tr
         td = I18n.t("enumerize.competition.name.#{short_result.competition}")
+        td = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
+        td = short_result&.athlete.name
         td 
-          = short_result&.athlete.name
-        td = short_result.result
+          = show_result(short_result.result)
+          = "(#{show_wind(short_result.wind)})"
         td = short_result.round
         td = short_result.group
         td = short_result.rane
         td = short_result.finish
         td = short_result&.tournament.name
-        td = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
         td = short_result.established_date
         td = short_result.information
         td = short_result.condition

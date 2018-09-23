@@ -1,13 +1,13 @@
 .ui.grid
 
-  - if @short_result.errors.any?
+  - if @long_result.errors.any?
     .ui.segments
       .ui.segment.tertiary.inverted.red
         h2 エラー
       .ui.segment
         strong 以下の入力値を訂正してください。
         ul
-        - @short_result.errors.full_messages.each do |message|
+        - @long_result.errors.full_messages.each do |message|
           li 
             = message
 
@@ -29,12 +29,9 @@
   .six.wide.column
     .field
       = f.label :result
-      = f.text_field :result, value: show_result(@short_result&.result)
+      = f.text_field :result, value: show_result(@long_result&.result)
 
   .six.wide.column
-    .field
-      = f.label :wind
-      = f.number_field :wind, step: 0.1
 
   .six.wide.column
     .field

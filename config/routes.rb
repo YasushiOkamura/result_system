@@ -7,5 +7,7 @@ Rails.application.routes.draw do
     resources :athletes
     resources :tournaments
     resources :short_results
+    resources :long_results
+    resources :field_results
   end
 end

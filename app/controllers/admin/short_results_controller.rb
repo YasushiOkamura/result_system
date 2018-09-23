@@ -14,7 +14,6 @@ class Admin::ShortResultsController < Admin::ApplicationController
   end
 
   def create
-    p short_result_params
     @short_result = ShortResult.new(short_result_params)
     if @short_result.save
       redirect_to edit_admin_short_result_path(@short_result), notice: '結果を作成しました'
@@ -40,16 +39,17 @@ class Admin::ShortResultsController < Admin::ApplicationController
   end
 
   private
+
   def set_short_result
     @short_result = ShortResult.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def short_result_params
+    params[:short_result][:result] = result_parse(params[:short_result][:result])
     params.require(:short_result).permit(
       :competition,
       :result,
-      :wind,
       :round,
       :group,
       :rane,
@@ -69,4 +69,5 @@ class Admin::ShortResultsController < Admin::ApplicationController
       @competition_options << [competition.name.text, competition.name]
     end
   end
+
 end

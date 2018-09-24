@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      long_result: 短距離
+      long_result: 長距離
     attributes:
       long_result:
         competition: 種目

@@ -1,25 +1,17 @@
 ja:
   activerecord:
     models:
-      field_result: 短距離
+      field_result: フィールド
     attributes:
       field_result:
-        name: 名前
+        competition: 種目
+        result: 結果
+        wind: 風
+        round: ラウンド
+        finish: 着順
+        athlete_id:  選手
+        tournament_id: 大会
         grade: 学年
-        sex: 性別
-        major: 学科・専攻
-        active: 現役
-  enumerize:
-    field_result:
-      grade:
-        b1: B1
-        b2: B2
-        b3: B3
-        b4: B4
-        m1: M1
-        m2: M2
-        d: D
-        ob: OB
-      sex:
-        man: 男子
-        woman: 女子
+        established_date: 樹立日
+        information: 情報
+        condition: 環境

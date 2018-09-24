@@ -28,7 +28,8 @@ table.ui.celled.small.table
         td = short_result&.athlete.name
         td 
           = show_result(short_result.result)
-          = "(#{show_wind(short_result.wind)})"
+          - if short_result.wind.present?
+            = "(#{show_wind(short_result.wind)})"
         td = short_result.round
         td = short_result.group
         td = short_result.rane

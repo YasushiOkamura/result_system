@@ -2,7 +2,7 @@ class CreateFieldResults < ActiveRecord::Migration[5.2]
   def change
     create_table :field_results do |t|
       t.string :competition
-      t.integer :result, limit: 8
+      t.float :result
       t.float :wind
       t.string :round
       t.integer :finish

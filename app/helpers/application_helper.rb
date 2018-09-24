@@ -10,6 +10,10 @@ module ApplicationHelper
     "#{m}.#{s}.#{ms}" unless m.zero?
   end
 
+  def show_field_result(result)
+    sprintf("%.2f", result.to_s)
+  end
+
   def show_wind(wind)
     return "" if wind.nil?
     return "+#{wind}" if wind >= 0

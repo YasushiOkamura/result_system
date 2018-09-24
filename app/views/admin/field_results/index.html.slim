@@ -1,0 +1,38 @@
+h1 フィールド 結果一覧
+
+= link_to 'フィールド 結果登録', new_admin_field_result_path, class: 'ui button green'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th 種目
+      th 学年
+      th 選手
+      th 結果
+      th ラウンド
+      th 着順
+      th 大会
+      th 樹立日
+      th 情報
+      th 環境
+      th
+      th
+
+  tbody
+    - @field_results.each do |field_result|
+      tr
+        td = I18n.t("enumerize.competition.name.#{field_result.competition}")
+        td = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
+        td = field_result&.athlete.name
+        td 
+          = show_field_result(field_result.result)
+          - if field_result.wind.present?
+            = "(#{show_wind(field_result.wind)})"
+        td = field_result.round
+        td = field_result.finish
+        td = field_result&.tournament.name
+        td = field_result.established_date
+        td = field_result.information
+        td = field_result.condition
+        td = link_to '編集', edit_admin_field_result_path(field_result), class: 'ui green button'
+        td = link_to '削除', admin_field_result_path(field_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

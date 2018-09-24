@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
 
   create_table "field_results", force: :cascade do |t|
     t.string "competition"
-    t.bigint "result"
+    t.float "result"
     t.float "wind"
     t.string "round"
     t.integer "finish"

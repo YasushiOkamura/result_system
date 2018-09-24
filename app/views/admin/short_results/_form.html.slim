@@ -59,7 +59,7 @@
   .six.wide.column
     .field
       = f.label :established_date
-      = f.date_field :established_date
+      = f.date_field :established_date, value: Tournament.all.order('start_day DESC').first.start_day
 
   .six.wide.column
     .field

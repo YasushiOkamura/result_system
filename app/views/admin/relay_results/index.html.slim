@@ -1,0 +1,52 @@
+h1 リレー 結果一覧
+
+= link_to 'リレー 結果登録', new_admin_relay_result_path, class: 'ui button green'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th 種目
+      th 1走
+      th 2走
+      th 3走
+      th 4走
+      th 結果
+      th ラウンド
+      th 組
+      th レーン
+      th 着順
+      th 大会
+      th 樹立日
+      th 情報
+      th 環境
+      th
+      th
+
+  tbody
+    - @relay_results.each do |relay_result|
+      tr
+        td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
+        td
+          = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
+          = relay_result&.first_athlete.name
+        td
+          = I18n.t("enumerize.athlete.grade.#{relay_result.second_athlete_grade}")
+          = relay_result&.second_athlete.name
+        td
+          = I18n.t("enumerize.athlete.grade.#{relay_result.third_athlete_grade}")
+          = relay_result&.third_athlete.name
+        td
+          = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
+          = relay_result&.fourth_athlete.name
+        td 
+          = show_result(relay_result.result)
+        td = relay_result.round
+        td = relay_result.group
+        td = relay_result.rane
+        td = relay_result.finish
+        td = relay_result&.tournament.name
+        td = relay_result.established_date
+        td = relay_result.information
+        td = relay_result.condition
+        td = link_to '編集', edit_admin_relay_result_path(relay_result), class: 'ui green button'
+        td = link_to '削除', admin_relay_result_path(relay_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

@@ -1,0 +1,82 @@
+.ui.grid
+
+  - if @relay_result.errors.any?
+    .ui.segments
+      .ui.segment.tertiary.inverted.red
+        h2 エラー
+      .ui.segment
+        strong 以下の入力値を訂正してください。
+        ul
+        - @relay_result.errors.full_messages.each do |message|
+          li 
+            = message
+
+  .six.wide.column
+    .field
+      = f.label :competition
+      = f.select :competition, @competition_options, {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :tournament_id
+      = f.select :tournament_id, Tournament.all.pluck(:name, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :first_athlete_id
+      = f.select :first_athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :second_athlete_id
+      = f.select :second_athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :third_athlete_id
+      = f.select :third_athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :fourth_athlete_id
+      = f.select :fourth_athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :result
+      = f.text_field :result, value: show_result(@relay_result&.result)
+
+  .six.wide.column
+    .field
+      = f.label :round
+      = f.text_field :round
+      
+  .six.wide.column
+    .field
+      = f.label :group
+      = f.number_field :group
+      
+  .six.wide.column
+    .field
+      = f.label :rane
+      = f.text_field :rane
+      
+  .six.wide.column
+    .field
+      = f.label :finish
+      = f.number_field :finish
+
+  .six.wide.column
+    .field
+      = f.label :established_date
+      = f.date_field :established_date
+
+  .six.wide.column
+    .field
+      = f.label :information
+      = f.text_field :information
+
+  .six.wide.column
+    .field
+      = f.label :condition
+      = f.text_field :condition

@@ -42,3 +42,16 @@ Competition.create(name: :man_400mx4, kind: :relay)
 Competition.create(name: :woman_100mx4, kind: :relay)
 Competition.create(name: :woman_400mx4, kind: :relay)
 Competition.create(name: :decathlon, kind: :decathlon)
+
+# 選手
+Athlete.create(name: 'テスト 太郎', grade: :b1, sex: :man, major: 'Ⅰ類', active: true)
+Athlete.create(name: 'テスト 次郎', grade: :b2, sex: :man, major: 'Ⅱ類', active: true)
+Athlete.create(name: 'テスト 三郎', grade: :b3, sex: :man, major: 'Ⅲ類', active: true)
+Athlete.create(name: 'テスト 四郎', grade: :b4, sex: :man, major: '総合情報学科', active: true)
+Athlete.create(name: 'テスト 五郎', grade: :m1, sex: :man, major: '情報学専攻', active: true)
+
+# 大会
+Tournament.create(name: '国士舘1', place: '国士舘大学', start_day: '2018-08-11', end_day: '2018-08-12')
+Tournament.create(name: '国士舘2', place: '国士舘大学', start_day: '2018-07-15', end_day: '2018-07-16')
+Tournament.create(name: '対校戦1', place: '大きな競技場', start_day: '2018-09-10', end_day: '2018-09-11')
+Tournament.create(name: '対校戦2', place: '大きな競技場', start_day: '2018-10-18', end_day: '2018-10-19')

@@ -56,6 +56,18 @@ html
                 .title.active
                   h5
                     i.dropdown.icon
+                    | リレー種目
+                .content.active
+                  = link_to new_admin_relay_result_path, class: 'item' do
+                    | 新規作成
+                  = link_to admin_relay_results_path, class: 'item' do
+                    | 一覧
+            .item.inverted
+            .item.inverted
+              .inverted.accordion
+                .title.active
+                  h5
+                    i.dropdown.icon
                     | 十種競技
                 .content
                   = link_to nil, class: 'item' do

@@ -14,8 +14,8 @@ class CreateRelayResults < ActiveRecord::Migration[5.2]
       t.integer :tournament_id
       t.string :first_athlete_grade
       t.string :second_athlete_grade
-      t.string :third_athelete_grade
-      t.string :four_athlete_grade
+      t.string :third_athlete_grade
+      t.string :fourth_athlete_grade
       t.date :established_date
       t.string :information
       t.string :condition

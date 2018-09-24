@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :short_results
     resources :long_results
     resources :field_results
+    resources :relay_results
   end
 end

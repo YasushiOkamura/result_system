@@ -1,0 +1,24 @@
+ja:
+  activerecord:
+    models:
+      relay_result: リレー
+    attributes:
+      relay_result:
+        competition: 種目
+        result: 結果
+        round: ラウンド
+        group: 組
+        rane: レーン
+        finish: 着順
+        first_athlete_id: 1走
+        second_athlete_id: 2走
+        third_athlete_id: 3走
+        fourth_athlete_id: 4走
+        first_athlete_grade: 学年
+        second_athlete_grade: 学年
+        third_athlete_grade: 学年
+        fourth_athlete_grade: 学年
+        tournament_id: 大会
+        established_date: 樹立日
+        information: 情報
+        condition: 環境

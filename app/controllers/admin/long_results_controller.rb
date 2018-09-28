@@ -3,7 +3,7 @@ class Admin::LongResultsController < Admin::ApplicationController
   before_action :long_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @long_results = LongResult.all
+    @long_results = LongResult.page(params[:page])
   end
 
   def new

@@ -2,7 +2,7 @@ class Admin::AthletesController < Admin::ApplicationController
   before_action :set_athlete, only: [:edit, :update, :destroy]
 
   def index
-    @athletes = Athlete.all
+    @athletes = Athlete.page(params[:page])
   end
 
   def new

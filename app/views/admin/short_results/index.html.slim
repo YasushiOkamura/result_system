@@ -40,3 +40,5 @@ table.ui.celled.small.table
         td = short_result.condition
         td = link_to '編集', edit_admin_short_result_path(short_result), class: 'ui green button'
         td = link_to '削除', admin_short_result_path(short_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+
+= paginate @short_results

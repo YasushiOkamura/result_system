@@ -3,7 +3,7 @@ class Admin::FieldResultsController < Admin::ApplicationController
   before_action :field_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @field_results = FieldResult.all
+    @field_results = FieldResult.page(params[:page])
   end
 
   def new

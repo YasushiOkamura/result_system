@@ -3,7 +3,7 @@ class Admin::RelayResultsController < Admin::ApplicationController
   before_action :relay_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @relay_results = RelayResult.all
+    @relay_results = RelayResult.page(params[:page])
   end
 
   def new

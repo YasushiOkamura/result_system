@@ -2,7 +2,7 @@ class Admin::TournamentsController < Admin::ApplicationController
   before_action :set_tournament, only: [:edit, :update, :destroy]
 
   def index
-    @tournaments = Tournament.all
+    @tournaments = Tournament.page(params[:page])
   end
   
   def new

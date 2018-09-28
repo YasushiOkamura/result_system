@@ -3,7 +3,7 @@ class Admin::ShortResultsController < Admin::ApplicationController
   before_action :short_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @short_results = ShortResult.all
+    @short_results = ShortResult.page(params[:page])
   end
 
   def new

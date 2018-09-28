@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.date "established_date"
     t.string "information"
     t.string "condition"
+    t.boolean "official"
   end
 
   create_table "load_results", force: :cascade do |t|
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.date "established_date"
     t.string "information"
     t.string "condition"
+    t.boolean "official"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -120,6 +122,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.date "established_date"
     t.string "information"
     t.string "condition"
+    t.boolean "official"
   end
 
   create_table "short_results", force: :cascade do |t|
@@ -136,6 +139,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.date "established_date"
     t.string "information"
     t.string "condition"
+    t.boolean "official"
     t.index ["athlete_id"], name: "index_short_results_on_athlete_id"
     t.index ["tournament_id"], name: "index_short_results_on_tournament_id"
   end

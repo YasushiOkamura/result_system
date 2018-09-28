@@ -14,6 +14,7 @@ class CreateShortResults < ActiveRecord::Migration[5.2]
       t.date :established_date
       t.string :information
       t.string :condition
+      t.boolean :official
     end
   end
 end

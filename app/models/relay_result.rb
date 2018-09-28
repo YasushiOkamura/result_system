@@ -7,6 +7,7 @@ class RelayResult < ApplicationRecord
   belongs_to :fourth_athlete, class_name: :Athlete, foreign_key: :fourth_athlete_id, inverse_of: :fourth_relay_results
 
   before_save :set_grade
+  before_save :set_official
 
   private
 
@@ -15,5 +16,9 @@ class RelayResult < ApplicationRecord
     self.second_athlete_grade = self.second_athlete.grade
     self.third_athlete_grade  = self.third_athlete.grade
     self.fourth_athlete_grade = self.fourth_athlete.grade
+  end
+
+  def set_official
+    self.official = true
   end
 end

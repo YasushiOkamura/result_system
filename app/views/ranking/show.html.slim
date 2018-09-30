@@ -1,0 +1,61 @@
+h1 
+  i.ui.chess.queen.icon
+  | 5傑 -
+  = t("enumerize.competition.kind.#{@kind}")
+  | -
+
+= render 'ranking/links'
+
+- @all_results.each do |results|
+  - unless results.empty?
+    h3 = t("enumerize.competition.name.#{results.first.competition}")
+
+    table.ui.celled.small.table
+      thead
+        tr
+          th 選手
+          th 結果
+          th 大会
+          th 樹立日
+          th 情報
+          th 環境
+
+      tbody
+        - results.each do |result|
+          tr
+            td
+              - if @kind == 'relay'
+                = result&.first_athlete.name
+                = ' '
+                = I18n.t("enumerize.athlete.grade.#{result.first_athlete_grade}")
+                br
+                = result&.second_athlete.name
+                = ' '
+                = I18n.t("enumerize.athlete.grade.#{result.second_athlete_grade}")
+                br
+                = result&.third_athlete.name
+                = ' '
+                = I18n.t("enumerize.athlete.grade.#{result.third_athlete_grade}")
+                br
+                = result&.fourth_athlete.name
+                = ' '
+                = I18n.t("enumerize.athlete.grade.#{result.fourth_athlete_grade}")
+                br
+              - else
+                = result&.athlete.name
+                = ' '
+                = I18n.t("enumerize.athlete.grade.#{result.grade}")
+            td 
+              - if @kind == 'field'
+                = show_field_result(result.result)
+              - else
+                = show_result(result.result)
+
+              - if ['short', 'field'].include?(@kind)
+                - if result.wind.present?
+                  = "(#{show_wind(result.wind)})"
+            td = result&.tournament.name
+            td = result.established_date
+            td = result.information
+            td = result.condition
+

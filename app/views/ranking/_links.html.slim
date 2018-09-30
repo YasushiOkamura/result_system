@@ -1,0 +1,29 @@
+.ui.grid
+  .three.wide.column
+    = link_to ranking_path(kind: 'short') do
+      .ui.link.card
+        .content
+          .header 短距離5傑
+        .content
+          .ui.sub.header 100m〜400mまでの種目
+  .three.wide.column
+    = link_to ranking_path(kind: 'long') do
+      .ui.link.card
+        .content
+          .header 長距離5傑
+        .content
+          .ui.sub.header 800m以上のの種目
+  .three.wide.column
+    = link_to ranking_path(kind: 'field') do
+      .ui.link.card
+        .content
+          .header フィールド5傑
+        .content
+          .ui.sub.header フィールド種目
+  .three.wide.column
+    = link_to ranking_path(kind: 'relay') do
+      .ui.link.card
+        .content
+          .header リレー5傑
+        .content
+          .ui.sub.header リレー種目

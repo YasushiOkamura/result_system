@@ -99,7 +99,7 @@ h2
         th 環境
 
     tbody
-      - @tournament.field_results.order('comepetition desc, result asc').each do |field_result|
+      - @tournament.field_results.order('competition desc, result asc').each do |field_result|
         tr
           td = I18n.t("enumerize.competition.name.#{field_result.competition}")
           td 

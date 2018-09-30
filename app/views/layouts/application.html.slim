@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | 電通大 陸上部 リザルトシステム
+      | UEC T&F リザルトシステム
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -13,26 +13,26 @@ html
     /.ui.inverted.top.visible.sidebar.menu
     .ui.top.labeled.inverted.blue.visible.large.sidebar.menu
       .item
-        h3 リザルト
+        h3 UEC T&F リザルトシステム
       .item.ui.link.inverted
         = link_to root_path do
           i.home.icon
           | TOP
       .item.ui.link.inverted
         = link_to tournaments_path do
-          i.home.icon
+          i.star.icon
           | 大会・記録会
       .item.ui.link.inverted
-        = link_to tournaments_path do
-          i.home.icon
+        = link_to ranking_path do
+          i.chess.queen.icon
           | 電通大５傑
-      .item.ui.link.inverted
+      /.item.ui.link.inverted
         i.home.icon
         | HOME
-      .item.ui.link.inverted
+      /.item.ui.link.inverted
         i.home.icon
         | HOME
-      .item.ui.link.inverted
+      /.item.ui.link.inverted
         i.home.icon
         | HOME
       .item.link.right.inverted

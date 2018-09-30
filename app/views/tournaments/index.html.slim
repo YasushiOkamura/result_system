@@ -1,0 +1,17 @@
+h1 大会・記録会一覧
+
+table.ui.celled.table
+  thead
+    tr
+      th 大会名
+      th 場所
+      th 開始日時
+      th 終了日時
+
+  tbody
+    - @tournaments.each do |tournament|
+      tr
+        td = link_to tournament.name, tournament_path(tournament)
+        td = tournament.place
+        td = tournament.start_day
+        td = tournament.end_day

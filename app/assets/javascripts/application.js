@@ -25,4 +25,7 @@ $(function() {
   });
   $('.ui.accordion').accordion();
   $('.ui.dropdown').dropdown();
+  $('#sidebar').click(function(){
+    $('.ui.labeled.icon.sidebar').sidebar('toggle');
+  });
 });

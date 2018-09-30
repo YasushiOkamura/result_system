@@ -1,0 +1,168 @@
+h1 = @tournament.name
+
+h2
+  = @tournament.place
+  = l @tournament.start_day
+  - unless @tournament.start_day == @tournament.end_day
+    | 〜
+    = l @tournament.end_day
+ 
+
+= link_to '大会一覧へ', tournaments_path, class: 'ui button'
+
+- unless @tournament.short_results.empty?
+  h3 短距離
+  table.ui.celled.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th ラウンド
+        th 組
+        th レーン
+        th 着順
+        th 大会
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @tournament.short_results.order('competition desc, result asc').each do |short_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{short_result.competition}")
+          td 
+            = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
+            = ' '
+            = short_result&.athlete.name
+          td 
+            = show_result(short_result.result)
+            - if short_result.wind.present?
+              = "(#{show_wind(short_result.wind)})"
+          td = short_result.round
+          td = short_result.group
+          td = short_result.rane
+          td = short_result.finish
+          td = short_result&.tournament.name
+          td = short_result.established_date
+          td = short_result.information
+          td = short_result.condition
+
+- unless @tournament.long_results.empty?
+  h3 長距離
+  table.ui.celled.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th ラウンド
+        th 組
+        th レーン
+        th 着順
+        th 大会
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @tournament.long_results.order('competition desc, result asc').each do |long_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{long_result.competition}")
+          td 
+            = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
+            = ' '  
+            = long_result&.athlete.name
+          td = show_result(long_result.result)
+          td = long_result.round
+          td = long_result.group
+          td = long_result.rane
+          td = long_result.finish
+          td = long_result&.tournament.name
+          td = long_result.established_date
+          td = long_result.information
+          td = long_result.condition
+
+- unless @tournament.field_results.empty?
+  h3 フィールド
+  table.ui.celled.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th ラウンド
+        th 着順
+        th 大会
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @tournament.field_results.order('comepetition desc, result asc').each do |field_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{field_result.competition}")
+          td 
+            = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
+            = ' '
+            = field_result&.athlete.name
+          td 
+            = show_field_result(field_result.result)
+            - if field_result.wind.present?
+              = "(#{show_wind(field_result.wind)})"
+          td = field_result.round
+          td = field_result.finish
+          td = field_result&.tournament.name
+          td = field_result.established_date
+          td = field_result.information
+          td = field_result.condition
+
+- unless @tournament.relay_results.empty?
+  h3 リレー
+  table.ui.celled.small.table
+    thead
+      tr
+        th 種目
+        th 1走
+        th 2走
+        th 3走
+        th 4走
+        th 結果
+        th ラウンド
+        th 組
+        th レーン
+        th 着順
+        th 大会
+        th 樹立日
+        th 情報
+        th 環境
+        th
+        th
+
+    tbody
+      - @tournament.relay_results.order('competition desc, result asc').each do |relay_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
+          td
+            = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
+            = relay_result&.first_athlete.name
+          td
+            = I18n.t("enumerize.athlete.grade.#{relay_result.second_athlete_grade}")
+            = relay_result&.second_athlete.name
+          td
+            = I18n.t("enumerize.athlete.grade.#{relay_result.third_athlete_grade}")
+            = relay_result&.third_athlete.name
+          td
+            = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
+            = relay_result&.fourth_athlete.name
+          td 
+            = show_result(relay_result.result)
+          td = relay_result.round
+          td = relay_result.group
+          td = relay_result.rane
+          td = relay_result.finish
+          td = relay_result&.tournament.name
+          td = relay_result.established_date
+          td = relay_result.information
+          td = relay_result.condition
+          td = link_to '編集', edit_admin_relay_result_path(relay_result), class: 'ui green button'

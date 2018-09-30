@@ -8,7 +8,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .ui.inverted.left.vertical.visible.sidebar.menu
+    .ui.inverted.left.vertical.visible.blue.sidebar.menu
       = link_to admin_root_path, class: 'item' do
         h3 リザルトシステム管理画面
       .item.ui.inverted
@@ -106,5 +106,5 @@ html
           | ログアウト
 
     .pusher
-      .ui.container
+      .ui.admin.container
         == yield

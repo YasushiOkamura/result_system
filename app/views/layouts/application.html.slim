@@ -2,10 +2,41 @@ doctype html
 html
   head
     title
-      | ResultSystem
+      | 電通大 陸上部 リザルトシステム
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    /#sidebar
+      i.bordered.inverted.big.bars.icon
+    /.ui.inverted.top.visible.sidebar.menu
+    .ui.top.labeled.inverted.blue.visible.large.sidebar.menu
+      .item
+        h3 リザルト
+      .item.ui.link.inverted
+        = link_to root_path do
+          i.home.icon
+          | TOP
+      .item.ui.link.inverted
+        = link_to tournaments_path do
+          i.home.icon
+          | 大会・記録会
+      .item.ui.link.inverted
+        = link_to tournaments_path do
+          i.home.icon
+          | 電通大５傑
+      .item.ui.link.inverted
+        i.home.icon
+        | HOME
+      .item.ui.link.inverted
+        i.home.icon
+        | HOME
+      .item.ui.link.inverted
+        i.home.icon
+        | HOME
+      .item.link.right.inverted
+        i.user.icon
+        | 管理者ログイン
+    .ui.padding.container
+      == yield

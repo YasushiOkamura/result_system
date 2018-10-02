@@ -1,4 +1,6 @@
 #require_relative "./seeds/#{Rails.env}"
+# 管理者
+manager = Manager.create(login_id: 'uectf', password: 'pass', password_confirmation: 'pass')
 
 # 競技登録
 Competition.create(name: :man_100m, kind: :short)

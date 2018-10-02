@@ -100,7 +100,7 @@ html
             = link_to nil, class: 'item' do
               | 2015年
       
-      = link_to nil, method: :delete, class: 'item ui inverted' do
+      = link_to admin_destroy_session_path, method: :delete, class: 'item ui inverted' do
         .title
           i.sign.out.icon
           | ログアウト

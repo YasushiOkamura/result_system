@@ -19,22 +19,22 @@
     .six.wide.column
       .field
         = f.label :tournament_id
-        = f.select :tournament_id, Tournament.all.pluck(:name, :id), {}, class: 'ui dropdown'
+        = f.select :tournament_id, Tournament.order('id desc').limit(20).pluck(:name, :id), {}, class: 'ui dropdown'
 
     .six.wide.column
       .field
         = f.label :athlete_id
-        = f.select :athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+        = f.select :athlete_id, Athlete.where(active: true).pluck(:name, :id), {}, class: 'ui dropdown'
 
     .six.wide.column
       .field
         = f.label :result
-        = f.number_field :result, step: 0.01
+        = f.number_field :result, step: 0.01, placeholder: '10.00' 
 
     .six.wide.column
       .field
         = f.label :wind
-        = f.number_field :wind, step: 0.1
+        = f.number_field :wind, step: 0.1, placeholder: '1.2 風が関係ない種目は空欄で'
 
     .six.wide.column
       .field
@@ -54,9 +54,9 @@
     .six.wide.column
       .field
         = f.label :information
-        = f.text_field :information
+        = f.text_field :information, placeholder: 'PB, Q, q, 電通大記録...'
 
     .six.wide.column
       .field
         = f.label :condition
-        = f.text_field :condition
+        = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'

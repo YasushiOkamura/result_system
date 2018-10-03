@@ -19,24 +19,24 @@
   .six.wide.column
     .field
       = f.label :tournament_id
-      = f.select :tournament_id, Tournament.all.pluck(:name, :id), {}, class: 'ui dropdown'
+      = f.select :tournament_id, Tournament.order('id desc').limit(20).pluck(:name, :id), {}, class: 'ui dropdown'
 
   .six.wide.column
     .field
       = f.label :athlete_id
-      = f.select :athlete_id, Athlete.all.pluck(:name, :id), {}, class: 'ui dropdown'
+      = f.select :athlete_id, Athlete.where(active: true).pluck(:name, :id), {}, class: 'ui dropdown'
 
   .six.wide.column
     .field
       = f.label :result
-      = f.text_field :result, value: show_result(@long_result&.result)
+      = f.text_field :result, value: show_result(@long_result&.result), placeholder: '15.30.00'
 
   .six.wide.column
 
   .six.wide.column
     .field
       = f.label :round
-      = f.text_field :round
+      = f.text_field :round, placeholder: '決勝とか記録会とか'
       
   .six.wide.column
     .field
@@ -61,9 +61,9 @@
   .six.wide.column
     .field
       = f.label :information
-      = f.text_field :information
+      = f.text_field :information, placeholder: 'PB, Q, q, 電通大記録...'
 
   .six.wide.column
     .field
       = f.label :condition
-      = f.text_field :condition
+      = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'

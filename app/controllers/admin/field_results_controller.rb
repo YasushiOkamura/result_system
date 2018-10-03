@@ -1,4 +1,4 @@
-class Admin::FieldResultsController < Admin::ApplicationController
+class Admin::FieldResultsController < Admin::BaseController
   before_action :set_field_result, only: [:edit, :update, :destroy]
   before_action :field_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 

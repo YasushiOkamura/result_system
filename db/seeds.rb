@@ -1,59 +1,78 @@
+require 'csv'
+
 #require_relative "./seeds/#{Rails.env}"
+
+def str_to_bool(str)
+  return true if str == 'true'
+  return false if str == 'false'
+  nil
+end
+
 # 管理者
 manager = Manager.create(login_id: 'uectf', password: 'pass', password_confirmation: 'pass')
 
-# 競技登録
-Competition.create(name: :man_100m, kind: :short)
-Competition.create(name: :man_200m, kind: :short)
-Competition.create(name: :man_400m, kind: :short)
-Competition.create(name: :man_110mH, kind: :short)
-Competition.create(name: :man_400mH, kind: :short)
-Competition.create(name: :woman_100m, kind: :short)
-Competition.create(name: :woman_200m, kind: :short)
-Competition.create(name: :woman_400m, kind: :short)
-Competition.create(name: :woman_100mH, kind: :short)
-Competition.create(name: :man_800m, kind: :long)
-Competition.create(name: :man_1500m, kind: :long)
-Competition.create(name: :man_3000m, kind: :long)
-Competition.create(name: :man_5000m, kind: :long)
-Competition.create(name: :man_10000m, kind: :long)
-Competition.create(name: :man_3000mSC, kind: :long)
-Competition.create(name: :woman_800m, kind: :long)
-Competition.create(name: :woman_1500m, kind: :long)
-Competition.create(name: :woman_3000m, kind: :long)
-Competition.create(name: :woman_5000m, kind: :long)
-Competition.create(name: :woman_10000m, kind: :long)
-Competition.create(name: :woman_3000mSC, kind: :long)
-Competition.create(name: :man_LJ, kind: :field)
-Competition.create(name: :man_HJ, kind: :field)
-Competition.create(name: :man_PJ, kind: :field)
-Competition.create(name: :man_TJ, kind: :field)
-Competition.create(name: :man_SP, kind: :field)
-Competition.create(name: :man_DT, kind: :field)
-Competition.create(name: :man_JT, kind: :field)
-Competition.create(name: :man_HT, kind: :field)
-Competition.create(name: :woman_LJ, kind: :field)
-Competition.create(name: :woman_HJ, kind: :field)
-Competition.create(name: :woman_PJ, kind: :field)
-Competition.create(name: :woman_TJ, kind: :field)
-Competition.create(name: :woman_SP, kind: :field)
-Competition.create(name: :woman_DT, kind: :field)
-Competition.create(name: :woman_JT, kind: :field)
-Competition.create(name: :man_100mx4, kind: :relay)
-Competition.create(name: :man_400mx4, kind: :relay)
-Competition.create(name: :woman_100mx4, kind: :relay)
-Competition.create(name: :woman_400mx4, kind: :relay)
-Competition.create(name: :decathlon, kind: :decathlon)
 
 # 選手
-Athlete.create(name: 'テスト 太郎', grade: :b1, sex: :man, major: 'Ⅰ類', active: true)
-Athlete.create(name: 'テスト 次郎', grade: :b2, sex: :man, major: 'Ⅱ類', active: true)
-Athlete.create(name: 'テスト 三郎', grade: :b3, sex: :man, major: 'Ⅲ類', active: true)
-Athlete.create(name: 'テスト 四郎', grade: :b4, sex: :man, major: '総合情報学科', active: true)
-Athlete.create(name: 'テスト 五郎', grade: :m1, sex: :man, major: '情報学専攻', active: true)
+csv = CSV.read('db/seeds/athlete.csv', headers: true)
+csv.each do |data|
+  Athlete.create(id: data['id'].to_i, name: data['name'], grade: data['grade'], sex: data['sex'], active: data['active'] == 'true' ? true : false) 
+end
 
 # 大会
-Tournament.create(name: '国士舘1', place: '国士舘大学', start_day: '2018-08-11', end_day: '2018-08-12')
-Tournament.create(name: '国士舘2', place: '国士舘大学', start_day: '2018-07-15', end_day: '2018-07-16')
-Tournament.create(name: '対校戦1', place: '大きな競技場', start_day: '2018-09-10', end_day: '2018-09-11')
-Tournament.create(name: '対校戦2', place: '大きな競技場', start_day: '2018-10-18', end_day: '2018-10-19')
+csv = CSV.read('db/seeds/tournament.csv', headers: true)
+csv.each do |data|
+  Tournament.create(id: data['id'].to_i, name: data['name'], place: data['place'], start_day: data['start_day'], end_day: data['end_day'])
+end
+
+# 競技
+csv = CSV.read('db/seeds/competition.csv', headers: true)
+csv.each do |data|
+  Competition.create(name: data['name'], kind: data['type'])
+end
+
+# 競技登録
+
+# 短距離
+ShortResult.skip_callback(:save, :before, :set_grade)
+csv = CSV.read('db/seeds/short_result.csv', headers: true)
+csv.each do |data|
+  ShortResult.create(competition: data['competition'], result: data['result'].empty? || data['result'].to_i.zero? ? nil : data['result'].to_i,
+                     wind: data['wind'] == 'NULL' || data['wind'].empty? ? nil : data['wind'].to_f, round: data['round'], group: data['group'], rane: data['rane'],
+                     finish: data['finish'].empty? ? nil : data['finish'].to_i, athlete_id: data['athlete_id'].to_i, tournament_id: data['tournament_id'].to_i, grade: data['grade'], established_date: data['established_date'],
+                     information: data['information'], condition: data['condition'], official: str_to_bool(data['official']))
+end
+ShortResult.set_callback(:save, :before, :set_grade)
+
+# 長距離
+LongResult.skip_callback(:save, :before, :set_grade)
+csv = CSV.read('db/seeds/long_result.csv', headers: true)
+csv.each do |data|
+  LongResult.create(competition: data['competition'], result: data['result'].empty? || data['result'].to_i.zero? ? nil : data['result'].to_i, 
+                    round: data['round'], group: data['group'], rane: data['rane'],
+                    finish: data['finish'].empty? ? nil : data['finish'].to_i, athlete_id: data['athlete_id'].to_i, tournament_id: data['tournament_id'].to_i, grade: data['grade'], established_date: data['established_date'],
+                     information: data['information'], condition: data['condition'], official: str_to_bool(data['official']))
+end
+LongResult.set_callback(:save, :before, :set_grade)
+
+# フィールド
+FieldResult.skip_callback(:save, :before, :set_grade)
+csv = CSV.read('db/seeds/field_result.csv', headers: true)
+csv.each do |data|
+  FieldResult.create(competition: data['competition'], result: data['result'].empty? ? nil : data['result'].to_f,
+                     wind: data['wind'] == 'NULL' || data['wind'].empty? ? nil : data['wind'].to_f,round: data['round'],
+                     finish: data['finish'].empty? ? nil : data['finish'].to_i, athlete_id: data['athlete_id'].to_i, tournament_id: data['tournament_id'].to_i, grade: data['grade'], established_date: data['established_date'],
+                     information: data['information'], condition: data['condition'], official: str_to_bool(data['official']))
+end
+FieldResult.set_callback(:save, :before, :set_grade)
+
+# リレー
+RelayResult.skip_callback(:save, :before, :set_grade)
+csv = CSV.read('db/seeds/relay_result.csv', headers: true)
+csv.each do |data|
+  RelayResult.create(competition: data['competition'], result: data['result'].empty? || data['result'].to_i.zero? ? nil : data['result'].to_i,
+                     round: data['round'], group: data['group'], rane: data['rane'], finish: data['finish'].empty? ? nil : data['finish'].to_i,
+                     first_athlete_id: data['first_athlete_id'].to_i,  second_athlete_id: data['second_athlete_id'].to_i, third_athlete_id: data['third_athlete_id'].to_i, fourth_athlete_id: data['fourth_athlete_id'].to_i, 
+                     tournament_id: data['tournament_id'].to_i, first_athlete_grade: data['first_athlete_grade'], second_athlete_grade: data['second_athlete_grade'], third_athlete_grade: data['third_athlete_grade'],
+                     fourth_athlete_grade: data['fourth_athlete_grade'], established_date: data['established_date'], information: data['information'], condition: data['condition'], official: data['official'] == 'true' ? true : false)
+end
+RelayResult.set_callback(:save, :before, :set_grade)

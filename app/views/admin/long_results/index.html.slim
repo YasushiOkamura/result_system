@@ -5,8 +5,8 @@ h1 長距離 結果一覧
 table.ui.celled.small.table
   thead
     tr
+      th ID
       th 種目
-      th 学年
       th 選手
       th 結果
       th ラウンド
@@ -23,17 +23,21 @@ table.ui.celled.small.table
   tbody
     - @long_results.each do |long_result|
       tr
+        td = long_result.id
         td = I18n.t("enumerize.competition.name.#{long_result.competition}")
-        td = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
-        td = long_result&.athlete.name
+        td
+          - if long_result.grade.present?
+            = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
+          = long_result&.athlete&.name
         td = show_result(long_result.result)
         td = long_result.round
         td = long_result.group
         td = long_result.rane
         td = long_result.finish
-        td = long_result&.tournament.name
+        td = long_result&.tournament&.name
         td = long_result.established_date
         td = long_result.information
         td = long_result.condition
         td = link_to '編集', edit_admin_long_result_path(long_result), class: 'ui green button'
         td = link_to '削除', admin_long_result_path(long_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+= paginate @long_results

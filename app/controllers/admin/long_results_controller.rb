@@ -1,4 +1,4 @@
-class Admin::LongResultsController < Admin::ApplicationController
+class Admin::LongResultsController < Admin::BaseController
   before_action :set_long_result, only: [:edit, :update, :destroy]
   before_action :long_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 

@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
   before_action :set_tournament, only: [:show]
   
   def index
-    @tournaments = Tournament.page(params[:page])
+    @tournaments = Tournament.order('id desc').page(params[:page])
   end
 
   def show

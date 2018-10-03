@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      manager: 管理者
+    attributes:
+      manager:
+        login_id: ログインID
+        password: パスワード

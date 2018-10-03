@@ -1,5 +1,5 @@
-class Admin::ApplicationController < ActionController::Base
-  layout 'admin/application'
+class Admin::BaseController < ActionController::Base
+  layout 'admin/base'
   before_action :authenticate!
   helper_method :current_manager
  

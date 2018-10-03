@@ -11,6 +11,7 @@ module ApplicationHelper
   end
 
   def show_field_result(result)
+    return '' unless result.present?
     sprintf("%.2f", result.to_s)
   end
 

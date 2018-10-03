@@ -5,6 +5,7 @@ h1 選手一覧
 table.ui.celled.small.table
   thead
     tr
+      th ID
       th 名前
       th 学年
       th 性別
@@ -16,6 +17,7 @@ table.ui.celled.small.table
   tbody
     - @athletes.each do |athlete|
       tr
+        td = athlete.id
         td = athlete.name
         td = athlete&.grade.text
         td = athlete&.sex.text
@@ -25,3 +27,5 @@ table.ui.celled.small.table
             | ✓
         td = link_to '編集', edit_admin_athlete_path(athlete), class: 'ui green button'
         td = link_to '削除', admin_athlete_path(athlete), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+
+= paginate @athletes

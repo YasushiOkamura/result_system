@@ -14,6 +14,8 @@ ja:
         field: フィールド
         relay: リレー
         decathlon: 十種
+        heptathlon: 七種
+        road: ロード
       name:
         man_100m: 男子100m
         man_200m: 男子200m
@@ -25,6 +27,7 @@ ja:
         woman_400m: 女子400m
         woman_100mH: 女子100mH
         woman_400mH: 女子400mH
+        other_short: その他短距離
         man_800m: 男子800m
         man_1500m: 男子1500m
         man_3000m: 男子3000m
@@ -37,6 +40,7 @@ ja:
         woman_5000m: 女子5000m
         woman_10000m: 女子10000m
         woman_3000mSC: 女子3000mSC
+        other_long: その他長距離
         man_LJ: 男子走幅跳
         man_HJ: 男子走高跳
         man_PJ: 男子棒高跳
@@ -53,8 +57,12 @@ ja:
         woman_DT: 女子円盤投
         woman_JT: 女子やり投
         woman_HT: 女子ハンマー投
-        man_100mx4: 男子100m×4リレー
-        man_400mx4: 男子400m×4リレー
-        woman_100mx4: 女子100m×4リレー
-        woman_400mx4: 女子400m×4リレー
+        other_field: その他フィールド
+        man_4x100mR: 男子4×100mリレー
+        man_4x400mR: 男子4×400mリレー
+        woman_4x100mR: 女子4×100mリレー
+        woman_4x400mR: 女子4×400mリレー
+        other_relay: その他リレー
         decathlon: 十種競技
+        heptathlon: 七種競技
+        road: ロード

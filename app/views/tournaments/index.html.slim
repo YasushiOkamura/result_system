@@ -2,7 +2,7 @@ h1
   i.ui.star.icon
   | 大会・記録会一覧
 
-table.ui.celled.table
+table.ui.selectable.celled.table
   thead
     tr
       th 大会名
@@ -17,3 +17,5 @@ table.ui.celled.table
         td = tournament.place
         td = tournament.start_day
         td = tournament.end_day
+
+= paginate @tournaments

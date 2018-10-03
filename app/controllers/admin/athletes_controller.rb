@@ -1,4 +1,4 @@
-class Admin::AthletesController < Admin::ApplicationController
+class Admin::AthletesController < Admin::BaseController
   before_action :set_athlete, only: [:edit, :update, :destroy]
 
   def index

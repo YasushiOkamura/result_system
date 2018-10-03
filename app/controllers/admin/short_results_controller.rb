@@ -1,4 +1,4 @@
-class Admin::ShortResultsController < Admin::ApplicationController
+class Admin::ShortResultsController < Admin::BaseController
   before_action :set_short_result, only: [:edit, :update, :destroy]
   before_action :short_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 

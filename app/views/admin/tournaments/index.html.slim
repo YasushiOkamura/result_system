@@ -5,6 +5,7 @@ h1 大会一覧
 table.ui.celled.small.table
   thead
     tr
+      th ID
       th 大会名
       th 場所
       th 開始日時
@@ -15,9 +16,12 @@ table.ui.celled.small.table
   tbody
     - @tournaments.each do |tournament|
       tr
+        td = tournament.id
         td = tournament.name
         td = tournament.place
         td = tournament.start_day
         td = tournament.end_day
         td = link_to '編集', edit_admin_tournament_path(tournament), class: 'ui green button'
         td = link_to '削除', admin_tournament_path(tournament), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+
+= paginate @tournaments

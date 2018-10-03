@@ -5,8 +5,8 @@ h1 短距離 結果一覧
 table.ui.celled.small.table
   thead
     tr
+      th id
       th 種目
-      th 学年
       th 選手
       th 結果
       th ラウンド
@@ -23,9 +23,12 @@ table.ui.celled.small.table
   tbody
     - @short_results.each do |short_result|
       tr
+        td = short_result.id
         td = I18n.t("enumerize.competition.name.#{short_result.competition}")
-        td = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
-        td = short_result&.athlete.name
+        td
+          - if short_result.grade.present?
+            = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
+          = short_result&.athlete&.name
         td 
           = show_result(short_result.result)
           - if short_result.wind.present?
@@ -34,7 +37,7 @@ table.ui.celled.small.table
         td = short_result.group
         td = short_result.rane
         td = short_result.finish
-        td = short_result&.tournament.name
+        td = short_result&.tournament&.name
         td = short_result.established_date
         td = short_result.information
         td = short_result.condition

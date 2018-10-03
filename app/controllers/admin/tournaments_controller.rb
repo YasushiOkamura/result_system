@@ -1,4 +1,4 @@
-class Admin::TournamentsController < Admin::ApplicationController
+class Admin::TournamentsController < Admin::BaseController
   before_action :set_tournament, only: [:edit, :update, :destroy]
 
   def index

@@ -1,4 +1,4 @@
-class Admin::RelayResultsController < Admin::ApplicationController
+class Admin::RelayResultsController < Admin::BaseController
   before_action :set_relay_result, only: [:edit, :update, :destroy]
   before_action :relay_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 

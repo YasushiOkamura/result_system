@@ -12,7 +12,7 @@ h2
 
 - unless @tournament.short_results.empty?
   h3 短距離
-  table.ui.celled.small.table
+  table.ui.celled.selectable.small.table
     thead
       tr
         th 種目
@@ -32,8 +32,9 @@ h2
         tr
           td = I18n.t("enumerize.competition.name.#{short_result.competition}")
           td 
-            = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
-            = ' '
+            - if short_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
+              = ' '
             = short_result&.athlete.name
           td 
             = show_result(short_result.result)
@@ -50,7 +51,7 @@ h2
 
 - unless @tournament.long_results.empty?
   h3 長距離
-  table.ui.celled.small.table
+  table.ui.celled.selectable.small.table
     thead
       tr
         th 種目
@@ -70,8 +71,9 @@ h2
         tr
           td = I18n.t("enumerize.competition.name.#{long_result.competition}")
           td 
-            = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
-            = ' '  
+            - if long_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
+              = ' '  
             = long_result&.athlete.name
           td = show_result(long_result.result)
           td = long_result.round
@@ -85,7 +87,7 @@ h2
 
 - unless @tournament.field_results.empty?
   h3 フィールド
-  table.ui.celled.small.table
+  table.ui.celled.selectable.small.table
     thead
       tr
         th 種目
@@ -99,12 +101,13 @@ h2
         th 環境
 
     tbody
-      - @tournament.field_results.order('competition desc, result asc').each do |field_result|
+      - @tournament.field_results.order('competition desc, result desc').each do |field_result|
         tr
           td = I18n.t("enumerize.competition.name.#{field_result.competition}")
           td 
-            = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
-            = ' '
+            - if field_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
+              = ' '
             = field_result&.athlete.name
           td 
             = show_field_result(field_result.result)
@@ -119,14 +122,11 @@ h2
 
 - unless @tournament.relay_results.empty?
   h3 リレー
-  table.ui.celled.small.table
+  table.ui.celled.selectable.small.table
     thead
       tr
         th 種目
-        th 1走
-        th 2走
-        th 3走
-        th 4走
+        th 選手
         th 結果
         th ラウンド
         th 組
@@ -144,16 +144,20 @@ h2
         tr
           td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
           td
-            = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
+            - if relay_result.first_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
             = relay_result&.first_athlete.name
-          td
-            = I18n.t("enumerize.athlete.grade.#{relay_result.second_athlete_grade}")
+            br
+            - if relay_result.second_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.second_athlete_grade}")
             = relay_result&.second_athlete.name
-          td
-            = I18n.t("enumerize.athlete.grade.#{relay_result.third_athlete_grade}")
+            br
+            - if relay_result.third_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.third_athlete_grade}")
             = relay_result&.third_athlete.name
-          td
-            = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
+            br
+            - if relay_result.fourth_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
             = relay_result&.fourth_athlete.name
           td 
             = show_result(relay_result.result)

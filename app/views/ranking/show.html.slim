@@ -1,6 +1,9 @@
 h1 
   i.ui.chess.queen.icon
-  | 5傑 -
+  - if @kind == 'relay'
+    | 10傑 -
+  - else
+    | 5傑 -
   = t("enumerize.competition.kind.#{@kind}")
   | -
 
@@ -10,7 +13,7 @@ h1
   - unless results.empty?
     h3 = t("enumerize.competition.name.#{results.first.competition}")
 
-    table.ui.celled.small.table
+    table.ui.celled.selectable.small.table
       thead
         tr
           th 選手
@@ -22,29 +25,34 @@ h1
 
       tbody
         - results.each do |result|
-          tr
+          tr class=(result.established_date.year == 2018 ? 'negative' : '')
             td
               - if @kind == 'relay'
+                - if result.first_athlete_grade
+                  = I18n.t("enumerize.athlete.grade.#{result.first_athlete_grade}")
+                  = ' '
                 = result&.first_athlete.name
-                = ' '
-                = I18n.t("enumerize.athlete.grade.#{result.first_athlete_grade}")
                 br
+                - if result.second_athlete_grade
+                  = I18n.t("enumerize.athlete.grade.#{result.second_athlete_grade}")
+                  = ' '
                 = result&.second_athlete.name
-                = ' '
-                = I18n.t("enumerize.athlete.grade.#{result.second_athlete_grade}")
                 br
+                - if result.third_athlete_grade
+                  = I18n.t("enumerize.athlete.grade.#{result.third_athlete_grade}")
+                  = ' '
                 = result&.third_athlete.name
-                = ' '
-                = I18n.t("enumerize.athlete.grade.#{result.third_athlete_grade}")
                 br
+                - if result.fourth_athlete_grade
+                  = I18n.t("enumerize.athlete.grade.#{result.fourth_athlete_grade}")
+                  = ' '
                 = result&.fourth_athlete.name
-                = ' '
-                = I18n.t("enumerize.athlete.grade.#{result.fourth_athlete_grade}")
                 br
               - else
+                - if result.grade.present?
+                  = I18n.t("enumerize.athlete.grade.#{result.grade}")
+                  = ' '
                 = result&.athlete.name
-                = ' '
-                = I18n.t("enumerize.athlete.grade.#{result.grade}")
             td 
               - if @kind == 'field'
                 = show_field_result(result.result)
@@ -55,7 +63,6 @@ h1
                 - if result.wind.present?
                   = "(#{show_wind(result.wind)})"
             td = result&.tournament.name
-            td = result.established_date
+            td = result.established_date 
             td = result.information
             td = result.condition
-

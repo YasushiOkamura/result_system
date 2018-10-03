@@ -2,7 +2,8 @@ module ApplicationHelper
   def show_result(result)
     return "" if result.nil?
     ms = result % 1000
-    ms = ms.to_s.rjust(2, '0')
+    #ms = ms.to_s.rjust(2, '0')
+    ms = ms.to_s.rjust(3, '0')[0..1]
     s = result / 1000
     m = s / 60
     s = s % 60

@@ -3,7 +3,9 @@ class Admin::LongResultsController < Admin::BaseController
   before_action :long_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @long_results = LongResult.page(params[:page])
+    @q = LongResult.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @long_results = @q.result(distinct: true).page(params[:page])
   end
 
   def new

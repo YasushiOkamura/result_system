@@ -13,10 +13,11 @@ class Admin::SessionsController < Admin::BaseController
     if manager&.authenticate(manager_params[:password])
 
       session[:manager_id] = manager.id
-      redirect_to admin_root_path, notice: 'ログインしました', layout: 'admin/application'
+      flash.now[:notice] = 'ログインに失敗しました'
+      redirect_to admin_root_path, layout: 'admin/application'
     else
       @manager = Manager.new(login_id: manager_params[:login_id])
-      flash.now[:alert] = 'ログインに失敗しました'
+      flash.now[:notice] = 'ログインに失敗しました'
       render 'new'
     end
   end

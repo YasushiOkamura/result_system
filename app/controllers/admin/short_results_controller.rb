@@ -3,7 +3,9 @@ class Admin::ShortResultsController < Admin::BaseController
   before_action :short_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @short_results = ShortResult.page(params[:page])
+    @q = ShortResult.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @short_results = @q.result(distinct: true).page(params[:page])
   end
 
   def new
@@ -16,25 +18,31 @@ class Admin::ShortResultsController < Admin::BaseController
   def create
     @short_result = ShortResult.new(short_result_params)
     if @short_result.save
-      redirect_to edit_admin_short_result_path(@short_result), notice: '結果を作成しました'
+      flash.now[:notice] = '新規作成しました'
+      redirect_to edit_admin_short_result_path(@short_result)
     else
+      flash.now[:notice] = '新規作成に失敗しました'
       render :new, error: '結果の作成に失敗しました'
     end
   end
 
   def update
     if @short_result.update(short_result_params)
+      flash.now[:notice] = '更新しました'
       redirect_to edit_admin_short_result_path(@short_result)
     else
+      flash.now[:notice] = '更新に失敗しました'
       render :edit
     end
   end
 
   def destroy
     if @short_result.destroy
-      redirect_to admin_short_results_path, notice: '削除しました'
+      flash.now[:notice] = '削除しました'
+      redirect_to admin_short_results_path
     else
-      redirect_to edit_admin_short_results_path(@short_result), error: '削除に失敗しました'
+      flash.now[:notice] = '削除に失敗しました'
+      redirect_to edit_admin_short_results_path(@short_result)
     end
   end
 

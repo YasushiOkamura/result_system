@@ -5,11 +5,11 @@ h1 大会一覧
 table.ui.celled.small.table
   thead
     tr
-      th ID
+      th = sort_link(@q, :id, 'ID')
       th 大会名
       th 場所
-      th 開始日時
-      th 終了日時
+      th = sort_link(@q, :start_day, '開始日時')
+      th = sort_link(@q, :end_day, '終了日時')
       th
       th
 

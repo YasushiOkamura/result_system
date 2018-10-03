@@ -3,7 +3,9 @@ class Admin::FieldResultsController < Admin::BaseController
   before_action :field_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
 
   def index
-    @field_results = FieldResult.page(params[:page])
+    @q = FieldResult.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @field_results = @q.result(distinct: true).page(params[:page])
   end
 
   def new

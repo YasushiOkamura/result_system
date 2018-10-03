@@ -5,14 +5,14 @@ h1 フィールド 結果一覧
 table.ui.celled.small.table
   thead
     tr
-      th ID
-      th 種目
-      th 選手
-      th 結果
+      th = sort_link(@q, :id, 'ID')
+      th = sort_link(@q, :competition, '種目')
+      th = sort_link(@q, :athlete_id, '選手')
+      th = sort_link(@q, :result, '結果')
       th ラウンド
       th 着順
       th 大会
-      th 樹立日
+      th = sort_link(@q, :established_date, '樹立日')
       th 情報
       th 環境
       th

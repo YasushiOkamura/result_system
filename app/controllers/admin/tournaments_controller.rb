@@ -2,7 +2,9 @@ class Admin::TournamentsController < Admin::BaseController
   before_action :set_tournament, only: [:edit, :update, :destroy]
 
   def index
-    @tournaments = Tournament.page(params[:page])
+    @q = Tournament.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @tournaments = @q.result(distinct: true).page(params[:page])
   end
   
   def new

@@ -2,7 +2,9 @@ class Admin::AthletesController < Admin::BaseController
   before_action :set_athlete, only: [:edit, :update, :destroy]
 
   def index
-    @athletes = Athlete.page(params[:page])
+    @q = Athlete.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @athletes = @q.result(distinct: true).page(params[:page])
   end
 
   def new

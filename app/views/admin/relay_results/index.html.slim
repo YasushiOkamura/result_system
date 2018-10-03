@@ -5,18 +5,19 @@ h1 リレー 結果一覧
 table.ui.celled.small.table
   thead
     tr
-      th 種目
+      th = sort_link(@q, :id, 'ID')
+      th = sort_link(@q, :competition, '種目')
       th 1走
       th 2走
       th 3走
       th 4走
-      th 結果
+      th = sort_link(@q, :result, '結果')
       th ラウンド
       th 組
       th レーン
       th 着順
       th 大会
-      th 樹立日
+      th = sort_link(@q, :established_date, '樹立日')
       th 情報
       th 環境
       th

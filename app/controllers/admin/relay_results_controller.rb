@@ -4,6 +4,9 @@ class Admin::RelayResultsController < Admin::BaseController
 
   def index
     @relay_results = RelayResult.page(params[:page])
+    @q = RelayResult.ransack(params[:q])
+    @q.sorts = 'id desc' if @q.sorts.empty?
+    @relay_results = @q.result(distinct: true).page(params[:page])
   end
 
   def new

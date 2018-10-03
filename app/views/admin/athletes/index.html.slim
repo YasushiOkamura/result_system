@@ -5,12 +5,12 @@ h1 選手一覧
 table.ui.celled.small.table
   thead
     tr
-      th ID
+      th = sort_link(@q, :id, 'ID')
       th 名前
-      th 学年
-      th 性別
+      th = sort_link(@q, :id, '学年')
+      th = sort_link(@q, :sex, '性別')
       th 学科・専攻
-      th 現役
+      th = sort_link(@q, :active, '現役')
       th
       th
 

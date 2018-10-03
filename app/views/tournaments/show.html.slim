@@ -136,8 +136,6 @@ h2
         th 樹立日
         th 情報
         th 環境
-        th
-        th
 
     tbody
       - @tournament.relay_results.order('competition desc, result asc').each do |relay_result|
@@ -169,4 +167,3 @@ h2
           td = relay_result.established_date
           td = relay_result.information
           td = relay_result.condition
-          td = link_to '編集', edit_admin_relay_result_path(relay_result), class: 'ui green button'

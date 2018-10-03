@@ -13,7 +13,7 @@ table.ui.selectable.celled.table
   tbody
     - @tournaments.each do |tournament|
       tr
-        td = link_to tournament.name, tournament_path(tournament)
+        td.activating.element data-content="#{tournament.get_result_num}件の結果" = link_to tournament.name, tournament_path(tournament)
         td = tournament.place
         td = tournament.start_day
         td = tournament.end_day

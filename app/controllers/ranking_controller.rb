@@ -27,7 +27,7 @@ class RankingController < ApplicationController
       when 'long'
         @all_results << LongResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.first }.sort_by { |t| t.result }.take(5)
       when 'relay'
-        @all_results << RelayResult.where(competition: competition.name, official: true).where.not(result: nil).order('result').limit(5)
+        @all_results << RelayResult.where(competition: competition.name, official: true).where.not(result: nil).order('result').limit(10)
       else
         nil
       end

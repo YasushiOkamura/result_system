@@ -5,4 +5,8 @@ class Tournament < ApplicationRecord
   has_many :relay_results
 
   validates :name, :start_day, :end_day, presence: true
+
+  def get_result_num
+    self.short_results.size + self.long_results.size + self.field_results.size + self.relay_results.size
+  end
 end

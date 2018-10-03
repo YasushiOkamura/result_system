@@ -28,4 +28,5 @@ $(function() {
   $('#sidebar').click(function(){
     $('.ui.labeled.icon.sidebar').sidebar('toggle');
   });
+  $('.activating.element').popup();
 });

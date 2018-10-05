@@ -1,1 +1,34 @@
-h1 トップページ
+.ui.segment
+  .ui.vertical.masthead.center.aligned.segment
+    .ui.text.container
+      h1.ui.header
+        i.ui.home.icon
+        | UEC T&F リザルト - トップページ
+      = image_tag 'top_image.jpg', class: 'ui rounded fluid image'
+      h2 UEC T&F 競技会のリザルトページです
+      .description
+        | 過去の結果・ランキングなどの情報などが閲覧できます
+    
+    .ui.divider
+
+    h2
+      i.ui.star.icon
+      | 更新情報
+
+    - @tournaments.each do |tournament|
+      br
+      = link_to tournament_path(tournament) do
+        .ui.centered.card
+          .content
+            .header
+              = tournament&.name
+            .meta
+              = l tournament&.start_day
+              - unless tournament.start_day == tournament.end_day
+                | 〜
+                = l tournament&.end_day
+            .description
+              = tournament.place
+              br
+              = tournament.get_result_num
+              | 件の結果

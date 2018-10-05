@@ -22,7 +22,6 @@ h2
         th 組
         th レーン
         th 着順
-        th 大会
         th 樹立日
         th 情報
         th 環境
@@ -44,7 +43,6 @@ h2
           td = short_result.group
           td = short_result.rane
           td = short_result.finish
-          td = short_result&.tournament.name
           td = short_result.established_date
           td = short_result.information
           td = short_result.condition
@@ -61,7 +59,6 @@ h2
         th 組
         th レーン
         th 着順
-        th 大会
         th 樹立日
         th 情報
         th 環境
@@ -80,7 +77,6 @@ h2
           td = long_result.group
           td = long_result.rane
           td = long_result.finish
-          td = long_result&.tournament.name
           td = long_result.established_date
           td = long_result.information
           td = long_result.condition
@@ -95,7 +91,6 @@ h2
         th 結果
         th ラウンド
         th 着順
-        th 大会
         th 樹立日
         th 情報
         th 環境
@@ -115,7 +110,6 @@ h2
               = "(#{show_wind(field_result.wind)})"
           td = field_result.round
           td = field_result.finish
-          td = field_result&.tournament.name
           td = field_result.established_date
           td = field_result.information
           td = field_result.condition
@@ -132,7 +126,6 @@ h2
         th 組
         th レーン
         th 着順
-        th 大会
         th 樹立日
         th 情報
         th 環境
@@ -163,7 +156,6 @@ h2
           td = relay_result.group
           td = relay_result.rane
           td = relay_result.finish
-          td = relay_result&.tournament.name
           td = relay_result.established_date
           td = relay_result.information
           td = relay_result.condition

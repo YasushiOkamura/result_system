@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'home#index', as: :root
   resources :tournaments, only: [:index, :show]
   get '/ranking', to: 'ranking#index', as: 'ranking'
+  get '/search', to: 'search#index', as: 'search'
 
   namespace :admin do
     root to: 'home#index', as: :root

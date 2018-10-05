@@ -1,0 +1,162 @@
+h1.ui.header 記録検索
+.item 記録検索ができます
+
+= render 'search_form'
+- sort = "competition asc, #{ params[:sort].present? ? params[:sort] : 'established_date asc' }"
+- unless @short_results.blank?
+  h3 短距離
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th 大会
+        th ラウンド
+        th 組
+        th レーン
+        th 着順
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @short_results.order(sort).each do |short_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{short_result.competition}")
+          td 
+            - if short_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
+              = ' '
+            = short_result&.athlete.name
+          td 
+            = show_result(short_result.result)
+            - if short_result.wind.present?
+              = "(#{show_wind(short_result.wind)})"
+          td = short_result.tournament.name
+          td = short_result.round
+          td = short_result.group
+          td = short_result.rane
+          td = short_result.finish
+          td = short_result.established_date
+          td = short_result.information
+          td = short_result.condition
+
+- unless @long_results.blank?
+  h3 長距離
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th 大会
+        th ラウンド
+        th 組
+        th レーン
+        th 着順
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @long_results.order(sort).each do |long_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{long_result.competition}")
+          td 
+            - if long_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
+              = ' '  
+            = long_result&.athlete.name
+          td = show_result(long_result.result)
+          td = long_result.tournament.name
+          td = long_result.round
+          td = long_result.group
+          td = long_result.rane
+          td = long_result.finish
+          td = long_result.established_date
+          td = long_result.information
+          td = long_result.condition
+
+- unless @field_results.blank?
+  h3 フィールド
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th 大会
+        th ラウンド
+        th 着順
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @field_results.order(sort).each do |field_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{field_result.competition}")
+          td 
+            - if field_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
+              = ' '
+            = field_result&.athlete.name
+          td 
+            = show_field_result(field_result.result)
+            - if field_result.wind.present?
+              = "(#{show_wind(field_result.wind)})"
+          td = field_result.tournament.name
+          td = field_result.round
+          td = field_result.finish
+          td = field_result.established_date
+          td = field_result.information
+          td = field_result.condition
+
+- unless @relay_results.blank?
+  h3 リレー
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 選手
+        th 結果
+        th 大会
+        th ラウンド
+        th 組
+        th レーン
+        th 着順
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @relay_results.order(sort).each do |relay_result|
+        tr
+          td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
+          td
+            - if relay_result.first_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
+            = relay_result&.first_athlete.name
+            br
+            - if relay_result.second_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.second_athlete_grade}")
+            = relay_result&.second_athlete.name
+            br
+            - if relay_result.third_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.third_athlete_grade}")
+            = relay_result&.third_athlete.name
+            br
+            - if relay_result.fourth_athlete_grade.present?
+              = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
+            = relay_result&.fourth_athlete.name
+          td 
+            = show_result(relay_result.result)
+          td = relay_result.tournament.name
+          td = relay_result.round
+          td = relay_result.group
+          td = relay_result.rane
+          td = relay_result.finish
+          td = relay_result.established_date
+          td = relay_result.information
+          td = relay_result.condition

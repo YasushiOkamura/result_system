@@ -5,7 +5,6 @@ class RankingController < ApplicationController
     else
       @kind = params[:kind]
       set_results
-      logger.debug(@all_results)
       if @all_results.empty?
         redirect_to ranking_path
       else

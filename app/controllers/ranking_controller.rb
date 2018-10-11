@@ -20,11 +20,11 @@ class RankingController < ApplicationController
     Competition.where(kind: @kind).each do |competition|
       case @kind
       when 'field'
-        @all_results << FieldResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.last }.sort_by { |t| t.result }.reverse.take(5)
+        @all_results << FieldResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.last }.sort_by { |t| t.result }.reverse.take(10)
       when 'short'
-        @all_results << ShortResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.first }.sort_by { |t| t.result }.take(5)
+        @all_results << ShortResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.first }.sort_by { |t| t.result }.take(10)
       when 'long'
-        @all_results << LongResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.first }.sort_by { |t| t.result }.take(5)
+        @all_results << LongResult.joins(:athlete).where(competition: competition.name, official: true).where.not(result: nil).group_by(&:athlete_id).map {|id, s| s.sort_by{ |a| a.result }.first }.sort_by { |t| t.result }.take(10)
       when 'relay'
         @all_results << RelayResult.where(competition: competition.name, official: true).where.not(result: nil).order('result').limit(10)
       else

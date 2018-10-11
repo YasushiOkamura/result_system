@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/ranking', to: 'ranking#index', as: 'ranking'
   get '/search', to: 'search#index', as: 'search'
 
+  resources :athletes, only: [:index, :show]
+
   namespace :admin do
     root to: 'home#index', as: :root
     get 'login', to: 'sessions#new',  as: :new_session

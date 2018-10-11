@@ -1,0 +1,100 @@
+h1
+  i.users.icon
+  | 選手
+
+= link_to '選手一覧へ', athletes_path, class: 'ui button gray'
+
+.ui.centered.grid
+  .ten.wide.column
+    .ui.segment
+      h2.header
+        = @athlete.name
+      .ui.items
+        .item
+          .content
+            .header
+              | 学年
+            .description
+              = @athlete&.grade&.text
+        .item
+          .content
+            .header
+              | 性別
+            .description
+              = @athlete&.sex&.text
+        .item
+          .content
+            .header
+              | 学域・学科・専攻
+            .description
+              = @athlete&.major
+        .item
+          .content
+            .header
+              | メモ
+            .description
+              = @athlete&.memo
+
+h2 PB（大学記録のみ）
+- unless @pb[:short].empty?
+  .ui.divider
+  h2 短距離種目
+
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 記録
+        th 大会
+        th 樹立日
+    tbody
+    - @pb[:short].each do |result|
+      tr class=(result.established_date.year == 2018 ? 'negative' : '')
+        td = t("enumerize.competition.name.#{result.competition}")
+        td 
+          = show_result(result.result)
+          - if result.wind.present?
+            = "(#{show_wind(result.wind)})"
+        td = result&.tournament.name
+        td = result.established_date 
+    
+- unless @pb[:long].empty?
+  .ui.divider
+  h2 長距離種目
+
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 記録
+        th 大会
+        th 樹立日
+    tbody
+    - @pb[:long].each do |result|
+      tr class=(result.established_date.year == 2018 ? 'negative' : '')
+        td = t("enumerize.competition.name.#{result.competition}")
+        td = show_result(result.result)
+        td = result&.tournament.name
+        td = result.established_date 
+
+- unless @pb[:field].empty?
+  .ui.divider
+  h2 フィールド種目
+  
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 種目
+        th 記録
+        th 大会
+        th 樹立日
+    tbody
+     - @pb[:field].each do |result|
+      tr class=(result.established_date.year == 2018 ? 'negative' : '')
+        td = t("enumerize.competition.name.#{result.competition}")
+        td 
+          = show_field_result(result.result)
+          - if result.wind.present?
+            = "(#{show_wind(result.wind)})"
+        td = result&.tournament.name
+        td = result.established_date 

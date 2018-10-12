@@ -8,7 +8,7 @@
 
 == paginator.render do
   nav.pagination
-    .ui.pagination.menu
+    .ui.stackable.pagination.menu
       == first_page_tag unless current_page.first?
       == prev_page_tag unless current_page.first?
       - each_page do |page|

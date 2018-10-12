@@ -8,9 +8,9 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .ui.top.labeled.inverted.blue.visible.large.sidebar.menu
+    .ui.top.stackable.labeled.inverted.blue.visible.huge.very.wide.sidebar.menu
       .item
-        h3 UEC T&F リザルトシステム
+        h3 UEC T&F
       = link_to root_path, class: 'item ui link inverted' do
         i.home.icon
         | TOP
@@ -29,7 +29,7 @@ html
       = link_to admin_new_session_path, class: 'item ui link right inverted' do
         i.user.icon
         | 管理者ログイン
-    .ui.padding.container
+    .ui.padding.stackable.container
       - if flash.present?
         .ui.positive.message
           - flash.each do |key, value|

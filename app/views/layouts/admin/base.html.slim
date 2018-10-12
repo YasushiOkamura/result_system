@@ -8,7 +8,7 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    .ui.inverted.left.vertical.visible.blue.sidebar.menu
+    .ui.inverted.stackable.left.vertical.visible.blue.sidebar.menu
       = link_to admin_root_path, class: 'item' do
         h3 リザルトシステム管理画面
       .item.ui.inverted
@@ -105,10 +105,9 @@ html
           i.sign.out.icon
           | ログアウト
 
-    .pusher
-      .ui.admin.container
-        - flash.present?
-          .ui.positive.message
-            - flash.each do |key, value|
-              = content_tag(:div, value, class: "#{key}")
-        == yield
+    .ui.stackable.admin.container
+      - flash.present?
+        .ui.positive.message
+          - flash.each do |key, value|
+            = content_tag(:div, value, class: "#{key}")
+      == yield

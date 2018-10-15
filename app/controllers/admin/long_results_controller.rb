@@ -18,24 +18,30 @@ class Admin::LongResultsController < Admin::BaseController
   def create
     @long_result = LongResult.new(long_result_params)
     if @long_result.save
-      redirect_to edit_admin_long_result_path(@long_result), notice: '結果を作成しました'
+      flash[:notice] = '新規作成しました'
+      redirect_to edit_admin_long_result_path(@long_result)
     else
-      render :new, error: '結果の作成に失敗しました'
+      flash[:notice] = '新規作成に失敗しました'
+      render :new
     end
   end
 
   def update
     if @long_result.update(long_result_params)
+      flash[:notice] = '更新しました'
       redirect_to edit_admin_long_result_path(@long_result)
     else
+      flash[:notice] = '更新に失敗しました'
       render :edit
     end
   end
 
   def destroy
     if @long_result.destroy
+      flash[:notice] = '削除しました'
       redirect_to admin_long_results_path, notice: '削除しました'
     else
+      flash[:notice] = '削除に失敗しました'
       redirect_to edit_admin_long_results_path(@long_result), error: '削除に失敗しました'
     end
   end

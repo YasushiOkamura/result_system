@@ -18,24 +18,30 @@ class Admin::FieldResultsController < Admin::BaseController
   def create
     @field_result = FieldResult.new(field_result_params)
     if @field_result.save
-      redirect_to edit_admin_field_result_path(@field_result), notice: '結果を作成しました'
+      flash[:notice] = '新規作成しました'
+      redirect_to edit_admin_field_result_path(@field_result)
     else
-      render :new, error: '結果の作成に失敗しました'
+      flash[:notice] = '新規作成に失敗しました'
+      render :new
     end
   end
 
   def update
     if @field_result.update(field_result_params)
+      flash[:notice] = '更新しました'
       redirect_to edit_admin_field_result_path(@field_result)
     else
+      flash[:notice] = '更新に失敗しました'
       render :edit
     end
   end
 
   def destroy
     if @field_result.destroy
+      flash[:notice] = '削除しました'
       redirect_to admin_field_results_path, notice: '削除しました'
     else
+      flash[:notice] = '削除に失敗しました'
       redirect_to edit_admin_field_results_path(@field_result), error: '削除に失敗しました'
     end
   end

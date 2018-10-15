@@ -18,30 +18,30 @@ class Admin::ShortResultsController < Admin::BaseController
   def create
     @short_result = ShortResult.new(short_result_params)
     if @short_result.save
-      flash.now[:notice] = '新規作成しました'
+      flash[:notice] = '新規作成しました'
       redirect_to edit_admin_short_result_path(@short_result)
     else
-      flash.now[:notice] = '新規作成に失敗しました'
-      render :new, error: '結果の作成に失敗しました'
+      flash[:notice] = '新規作成に失敗しました'
+      render :new
     end
   end
 
   def update
     if @short_result.update(short_result_params)
-      flash.now[:notice] = '更新しました'
+      flash[:notice] = '更新しました'
       redirect_to edit_admin_short_result_path(@short_result)
     else
-      flash.now[:notice] = '更新に失敗しました'
+      flash[:notice] = '更新に失敗しました'
       render :edit
     end
   end
 
   def destroy
     if @short_result.destroy
-      flash.now[:notice] = '削除しました'
+      flash[:notice] = '削除しました'
       redirect_to admin_short_results_path
     else
-      flash.now[:notice] = '削除に失敗しました'
+      flash[:notice] = '削除に失敗しました'
       redirect_to edit_admin_short_results_path(@short_result)
     end
   end

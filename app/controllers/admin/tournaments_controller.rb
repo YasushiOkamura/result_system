@@ -18,24 +18,30 @@ class Admin::TournamentsController < Admin::BaseController
     @tournament = Tournament.new(tournament_params)
 
     if @tournament.save
+      flash[:notice] = '新規作成しました'
       redirect_to edit_admin_tournament_path(@tournament)
     else
+      flash[:notice] = '新規作成に失敗しました'
       render :new
     end
   end
 
   def update
     if @tournament.save
+      flash[:notice] = '更新しました'
       redirect_to edit_admin_tournament_path(@tournament)
     else
+      flash[:notice] = '更新に失敗しました'
       render :new
     end
   end
 
   def destroy
     if @tournament.destroy
+      flash[:notice] = '削除しました'
       redirect_to admin_tournaments_path, notice: '削除しました'
     else
+      flash[:notice] = '削除に失敗しました'
       redirect_to edit_admin_tournaments_path(@tournament), error: '削除に失敗しました'
     end
   end

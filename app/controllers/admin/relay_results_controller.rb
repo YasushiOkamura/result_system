@@ -19,24 +19,30 @@ class Admin::RelayResultsController < Admin::BaseController
   def create
     @relay_result = RelayResult.new(relay_result_params)
     if @relay_result.save
-      redirect_to edit_admin_relay_result_path(@relay_result), notice: '結果を作成しました'
+      flash[:notice] = '新規作成しました'
+      redirect_to edit_admin_relay_result_path(@relay_result)
     else
-      render :new, error: '結果の作成に失敗しました'
+      flash[:notice] = '新規作成に失敗しました'
+      render :new
     end
   end
 
   def update
     if @relay_result.update(relay_result_params)
+      flash[:notice] = '更新しました'
       redirect_to edit_admin_relay_result_path(@relay_result)
     else
+      flash[:notice] = '更新に失敗しました'
       render :edit
     end
   end
 
   def destroy
     if @relay_result.destroy
+      flash[:notice] = '削除しました'
       redirect_to admin_relay_results_path, notice: '削除しました'
     else
+      flash[:notice] = '削除に失敗しました'
       redirect_to edit_admin_relay_results_path(@relay_result), error: '削除に失敗しました'
     end
   end

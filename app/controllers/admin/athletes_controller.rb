@@ -17,25 +17,31 @@ class Admin::AthletesController < Admin::BaseController
   def create
     @athlete = Athlete.new(athlete_params)
     if @athlete.save
-      redirect_to edit_admin_athlete_path(@athlete), notice: '選手を新たに作成しました'
+      flash[:notice] = '新規作成しました'
+      redirect_to edit_admin_athlete_path(@athlete)
     else
-      render :new, error: '選手の作成に失敗しました'
+      flash[:notice] = '新規作成に失敗しました'
+      render :new
     end
   end
 
   def update
     if @athlete.update(athlete_params)
+      flash[:notice] = '更新しました'
       redirect_to edit_admin_athlete_path(@athlete)
     else
+      flash[:notice] = '更新に失敗しました'
       render :edit
     end
   end
 
   def destroy
     if @athlete.destroy
-      redirect_to admin_athletes_path, notice: '削除しました'
+      flash[:notice] = '削除しました'
+      redirect_to admin_athletes_path
     else
-      redirect_to edit_admin_athletes_path(@athlete), error: '削除に失敗しました'
+      flash[:notice] = '削除に失敗しました'
+      redirect_to edit_admin_athletes_path(@athlete)
     end
   end
 

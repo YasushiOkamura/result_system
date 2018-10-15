@@ -85,5 +85,5 @@ test:
 production:
   <<: *default
   database: result_system_production
-  username: result_system
+  #username: ec2-user
   password: <%= ENV['RESULT_SYSTEM_DATABASE_PASSWORD'] %>

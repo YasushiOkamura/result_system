@@ -20,4 +20,7 @@ Rails.application.routes.draw do
     resources :field_results
     resources :relay_results
   end
+
+  root 'errors#routing_error'
+  get '*anything' => 'errors#routing_error'
 end

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
   layout 'application'
 
+  class Forbidden < ActionController::ActionControllerError; end
+
+  include ErrorHandlers if Rails.env.production?
+
   def result_parse(result)
     res = result.split('.').reverse
     case res.size

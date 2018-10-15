@@ -2,7 +2,11 @@ class Admin::BaseController < ActionController::Base
   layout 'admin/base'
   before_action :authenticate!
   helper_method :current_manager
- 
+
+  class Forbidden < ActionController::ActionControllerError; end
+
+  include ErrorHandlers if Rails.env.production?
+
   def result_parse(result)
     res = result.split('.').reverse
     case res.size

@@ -84,21 +84,6 @@ html
           .content
             = link_to admin_athletes_path, class: 'item' do
               | 選手管理
-      .item.ui.inverted
-        .ui.inverted.accordion
-          .title.active
-            h5
-              i.dropdown.icon
-              | 一年間の結果
-          .content
-            = link_to nil, class: 'item' do
-              | 2018年
-            = link_to nil, class: 'item' do
-              | 2017年
-            = link_to nil, class: 'item' do
-              | 2016年
-            = link_to nil, class: 'item' do
-              | 2015年
       
       = link_to admin_destroy_session_path, method: :delete, class: 'item ui inverted' do
         .title

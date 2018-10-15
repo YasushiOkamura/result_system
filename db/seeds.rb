@@ -17,12 +17,14 @@ csv = CSV.read('db/seeds/athlete.csv', headers: true)
 csv.each do |data|
   Athlete.create(id: data['id'].to_i, name: data['name'], grade: data['grade'], sex: data['sex'], active: data['active'] == 'true' ? true : false) 
 end
+ActiveRecord::Base.connection.execute("SELECT setval('athletes_id_seq', coalesce((SELECT MAX(id)+1 FROM athletes), 1), false)")
 
 # 大会
 csv = CSV.read('db/seeds/tournament.csv', headers: true)
 csv.each do |data|
   Tournament.create(id: data['id'].to_i, name: data['name'], place: data['place'], start_day: data['start_day'], end_day: data['end_day'])
 end
+ActiveRecord::Base.connection.execute("SELECT setval('tournaments_id_seq', coalesce((SELECT MAX(id)+1 FROM tournaments), 1), false)")
 
 # 競技
 csv = CSV.read('db/seeds/competition.csv', headers: true)

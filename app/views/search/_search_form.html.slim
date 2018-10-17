@@ -7,7 +7,7 @@
       = form_tag search_path, method: 'get', class: 'ui form' do
         .field 
           = label_tag '選手名'
-          = select_tag :athlete_id, options_for_select(Athlete.where(active: true).pluck(:name, :id), params[:athlete_id]), { include_blank: true, class: 'ui dropdown' }
+          = select_tag :athlete_id, options_for_select(Athlete.order('active desc, grade asc').pluck(:name, :id), params[:athlete_id]), { include_blank: true, multiple: true, class: 'ui dropdown' }
         .ui.inline.fields
           .field
             = label_tag '期間'

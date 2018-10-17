@@ -2,20 +2,27 @@ h1
   i.ui.star.icon
   | 大会・記録会一覧
 
-table.ui.selectable.celled.table
-  thead
-    tr
-      th 大会名
-      th 場所
-      th 開始日時
-      th 終了日時
+.ui.stackable.grid
+  - @tournaments.each do |tournament|
+    .five.wide.column
+      = link_to tournament_path(tournament) do
+        .ui.centered.link.card
+          .image
+            i.huge.inverted.black.flag.icon
+          .content
+            .header
+              = tournament&.name
+          .content
+            .ui.sub.header
+              = l tournament&.start_day
+              - unless tournament.start_day == tournament.end_day
+                | 〜
+                = l tournament&.end_day
+            .description
+              = tournament.place
+              br
+              = tournament.get_result_num
+              | 件の結果
 
-  tbody
-    - @tournaments.each do |tournament|
-      tr
-        td.activating.element data-content="#{tournament.get_result_num}件の結果" = link_to tournament.name, tournament_path(tournament)
-        td = tournament.place
-        td = tournament.start_day
-        td = tournament.end_day
-
-= paginate @tournaments
+.ui.stackale.centered.grid
+  = paginate @tournaments

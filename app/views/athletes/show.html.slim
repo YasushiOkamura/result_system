@@ -8,6 +8,11 @@ h1
   .ten.wide.column
     .ui.segment
       h2.header
+        .ui.circular.image
+          - if @athlete.sex.man?
+            i.user.inverted.blue.icon
+          - else
+            i.user.inverted.red.icon
         = @athlete.name
       .ui.items
         .item

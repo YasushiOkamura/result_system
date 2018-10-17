@@ -2,18 +2,22 @@ h1
   i.users.icon
   | 選手一覧
 
-.ui.grid
-  .six.wide.column
-    table.ui.celled.small.table
-      thead
-        tr
-          th 名前
-          th = sort_link(@q, :id, '学年')
+.ui.stackable.grid
+  - @athletes.each do |athlete|
+    .five.wide.column
+      = link_to athlete_path(athlete) do
+        .ui.centered.link.card
+          .image
+            - if athlete.sex.man?
+              i.user.huge.icon
+            - else
+              i.user.inverted.red.huge.icon
+          .content
+            .header
+              = athlete&.grade&.text
+              = athlete.name
+            .description
+              = athlete&.major
 
-      tbody
-        - @athletes.each do |athlete|
-          tr
-            td = link_to athlete.name, athlete_path(athlete)
-            td = athlete&.grade.text
-
-    = paginate @athletes
+.ui.stackale.centered.grid
+  = paginate @athletes

@@ -3,9 +3,7 @@ class AthletesController < ApplicationController
   before_action :set_pb, only: [:show]
   
   def index
-    @q = Athlete.ransack(params[:q])
-    @q.sorts = 'active desc' if @q.sorts.empty?
-    @athletes = @q.result(distinct: true).page(params[:page])
+    @athletes = Athlete.order('active desc, grade asc').page(params[:page])
   end
 
   def show

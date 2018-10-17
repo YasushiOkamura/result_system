@@ -9,89 +9,52 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = favicon_link_tag('icon.jpg')
   body
-    .ui.inverted.stackable.left.vertical.visible.blue.sidebar.menu
-      = link_to admin_root_path, class: 'item' do
-        h3 リザルトシステム管理画面
-      .item.ui.inverted
-        .ui.inverted.accordion
-          .title.active
-            h5
-              i.dropdown.icon
-              | 結果管理
-          .content.active
-            .item.inverted
-              .inverted.accordion
-                .title.active
-                  h5
-                    i.dropdown.icon
-                    | 短距離種目(〜400m)
-                .content.active
-                  = link_to new_admin_short_result_path, class: 'item' do
-                    | 新規作成
-                  = link_to admin_short_results_path, class: 'item' do
-                    | 一覧
-            .item.inverted
-              .inverted.accordion
-                .title.active
-                  h5
-                    i.dropdown.icon
-                    | 中長距離種目(800m〜)
-                .content.active
-                  = link_to new_admin_long_result_path, class: 'item' do
-                    | 新規作成
-                  = link_to admin_long_results_path, class: 'item' do
-                    | 一覧
-            .item.inverted
-              .inverted.accordion
-                .title.active
-                  h5
-                    i.dropdown.icon
-                    | フィールド種目
-                .content.active
-                  = link_to new_admin_field_result_path, class: 'item' do
-                    | 新規作成
-                  = link_to admin_field_results_path, class: 'item' do
-                    | 一覧
-            .item.inverted
-              .inverted.accordion
-                .title.active
-                  h5
-                    i.dropdown.icon
-                    | リレー種目
-                .content.active
-                  = link_to new_admin_relay_result_path, class: 'item' do
-                    | 新規作成
-                  = link_to admin_relay_results_path, class: 'item' do
-                    | 一覧
-            .item.inverted
-            .item.inverted
-              .inverted.accordion
-                .title.active
-                  h5
-                    i.dropdown.icon
-                    | 十種競技
-                .content
-                  = link_to nil, class: 'item' do
-                    | 新規作成
-                  = link_to nil, class: 'item' do
-                    | 一覧
-      .item.ui.inverted
-        .ui.inverted
-          .content
-            = link_to admin_tournaments_path, class: 'item' do
-              | 大会管理
-      .item.ui.inverted
-        .ui.inverted
-          .content
-            = link_to admin_athletes_path, class: 'item' do
-              | 選手管理
-      
-      = link_to admin_destroy_session_path, method: :delete, class: 'item ui inverted' do
-        .title
+    .ui.inverted.stackable.segment
+      .ui.huge.inverted.menu
+        = link_to 'HOME', admin_root_path, class: 'ui item'
+        .ui.dropdown.item
+          i.flag.icon
+          | 大会
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_tournaments_path, class: 'ui inverted item'
+            = link_to '新規作成', new_admin_tournament_path, class: 'ui item'
+        .ui.dropdown.item
+          | 短距離
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_short_results_path, class: 'ui item'
+            = link_to '新規作成', new_admin_short_result_path, class: 'ui item'
+        .ui.dropdown.item
+          | 長距離
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_long_results_path, class: 'ui item'
+            = link_to '新規作成', new_admin_long_result_path, class: 'ui item'
+        .ui.dropdown.item
+          | フィールド
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_field_results_path, class: 'ui item'
+            = link_to '新規作成', new_admin_field_result_path, class: 'ui item'
+        .ui.dropdown.item
+          | リレー
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_relay_results_path, class: 'ui item'
+            = link_to '新規作成', new_admin_relay_result_path, class: 'ui item'
+        .ui.dropdown.item
+          i.user.icon
+          | 選手
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_athletes_path, class: 'ui item'
+            = link_to '新規作成', new_admin_athlete_path, class: 'ui item'
+        = link_to admin_destroy_session_path, method: :delete, class: 'ui right item' do
           i.sign.out.icon
           | ログアウト
 
-    .ui.stackable.admin.container
+    .ui.stackable.admin.segment
       - if flash.present?
         .ui.positive.message
           - flash.each do |key, value|

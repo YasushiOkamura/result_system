@@ -3,7 +3,10 @@ h1 リレー結果 - 編集
   = render 'form', f: f
 
   .ui.grid
-    .six.wide.column
+    .five.wide.column
       = f.submit '登録', class: 'ui button primary'
-    .six.wide.column
+    .five.wide.column
       = link_to 'リレー結果一覧へ', admin_relay_results_path, class: 'ui gray button'
+    - if @relay_result.tournament_id.present?
+      .five.wide.column
+        = link_to '大会画面へ', admin_tournament_path(@relay_result.tournament), class: 'ui gray button'

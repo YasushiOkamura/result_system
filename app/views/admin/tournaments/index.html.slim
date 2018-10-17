@@ -17,7 +17,7 @@ table.ui.celled.small.table
     - @tournaments.each do |tournament|
       tr
         td = tournament.id
-        td = tournament.name
+        td = link_to tournament.name, admin_tournament_path(tournament)
         td = tournament.place
         td = tournament.start_day
         td = tournament.end_day

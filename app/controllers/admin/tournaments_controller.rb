@@ -1,5 +1,5 @@
 class Admin::TournamentsController < Admin::BaseController
-  before_action :set_tournament, only: [:edit, :update, :destroy]
+  before_action :set_tournament, only: [:edit, :update, :destroy, :show]
 
   def index
     @q = Tournament.ransack(params[:q])
@@ -44,6 +44,9 @@ class Admin::TournamentsController < Admin::BaseController
       flash[:notice] = '削除に失敗しました'
       redirect_to edit_admin_tournaments_path(@tournament), error: '削除に失敗しました'
     end
+  end
+
+  def show
   end
 
   private

@@ -3,7 +3,10 @@ h1 長距離結果 - 編集
   = render 'form', f: f
 
   .ui.grid
-    .six.wide.column
+    .five.wide.column
       = f.submit '登録', class: 'ui button primary'
-    .six.wide.column
+    .five.wide.column
       = link_to '長距離結果一覧へ', admin_long_results_path, class: 'ui gray button'
+    - if @long_result.tournament_id.present?
+      .five.wide.column
+        = link_to '大会画面へ', admin_tournament_path(@long_result.tournament), class: 'ui gray button'

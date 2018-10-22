@@ -10,11 +10,8 @@ html
     = favicon_link_tag('icon.jpg')
   body
     .ui.top.stackable.labeled.inverted.blue.visible.huge.very.wide.sidebar.menu
-      .item
-        h3 UEC T&F
       = link_to root_path, class: 'item ui link inverted' do
-        i.home.icon
-        | TOP
+        | UEC T&F
       = link_to tournaments_path, class: 'item ui link inverted' do
         i.star.icon
         | 大会・記録会
@@ -27,6 +24,9 @@ html
       = link_to athletes_path, class: 'item ui link inverted' do
         i.users.icon
         | 選手
+      = link_to Settings.homepage, target: '_blank', class: 'item ui link inverted' do
+        i.home.icon
+        | ホームページ
       = link_to admin_new_session_path, class: 'item ui link right inverted' do
         i.user.icon
         | 管理者ログイン

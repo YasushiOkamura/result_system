@@ -48,6 +48,8 @@ gem 'jquery-rails'
 
 gem 'ransack'
 
+gem 'config'
+
 #gem 'jquery-turbolinks'
 
 group :development, :test do

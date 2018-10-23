@@ -50,6 +50,10 @@ gem 'ransack'
 
 gem 'config'
 
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'gon', '~> 6.2.0'
+gem 'chartkick'
+
 #gem 'jquery-turbolinks'
 
 group :development, :test do

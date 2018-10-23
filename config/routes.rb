@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   get '/ranking', to: 'ranking#index', as: 'ranking'
   get '/search', to: 'search#index', as: 'search'
 
-  resources :athletes, only: [:index, :show]
+  resources :athletes, only: [:index, :show] do
+    member do
+      get 'graph'
+    end
+  end
 
   namespace :admin do
     root to: 'home#index', as: :root

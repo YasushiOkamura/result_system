@@ -14,17 +14,17 @@
     .six.wide.column
       .field
         = f.label :competition
-        = f.select :competition, @competition_options, {}, class: 'ui dropdown'
+        = f.select :competition, @competition_options, { include_blank: true }, class: 'ui dropdown'
 
     .six.wide.column
       .field
         = f.label :tournament_id
-        = f.select :tournament_id, Tournament.order('id desc').limit(20).pluck(:name, :id), {}, class: 'ui dropdown'
+        = f.select :tournament_id, Tournament.order('id desc').limit(20).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
     .six.wide.column
       .field
         = f.label :athlete_id
-        = f.select :athlete_id, Athlete.where(active: true).pluck(:name, :id), {}, class: 'ui dropdown'
+        = f.select :athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
     .six.wide.column
       .field
@@ -49,7 +49,7 @@
     .six.wide.column
       .field
         = f.label :established_date
-        = f.date_field :established_date, value: Tournament.all.order('start_day DESC').first.start_day
+      = f.date_field :established_date, value: @field_result.established_date.present? ? @field_result.established_date : Tournament.all.order('start_day DESC').first.start_day
 
     .six.wide.column
       .field

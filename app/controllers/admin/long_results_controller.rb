@@ -58,7 +58,6 @@ class Admin::LongResultsController < Admin::BaseController
     params.require(:long_result).permit(
       :competition,
       :result,
-      :wind,
       :round,
       :group,
       :rane,

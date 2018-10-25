@@ -58,6 +58,7 @@ class Admin::ShortResultsController < Admin::BaseController
     params.require(:short_result).permit(
       :competition,
       :result,
+      :wind,
       :round,
       :group,
       :rane,

@@ -74,7 +74,8 @@ class Admin::RelayResultsController < Admin::BaseController
       :fourth_athlete_grade,
       :established_date,
       :information,
-      :condition
+      :condition,
+      :official
     )
   end
 

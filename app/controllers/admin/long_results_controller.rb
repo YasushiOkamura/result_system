@@ -67,7 +67,8 @@ class Admin::LongResultsController < Admin::BaseController
       :grade,
       :established_date,
       :information,
-      :condition
+      :condition,
+      :official
     )
   end
 

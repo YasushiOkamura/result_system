@@ -12,10 +12,6 @@ class ShortResult < ApplicationRecord
   end
 
   def set_official
-    if self.wind && self.wind > 2.0
-      self.official = false
-    else
-      self.official = true
-    end
+    self.official = false if (self.wind && self.wind > 2.0) || self.official.blank?
   end
 end

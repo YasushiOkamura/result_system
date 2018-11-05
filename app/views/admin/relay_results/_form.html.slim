@@ -69,7 +69,7 @@
   .six.wide.column
     .field
       = f.label :established_date
-      = f.date_field :established_date, value: @field_result.established_date.present? ? @field_result.established_date : Tournament.all.order('start_day DESC').first.start_day
+      = f.date_field :established_date, value: @relay_result.established_date.present? ? @relay_result.established_date : Tournament.all.order('start_day DESC').first.start_day
 
   .six.wide.column
     .field
@@ -80,3 +80,9 @@
     .field
       = f.label :condition
       = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'
+
+  .six.wide.column
+    .field
+      .ui.checkbox
+        = f.check_box :official, {}, "true", "false"
+        = f.label :official

@@ -68,7 +68,8 @@ class Admin::ShortResultsController < Admin::BaseController
       :grade,
       :established_date,
       :information,
-      :condition
+      :condition,
+      :official
     )
   end
 

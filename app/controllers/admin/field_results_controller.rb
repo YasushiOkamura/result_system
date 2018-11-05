@@ -65,7 +65,8 @@ class Admin::FieldResultsController < Admin::BaseController
       :grade,
       :established_date,
       :information,
-      :condition
+      :condition,
+      :official
     )
   end
 

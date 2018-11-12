@@ -19,7 +19,7 @@
   .six.wide.column
     .field
       = f.label :athlete_id
-      = f.select :athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+      = f.select :athlete_id, Athlete.order('active desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
   .six.wide.column
     .field

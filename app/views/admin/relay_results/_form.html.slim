@@ -24,22 +24,22 @@
   .six.wide.column
     .field
       = f.label :first_athlete_id
-      = f.select :first_athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+      = f.select :first_athlete_id, Athlete.order('active desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
   .six.wide.column
     .field
       = f.label :second_athlete_id
-      = f.select :second_athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+      = f.select :second_athlete_id, Athlete.order('active desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
   .six.wide.column
     .field
       = f.label :third_athlete_id
-      = f.select :third_athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+      = f.select :third_athlete_id, Athlete.order('active desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
   .six.wide.column
     .field
       = f.label :fourth_athlete_id
-      = f.select :fourth_athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+      = f.select :fourth_athlete_id, Athlete.order('active desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
   
   .six.wide.column
     .field

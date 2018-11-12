@@ -9,60 +9,138 @@ h1
 
 = render 'ranking/links'
 
-- @all_results.each do |results|
-  - unless results.empty?
-    h3 = t("enumerize.competition.name.#{results.first.competition}")
+- if @kind == 'decathlon'
+  h3 十種競技
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 選手
+        th 総合点
+        th 着順
+        th 100m
+        th 走幅跳
+        th 砲丸投
+        th 走高跳
+        th 400m
+        th 110mH
+        th 円盤投
+        th 棒高跳
+        th やり投
+        th 1500m
+        th 樹立日
+        th 情報
+        th 環境
 
-    table.ui.celled.selectable.small.table
-      thead
+    tbody
+      - @all_results[0].each do |decathlon_result|
         tr
-          th 選手
-          th 結果
-          th 大会
-          th 樹立日
-          th 情報
-          th 環境
+          td
+            - if decathlon_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{decathlon_result.grade}")
+            = decathlon_result&.athlete.name
+          td = decathlon_result.total_score
+          td = decathlon_result.finish
+          td
+            = show_result(decathlon_result&.short_100m_result&.result)
+            - if decathlon_result&.short_100m_result&.wind.present?
+              = "(#{show_wind(decathlon_result&.short_100m_result.wind)})"
+            br
+            = decathlon_result&.score_100m
+          td
+            = show_field_result(decathlon_result&.field_lj_result&.result)
+            - if decathlon_result&.field_lj_result&.wind.present?
+              = "(#{show_wind(decathlon_result&.field_lj_result.wind)})"
+            br
+            = decathlon_result&.score_lj
+          td
+            = show_field_result(decathlon_result&.field_sp_result&.result)
+            br
+            = decathlon_result&.score_sp
+          td
+            = show_field_result(decathlon_result&.field_hj_result&.result)
+            br
+            = decathlon_result&.score_hj
+          td = show_result(decathlon_result&.short_400m_result&.result)
+          td
+            = show_result(decathlon_result&.short_110mh_result&.result)
+            - if decathlon_result&.short_110mh_result&.wind.present?
+              = "(#{show_wind(decathlon_result&.short_110mh_result.wind)})"
+            br
+            = decathlon_result&.score_110mh
+          td
+            = show_field_result(decathlon_result&.field_dt_result&.result)
+            br
+            = decathlon_result&.score_dt
+          td
+            = show_field_result(decathlon_result&.field_pj_result&.result)
+            br
+            = decathlon_result&.score_pj
+          td
+            = show_field_result(decathlon_result&.field_jt_result&.result)
+            br
+            = decathlon_result&.score_jt
+          td
+            = show_result(decathlon_result&.long_1500m_result&.result)
+            br
+            = decathlon_result&.score_1500m
+          td = decathlon_result.established_date
+          td = decathlon_result.information
+          td = decathlon_result.condition
+- else
+  - @all_results.each do |results|
+    - unless results.empty?
+      h3 = t("enumerize.competition.name.#{results.first.competition}")
 
-      tbody
-        - results.each do |result|
-          tr class=(result.established_date.year == 2018 ? 'negative' : '')
-            td
-              - if @kind == 'relay'
-                - if result.first_athlete_grade
-                  = I18n.t("enumerize.athlete.grade.#{result.first_athlete_grade}")
-                  = ' '
-                = result&.first_athlete.name
-                br
-                - if result.second_athlete_grade
-                  = I18n.t("enumerize.athlete.grade.#{result.second_athlete_grade}")
-                  = ' '
-                = result&.second_athlete.name
-                br
-                - if result.third_athlete_grade
-                  = I18n.t("enumerize.athlete.grade.#{result.third_athlete_grade}")
-                  = ' '
-                = result&.third_athlete.name
-                br
-                - if result.fourth_athlete_grade
-                  = I18n.t("enumerize.athlete.grade.#{result.fourth_athlete_grade}")
-                  = ' '
-                = result&.fourth_athlete.name
-                br
-              - else
-                - if result.grade.present?
-                  = I18n.t("enumerize.athlete.grade.#{result.grade}")
-                  = ' '
-                = result&.athlete.name
-            td 
-              - if @kind == 'field'
-                = show_field_result(result.result)
-              - else
-                = show_result(result.result)
+      table.ui.celled.selectable.small.table
+        thead
+          tr
+            th 選手
+            th 結果
+            th 大会
+            th 樹立日
+            th 情報
+            th 環境
 
-              - if ['short', 'field'].include?(@kind)
-                - if result.wind.present?
-                  = "(#{show_wind(result.wind)})"
-            td = result&.tournament.name
-            td = result.established_date 
-            td = result.information
-            td = result.condition
+        tbody
+          - results.each do |result|
+            tr class=(result.established_date.year == 2018 ? 'negative' : '')
+              td
+                - if @kind == 'relay'
+                  - if result.first_athlete_grade
+                    = I18n.t("enumerize.athlete.grade.#{result.first_athlete_grade}")
+                    = ' '
+                  = result&.first_athlete.name
+                  br
+                  - if result.second_athlete_grade
+                    = I18n.t("enumerize.athlete.grade.#{result.second_athlete_grade}")
+                    = ' '
+                  = result&.second_athlete.name
+                  br
+                  - if result.third_athlete_grade
+                    = I18n.t("enumerize.athlete.grade.#{result.third_athlete_grade}")
+                    = ' '
+                  = result&.third_athlete.name
+                  br
+                  - if result.fourth_athlete_grade
+                    = I18n.t("enumerize.athlete.grade.#{result.fourth_athlete_grade}")
+                    = ' '
+                  = result&.fourth_athlete.name
+                  br
+                - else
+                  - if result.grade.present?
+                    = I18n.t("enumerize.athlete.grade.#{result.grade}")
+                    = ' '
+                  = result&.athlete.name
+              td 
+                - if @kind == 'field'
+                  = show_field_result(result.result)
+                - else
+                  = show_result(result.result)
+
+                - if ['short', 'field'].include?(@kind)
+                  - if result.wind.present?
+                    = "(#{show_wind(result.wind)})"
+              td = result&.tournament.name
+              td = result.established_date 
+              td = result.information
+              td = result.condition

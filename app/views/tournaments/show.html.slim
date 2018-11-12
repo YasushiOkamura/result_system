@@ -159,3 +159,81 @@ h2
           td = relay_result.established_date
           td = relay_result.information
           td = relay_result.condition
+
+- unless @tournament.decathlon_results.empty?
+  h3 十種
+  table.ui.celled.selectable.small.table
+    thead
+      tr
+        th 選手
+        th 総合点
+        th 着順
+        th 100m
+        th 走幅跳
+        th 砲丸投
+        th 走高跳
+        th 400m
+        th 110mH
+        th 円盤投
+        th 棒高跳
+        th やり投
+        th 1500m
+        th 樹立日
+        th 情報
+        th 環境
+
+    tbody
+      - @tournament.decathlon_results.order('total_score desc').each do |decathlon_result|
+        tr
+          td
+            - if decathlon_result.grade.present?
+              = I18n.t("enumerize.athlete.grade.#{decathlon_result.grade}")
+            = decathlon_result&.athlete.name
+          td = decathlon_result.total_score
+          td = decathlon_result.finish
+          td
+            = show_result(decathlon_result&.short_100m_result&.result)
+            - if decathlon_result&.short_100m_result&.wind.present?
+              = "(#{show_wind(decathlon_result&.short_100m_result.wind)})"
+            br
+            = decathlon_result&.score_100m
+          td
+            = show_field_result(decathlon_result&.field_lj_result&.result)
+            - if decathlon_result&.field_lj_result&.wind.present?
+              = "(#{show_wind(decathlon_result&.field_lj_result.wind)})"
+            br
+            = decathlon_result&.score_lj
+          td
+            = show_field_result(decathlon_result&.field_sp_result&.result)
+            br
+            = decathlon_result&.score_sp
+          td
+            = show_field_result(decathlon_result&.field_hj_result&.result)
+            br
+            = decathlon_result&.score_hj
+          td = show_result(decathlon_result&.short_400m_result&.result)
+          td
+            = show_result(decathlon_result&.short_110mh_result&.result)
+            - if decathlon_result&.short_110mh_result&.wind.present?
+              = "(#{show_wind(decathlon_result&.short_110mh_result.wind)})"
+            br
+            = decathlon_result&.score_110mh
+          td
+            = show_field_result(decathlon_result&.field_dt_result&.result)
+            br
+            = decathlon_result&.score_dt
+          td
+            = show_field_result(decathlon_result&.field_pj_result&.result)
+            br
+            = decathlon_result&.score_pj
+          td
+            = show_field_result(decathlon_result&.field_jt_result&.result)
+            br
+            = decathlon_result&.score_jt
+          td
+            = show_result(decathlon_result&.long_1500m_result&.result)
+            br
+            = decathlon_result&.score_1500m
+          td = decathlon_result.established_date
+          td = decathlon_result.information
+          td = decathlon_result.condition

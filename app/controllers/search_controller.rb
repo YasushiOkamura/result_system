@@ -5,6 +5,7 @@ class SearchController < ApplicationController
     @long_results = search_result('LongResult')
     @field_results = search_result('FieldResult')
     @relay_results = search_result('RelayResult')
+    @decathlon_results = search_result('DecathlonResult')
   end
 
   private
@@ -33,9 +34,13 @@ class SearchController < ApplicationController
 
     if params[:competition].present?
       if result.nil?
-        result = Object.const_get(class_name).where(competition: params[:competition])
+        if class_name == 'DecathlonResult'
+          result = DecathlonResult.all
+        else
+          result = Object.const_get(class_name).where(competition: params[:competition])
+        end
       else
-        result = result.where(competition: params[:competition])
+        result = result.where(competition: params[:competition]) unless class_name == 'DecathlonResult'
       end
     end
     result = result.where(official: true).where.not(result: nil) if result.present? && params[:official]

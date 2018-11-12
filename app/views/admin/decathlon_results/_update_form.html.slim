@@ -1,3 +1,4 @@
+h3 （トラックの単位ミリ秒になってるけど気にしないで）
 .ui.grid
 
   - if @decathlon_result.errors.any?
@@ -10,7 +11,6 @@
         - @decathlon_result.errors.full_messages.each do |message|
           li 
             = message
-
   .six.wide.column
     .field
       = f.label :tournament_id

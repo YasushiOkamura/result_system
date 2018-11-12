@@ -26,6 +26,7 @@ class AthletesController < ApplicationController
     @pb[:short] = ShortResult.where(athlete_id: @athlete.id, official: true).where.not(result: nil).group_by(&:competition).map { |competition, results| results.sort_by { |result| result.result }.first }
     @pb[:long] = LongResult.where(athlete_id: @athlete.id, official: true).where.not(result: nil).group_by(&:competition).map { |competition, results| results.sort_by { |result| result.result }.first }
     @pb[:field] = FieldResult.where(athlete_id: @athlete.id, official: true).where.not(result: nil).group_by(&:competition).map { |competition, results| results.sort_by { |result| result.result }.last }
+    @pb[:decathlon] = DecathlonResult.where(athlete_id: @athlete.id, official: true).where.not(total_score: nil).order('total_score desc').first
   end
 
   def set_result

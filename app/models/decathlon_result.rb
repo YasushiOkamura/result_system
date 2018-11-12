@@ -5,6 +5,7 @@ class DecathlonResult < ApplicationRecord
   belongs_to :short_100m_result, class_name: :ShortResult, foreign_key: :sprint_100m_id, optional: true
   belongs_to :field_lj_result, class_name: :FieldResult, foreign_key: :field_lj_id, optional: true
   belongs_to :field_sp_result, class_name: :FieldResult, foreign_key: :field_sp_id, optional: true
+  belongs_to :field_hj_result, class_name: :FieldResult, foreign_key: :field_hj_id, optional: true
   belongs_to :short_400m_result, class_name: :ShortResult, foreign_key: :sprint_400m_id, optional: true
   belongs_to :short_110mh_result, class_name: :ShortResult, foreign_key: :sprint_110mh_id, optional: true
   belongs_to :field_dt_result, class_name: :FieldResult, foreign_key: :field_dt_id, optional: true

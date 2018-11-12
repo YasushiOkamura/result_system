@@ -33,7 +33,7 @@ h1
 
     tbody
       - @all_results[0].each do |decathlon_result|
-        tr
+        tr class=(decathlon_result.established_date.year == 2018 ? 'negative' : '')
           td
             - if decathlon_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{decathlon_result.grade}")

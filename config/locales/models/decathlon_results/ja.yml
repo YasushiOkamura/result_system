@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    models:
+      decathlon_result: 十種
+    attributes:
+      decathlon_result:
+        total_score: 合計点
+        finish: 着順
+        athlete_id:  選手
+        tournament_id: 大会
+        grade: 学年
+        established_date: 樹立日
+        information: 情報
+        condition: 環境
+        official: 公認記録
+        sprint_100m_id: 100m
+        score_100m: スコア100m
+        field_lj_id: 走幅跳
+        score_lj: スコア走幅跳
+        field_sp_id: 砲丸投
+        score_sp: スコア砲丸投
+        field_hj_id: 走高跳
+        score_hj: スコア走高跳
+        sprint_400m_id: 400m
+        score_400m: スコア400m
+        sprint_110mh_id: 110mH
+        score_110mh: スコア110mh
+        field_dt_id: 円盤投
+        score_dt: スコア円盤投
+        field_pj_id: 棒高跳
+        score_pj: スコア棒高跳
+        field_jt_id: やり投
+        score_jt: スコアやり投
+        long_1500m_id: 1500m
+        score_1500m: スコア1500m

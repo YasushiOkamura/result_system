@@ -11,9 +11,9 @@ class RelayResult < ApplicationRecord
   private
 
   def set_grade
-    self.first_athlete_grade  = self.first_athlete.grade
-    self.second_athlete_grade = self.second_athlete.grade
-    self.third_athlete_grade  = self.third_athlete.grade
-    self.fourth_athlete_grade = self.fourth_athlete.grade
+    self.first_athlete_grade  = self.first_athlete.grade if self.first_athlete_grade.blank?
+    self.second_athlete_grade = self.second_athlete.grade if self.second_athlete_grade.blank?
+    self.third_athlete_grade  = self.third_athlete.grade if self.third_athlete_grade.blank?
+    self.fourth_athlete_grade = self.fourth_athlete.grade if self.fourth_athlete_grade.blank?
   end
 end

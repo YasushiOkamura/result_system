@@ -1,0 +1,165 @@
+.ui.grid
+
+  - if @decathlon_result.errors.any?
+    .ui.segments
+      .ui.segment.tertiary.inverted.red
+        h2 エラー
+      .ui.segment
+        strong 以下の入力値を訂正してください。
+        ul
+        - @decathlon_result.errors.full_messages.each do |message|
+          li 
+            = message
+
+  .six.wide.column
+    .field
+      = f.label :tournament_id
+      = f.select :tournament_id, Tournament.order('id desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :athlete_id
+      = f.select :athlete_id, Athlete.where(active: true).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :total_score
+      = f.text_field :total_score
+
+  .six.wide.column
+    .field
+      = f.label :finish
+      = f.number_field :finish
+
+  .six.wide.column
+    .field
+      = f.label :established_date
+      = f.date_field :established_date, value: @decathlon_result.established_date.present? ? @decathlon_result.established_date : Tournament.all.order('start_day DESC').first.start_day
+
+  .six.wide.column
+  .six.wide.column
+    .field
+      = f.label :information
+      = f.text_field :information, placeholder: 'PB, Q, q, 電通大記録...'
+
+  .six.wide.column
+    .field
+      = f.label :condition
+      = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'
+  
+  .six.wide.column
+    .field
+      = f.label :sprint_100m_id
+      = f.select :sprint_100m_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_100m').pluck(:result, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :score_100m
+      = f.number_field :score_100m
+
+  .six.wide.column
+    .field
+      = f.label :field_lj_id
+      = f.select :field_lj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_LJ').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_lj
+      = f.number_field :score_lj
+  
+  .six.wide.column
+    .field
+      = f.label :field_sp_id
+      = f.select :field_sp_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_SP').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_sp
+      = f.number_field :score_sp
+  
+  .six.wide.column
+    .field
+      = f.label :field_hj_id
+      = f.select :field_hj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_HJ').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_hj
+      = f.number_field :score_hj
+  
+  .six.wide.column
+    .field
+      = f.label :sprint_400m_id
+      = f.select :sprint_400m_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_400m').pluck(:result, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :score_400m
+      = f.number_field :score_400m
+
+  .six.wide.column
+    .field
+      = f.label :field_hj_id
+      = f.select :field_hj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_HJ').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_hj
+      = f.number_field :score_hj
+ 
+  .six.wide.column
+    .field
+      = f.label :sprint_110mh_id
+      = f.select :sprint_110mh_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_110mH').pluck(:result, :id), {}, class: 'ui dropdown'
+
+  .six.wide.column
+    .field
+      = f.label :score_110mh
+      = f.number_field :score_110mh
+  
+  
+  .six.wide.column
+    .field
+      = f.label :field_dt_id
+      = f.select :field_dt_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_DT').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_dt
+      = f.number_field :score_dt
+  
+  .six.wide.column
+    .field
+      = f.label :field_pj_id
+      = f.select :field_pj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_PJ').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_pj
+      = f.number_field :score_pj
+  
+  .six.wide.column
+    .field
+      = f.label :field_jt_id
+      = f.select :field_jt_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_JT').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_jt
+      = f.number_field :score_jt
+  
+  .six.wide.column
+    .field
+      = f.label :long_1500m_id
+      = f.select :long_1500m_id, LongResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_1500m').pluck(:result, :id), {}, class: 'ui dropdown'
+  
+  .six.wide.column
+    .field
+      = f.label :score_1500m
+      = f.number_field :score_1500m
+
+  .six.wide.column
+    .field
+      .ui.checkbox
+        = f.check_box :official, {}, "true", "false"
+        = f.label :official

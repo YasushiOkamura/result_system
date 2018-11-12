@@ -1,0 +1,9 @@
+h1 十種結果 - 新規登録
+= form_for([:admin, @decathlon_result], html: { class: 'ui form' })  do |f|
+  = render 'create_form', f: f
+
+  .ui.grid
+    .six.wide.column
+      = f.submit '登録', class: 'ui button primary'
+    .six.wide.column
+      = link_to '十種結果一覧へ', admin_decathlon_results_path, class: 'ui gray button'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_06_083437) do
+ActiveRecord::Schema.define(version: 2018_11_12_144755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2018_09_06_083437) do
     t.integer "score_jt"
     t.integer "long_1500m_id"
     t.integer "score_1500m"
+    t.boolean "official"
   end
 
   create_table "field_results", force: :cascade do |t|

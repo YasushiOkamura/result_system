@@ -7,6 +7,6 @@ class LongResult < ApplicationRecord
   private
 
   def set_grade
-    self.grade = self.athlete.grade
+    self.grade = self.athlete.grade if self.grade.blank?
   end
 end

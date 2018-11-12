@@ -44,6 +44,12 @@ html
             = link_to '一覧', admin_relay_results_path, class: 'ui item'
             = link_to '新規作成', new_admin_relay_result_path, class: 'ui item'
         .ui.dropdown.item
+          | 十種
+          i.dropdown.icon
+          .menu
+            = link_to '一覧', admin_decathlon_results_path, class: 'ui item'
+            = link_to '新規作成', new_admin_decathlon_result_path, class: 'ui item'
+        .ui.dropdown.item
           i.user.icon
           | 選手
           i.dropdown.icon

@@ -1,0 +1,37 @@
+h1 十種 結果一覧
+
+= link_to '十種 結果登録', new_admin_decathlon_result_path, class: 'ui button green'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th = sort_link(@q, :id, 'ID')
+      th = sort_link(@q, :athlete_id, '選手')
+      th = sort_link(@q, :total_score, '結果')
+      th 着順
+      th 大会
+      th = sort_link(@q, :established_date, '樹立日')
+      th 情報
+      th 環境
+      th
+      th
+
+  tbody
+    - @decathlon_results.each do |decathlon_result|
+      tr
+        td = decathlon_result.id
+        td
+          - if decathlon_result.grade.present?
+            = I18n.t("enumerize.athlete.grade.#{decathlon_result.grade}")
+          = decathlon_result&.athlete&.name
+        td 
+          = decathlon_result.total_score
+        td = decathlon_result.finish
+        td = decathlon_result&.tournament&.name
+        td = decathlon_result.established_date
+        td = decathlon_result.information
+        td = decathlon_result.condition
+        td = link_to '編集', edit_admin_decathlon_result_path(decathlon_result), class: 'ui green button'
+        td = link_to '削除', admin_decathlon_result_path(decathlon_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+
+= paginate @decathlon_results

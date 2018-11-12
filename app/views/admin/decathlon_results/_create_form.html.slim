@@ -1,20 +1,15 @@
 .ui.grid
 
-  - if @short_result.errors.any?
+  - if @decathlon_result.errors.any?
     .ui.segments
       .ui.segment.tertiary.inverted.red
         h2 エラー
       .ui.segment
         strong 以下の入力値を訂正してください。
         ul
-        - @short_result.errors.full_messages.each do |message|
+        - @decathlon_result.errors.full_messages.each do |message|
           li 
             = message
-
-  .six.wide.column
-    .field
-      = f.label :competition
-      = f.select :competition, @competition_options, { include_blank: true }, class: 'ui dropdown'
 
   .six.wide.column
     .field
@@ -28,29 +23,9 @@
 
   .six.wide.column
     .field
-      = f.label :result
-      = f.text_field :result, value: show_result(@short_result&.result), placeholder: '11.00'
+      = f.label :total_score
+      = f.text_field :total_score
 
-  .six.wide.column
-    .field
-      = f.label :wind
-      = f.number_field :wind, step: 0.1, placeholder: '-1.0 風が関係ない種目は空欄で'
-
-  .six.wide.column
-    .field
-      = f.label :round
-      = f.text_field :round, placeholder: '決勝とか記録会とか'
-      
-  .six.wide.column
-    .field
-      = f.label :group
-      = f.number_field :group
-      
-  .six.wide.column
-    .field
-      = f.label :rane
-      = f.text_field :rane
-      
   .six.wide.column
     .field
       = f.label :finish
@@ -59,8 +34,9 @@
   .six.wide.column
     .field
       = f.label :established_date
-      = f.date_field :established_date, value: @short_result.established_date.present? ? @short_result.established_date : Tournament.all.order('start_day DESC').first.start_day
+      = f.date_field :established_date, value: @decathlon_result.established_date.present? ? @decathlon_result.established_date : Tournament.all.order('start_day DESC').first.start_day
 
+  .six.wide.column
   .six.wide.column
     .field
       = f.label :information
@@ -70,7 +46,7 @@
     .field
       = f.label :condition
       = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'
-
+ 
   .six.wide.column
     .field
       .ui.checkbox

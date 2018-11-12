@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :long_results
     resources :field_results
     resources :relay_results
+    resources :decathlon_results
   end
 
   root 'errors#routing_error'

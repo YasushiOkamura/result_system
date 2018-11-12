@@ -19,7 +19,7 @@
   .six.wide.column
     .field
       = f.label :tournament_id
-      = f.select :tournament_id, Tournament.order('id desc').limit(20).pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
+      = f.select :tournament_id, Tournament.order('id desc').pluck(:name, :id), { include_blank: true }, class: 'ui dropdown'
 
   .six.wide.column
     .field

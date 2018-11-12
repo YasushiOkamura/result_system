@@ -8,7 +8,7 @@ class ShortResult < ApplicationRecord
   private
 
   def set_grade
-    self.grade = self.athlete.grade
+    self.grade = self.athlete.grade if self.grade.blank?
   end
 
   def set_official

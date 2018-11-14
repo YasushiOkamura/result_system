@@ -54,6 +54,7 @@ gem 'chart-js-rails', '~> 0.1.4'
 gem 'gon', '~> 6.2.0'
 gem 'chartkick'
 
+gem 'rack-user_agent'
 #gem 'jquery-turbolinks'
 
 group :development, :test do

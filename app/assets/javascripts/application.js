@@ -19,9 +19,10 @@
 //= require jquery_ujs
 //= require semantic-ui
 
+
 $(function() {
   $('#sidebar').click(function() {
-    $('.ui.sidebar').sidebar('toggle');
+    $('.ui.nocp.sidebar').sidebar('toggle');
   });
   $('.ui.accordion').accordion();
   $('.ui.dropdown').dropdown();
@@ -29,4 +30,7 @@ $(function() {
     $('.ui.labeled.icon.sidebar').sidebar('toggle');
   });
   $('.activating.element').popup();
+
 });
+$('athleteChart').attr('width', $('.graph').width());
+$('athleteChart').attr('heigt', $('.graph').height());

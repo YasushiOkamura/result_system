@@ -7,14 +7,22 @@
     paginator    : the paginator that renders the pagination tags inside
 
 == paginator.render do
-  nav.pagination
-    .ui.stackable.pagination.menu
-      == first_page_tag unless current_page.first?
-      == prev_page_tag unless current_page.first?
-      - each_page do |page|
-        - if page.display_tag?
-          == page_tag page
-        - elsif !page.was_truncated?
-          == gap_tag
-      == next_page_tag unless current_page.last?
-      == last_page_tag unless current_page.last?
+  .computer.tablet.only
+    nav.pagination
+      .ui.pagination.menu
+        == first_page_tag unless current_page.first?
+        == prev_page_tag unless current_page.first?
+        - each_page do |page|
+          - if page.display_tag?
+            == page_tag page
+          - elsif !page.was_truncated?
+            == gap_tag
+        == next_page_tag unless current_page.last?
+        == last_page_tag unless current_page.last?
+  .mobile.only
+    nav.pagination
+      .ui.pagination.menu
+        == first_page_tag unless current_page.first?
+        == prev_page_tag unless current_page.first?
+        == next_page_tag unless current_page.last?
+        == last_page_tag unless current_page.last?

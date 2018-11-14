@@ -1,19 +1,17 @@
 = Gon::Base.render_data
 
-.ui.grid
-  .row
-    h1
-      = @athlete.name
-      | - 記録推移 - 
-      = t("enumerize.competition.name.#{@competition}")
-  .row
-    .ui.segment
+.ui.stackable.container
+  h1
+    = @athlete.name
+    | - 記録推移 - 
+    = t("enumerize.competition.name.#{@competition}")
+  .ui.segment
+    .row
       = link_to 'all', graph_athlete_path(@athlete, type: @type, competition: @competition), class: 'ui button green'
+    .row
       - @years.each do |year|
         = link_to year.to_s + '年', graph_athlete_path(@athlete, type: @type, competition: @competition, year: year), class: 'ui button'
-
-
-    canvas id="athleteChart" width="900" height="400"
+  .graph style="padding-bottom: 50px;"
+    canvas id="athleteChart"
     script draw_graph()
-  .row
-    = link_to '選手詳細画面へ', athlete_path(@athlete), class: 'ui button'
+  = link_to '選手詳細画面へ', athlete_path(@athlete), class: 'ui button'

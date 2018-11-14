@@ -8,31 +8,71 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     = favicon_link_tag('icon.jpg')
+    meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"
   body
-    .ui.top.stackable.labeled.inverted.blue.visible.huge.very.wide.sidebar.menu
-      = link_to root_path, class: 'item ui link inverted' do
-        | UEC T&F
-      = link_to tournaments_path, class: 'item ui link inverted' do
-        i.star.icon
-        | 大会・記録会
-      = link_to ranking_path, class: 'item ui link inverted' do
-        i.chess.queen.icon
-        | 電通大５傑
-      = link_to search_path, class: 'item ui link inverted' do
-        i.search.icon
-        | 記録検索
-      = link_to athletes_path, class: 'item ui link inverted' do
-        i.users.icon
-        | 選手
-      = link_to Settings.homepage, target: '_blank', class: 'item ui link inverted' do
-        i.home.icon
-        | ホームページ
-      = link_to admin_new_session_path, class: 'item ui link right inverted' do
-        i.user.icon
-        | 管理者ログイン
-    .ui.padding.stackable.container
-      - if flash.present?
-        .ui.positive.message
-          - flash.each do |key, value|
-            = content_tag(:div, value, class: "#{key}")
-      == yield
+    - unless @smartphone
+      .ui.top.stackable.labeled.inverted.blue.visible.huge.very.wide.sidebar.menu
+        = link_to root_path, class: 'item ui link inverted' do
+          | UEC T&F
+        = link_to tournaments_path, class: 'item ui link inverted' do
+          i.star.icon
+          | 大会・記録会
+        = link_to ranking_path, class: 'item ui link inverted' do
+          i.chess.queen.icon
+          | 電通大５傑
+        = link_to search_path, class: 'item ui link inverted' do
+          i.search.icon
+          | 記録検索
+        = link_to athletes_path, class: 'item ui link inverted' do
+          i.users.icon
+          | 選手
+        = link_to Settings.homepage, target: '_blank', class: 'item ui link inverted' do
+          i.home.icon
+          | ホームページ
+        = link_to admin_new_session_path, class: 'item ui link right inverted' do
+          i.user.icon
+          | 管理者ログイン
+
+      .pusher
+        .content
+          .ui.padding.stackable.container
+            - if flash.present?
+              .ui.positive.message
+                - flash.each do |key, value|
+                  = content_tag(:div, value, class: "#{key}")
+            == yield
+
+    - if @smartphone
+      .ui.stackable.labeled.inverted.large.left.vertical.nocp.sidebar.menu
+        = link_to root_path, class: 'item ui link inverted' do
+          | UEC T&F
+        = link_to tournaments_path, class: 'item ui link inverted' do
+          i.star.icon
+          | 大会・記録会
+        = link_to ranking_path, class: 'item ui link inverted' do
+          i.chess.queen.icon
+          | 電通大５傑
+        = link_to search_path, class: 'item ui link inverted' do
+          i.search.icon
+          | 記録検索
+        = link_to athletes_path, class: 'item ui link inverted' do
+          i.users.icon
+          | 選手
+        = link_to Settings.homepage, target: '_blank', class: 'item ui link inverted' do
+          i.home.icon
+          | ホームページ
+        = link_to admin_new_session_path, class: 'item ui link bootom inverted' do
+          i.user.icon
+          | 管理者ログイン
+
+      .pusher style="padding-left: 50px"
+        .ui.sidebar.inverted.visible.sidebar.main.menu
+          a.launch.icon.item id="sidebar"
+            i.sidebar.icon
+        .content
+          .ui.stackable.container
+            - if flash.present?
+              .ui.positive.message
+                - flash.each do |key, value|
+                  = content_tag(:div, value, class: "#{key}")
+            == yield

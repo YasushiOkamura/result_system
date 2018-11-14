@@ -1,7 +1,10 @@
 h1 選手 - 新規登録
 
 = form_for([:admin, @athlete], html: { class: 'ui form' })  do |f|
-  = render 'form', f: f
-  = f.submit '登録', class: 'ui button primary'
-.row
-  = link_to '選手一覧へ', admin_athletes_path, class: 'ui gray button'
+  .ui.stackable.grid
+    .five.wide.column
+      = render 'form', f: f
+    .five.wide.column
+      = f.submit '登録', class: 'ui button primary'
+    .five.wide.column
+      = link_to '選手一覧へ', admin_athletes_path, class: 'ui gray button'

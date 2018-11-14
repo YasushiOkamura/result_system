@@ -1,5 +1,4 @@
-.ui.grid
-
+.ui.stackable.grid
   - if @short_result.errors.any?
     .ui.segments
       .ui.segment.tertiary.inverted.red
@@ -71,7 +70,7 @@
       = f.label :condition
       = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'
 
-  .six.wide.column
+  .six.wide.column 
     .field
       .ui.checkbox
         = f.check_box :official, {}, "true", "false"

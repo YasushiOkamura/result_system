@@ -22,10 +22,10 @@
   = f.text_field :major
   
 .field
+  = f.label :memo
+  = f.text_area :memo
+
+.field
   .ui.checkbox
     = f.check_box :active
     = f.label :active
-
-.field
-  = f.label :memo
-  = f.text_area :memo

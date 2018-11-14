@@ -10,16 +10,17 @@ html
     = favicon_link_tag('icon.jpg')
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"
   body
-    .ui.inverted.stackable.segment
-      .ui.huge.inverted.menu
-        = link_to 'HOME', admin_root_path, class: 'ui item'
-        .ui.dropdown.item
-          i.flag.icon
-          | 大会
-          i.dropdown.icon
-          .menu
-            = link_to '一覧', admin_tournaments_path, class: 'ui inverted item'
-            = link_to '新規作成', new_admin_tournament_path, class: 'ui item'
+    - unless @smartphone
+      .ui.top.labeled.inverted.huge.menu
+        .menu
+          = link_to 'HOME', admin_root_path, class: 'ui item'
+          .ui.dropdown.item
+            i.flag.icon
+            | 大会
+            i.dropdown.icon
+            .menu
+              = link_to '一覧', admin_tournaments_path, class: 'ui item'
+              = link_to '新規作成', new_admin_tournament_path, class: 'ui item'
         .ui.dropdown.item
           | 短距離
           i.dropdown.icon
@@ -61,9 +62,84 @@ html
           i.sign.out.icon
           | ログアウト
 
-    .ui.stackable.admin.segment
-      - if flash.present?
-        .ui.positive.message
-          - flash.each do |key, value|
-            = content_tag(:div, value, class: "#{key}")
-      == yield
+      .ui.stackable.admin.container
+        - if flash.present?
+          .ui.positive.message
+            - flash.each do |key, value|
+              = content_tag(:div, value, class: "#{key}")
+        == yield
+    
+    - if @smartphone
+      .ui.stackable.labeled.inverted.large.left.vertical.nocp.sidebar.menu
+        = link_to 'HOME', admin_root_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | 大会
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_tournaments_path, class: 'ui inverted item'
+              = link_to '新規作成', new_admin_tournament_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | 短距離
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_short_results_path, class: 'ui item'
+              = link_to '新規作成', new_admin_short_result_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | 長距離
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_long_results_path, class: 'ui item'
+              = link_to '新規作成', new_admin_long_result_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | フィールド
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_field_results_path, class: 'ui item'
+              = link_to '新規作成', new_admin_field_result_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | リレー
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_relay_results_path, class: 'ui item'
+              = link_to '新規作成', new_admin_relay_result_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | 十種
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_decathlon_results_path, class: 'ui item'
+              = link_to '新規作成', new_admin_decathlon_result_path, class: 'ui item'
+        .ui.item
+          .ui.inverted.accordion
+            .title
+              | 選手
+              i.dropdown.icon
+            .content
+              = link_to '一覧', admin_athletes_path, class: 'ui item'
+              = link_to '新規作成', new_admin_athlete_path, class: 'ui item'
+        = link_to admin_destroy_session_path, method: :delete, class: 'ui right item' do
+          i.sign.out.icon
+          | ログアウト
+
+      .pusher style="padding-left: 50px"
+        .ui.sidebar.inverted.visible.sidebar.main.menu
+          a.launch.icon.item id="sidebar"
+            i.sidebar.icon
+        .content
+          .ui.stackable.admin.container
+            - if flash.present?
+              .ui.positive.message
+                - flash.each do |key, value|
+                  = content_tag(:div, value, class: "#{key}")
+            == yield

@@ -1,6 +1,7 @@
 class Admin::BaseController < ActionController::Base
   layout 'admin/base'
   before_action :authenticate!
+  before_action :check_mobile
   helper_method :current_manager
 
   class Forbidden < ActionController::ActionControllerError; end
@@ -33,5 +34,9 @@ class Admin::BaseController < ActionController::Base
 
   def authenticate!
     redirect_to admin_new_session_path unless current_manager
+  end
+
+  def check_mobile
+    @smartphone = request.from_smartphone?
   end
 end

@@ -2,9 +2,9 @@ h1 リレー結果 - 編集
 = form_for([:admin, @relay_result], html: { class: 'ui form' })  do |f|
   = render 'form', f: f
 
-  .ui.grid
+  .ui.stackable.grid
     .five.wide.column
-      = f.submit '登録', class: 'ui button primary'
+      = f.submit '更新', class: 'ui button primary'
     .five.wide.column
       = link_to 'リレー結果一覧へ', admin_relay_results_path, class: 'ui gray button'
     - if @relay_result.tournament_id.present?

@@ -1,9 +1,12 @@
-h1 十種結果 - 新規登録
+h1 十種結果 - 編集
 = form_for([:admin, @decathlon_result], html: { class: 'ui form' })  do |f|
   = render 'update_form', f: f
 
   .ui.grid
     .six.wide.column
-      = f.submit '登録', class: 'ui button primary'
+      = f.submit '更新', class: 'ui button primary'
     .six.wide.column
       = link_to '十種結果一覧へ', admin_decathlon_results_path, class: 'ui gray button'
+    - if @decathlon_result.tournament_id.present?
+      .five.wide.column
+        = link_to '大会画面へ', admin_tournament_path(@decathlon_result.tournament), class: 'ui gray button'

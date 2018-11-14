@@ -12,6 +12,6 @@
       - @years.each do |year|
         = link_to year.to_s + '年', graph_athlete_path(@athlete, type: @type, competition: @competition, year: year), class: 'ui button'
   .graph style="padding-bottom: 50px;"
-    canvas id="athleteChart"
+    canvas id="athleteChart" style="height: 400px"
     script draw_graph()
   = link_to '選手詳細画面へ', athlete_path(@athlete), class: 'ui button'

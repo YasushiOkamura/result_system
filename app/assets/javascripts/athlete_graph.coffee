@@ -13,6 +13,8 @@ window.draw_graph = ->
   }
   options = {
     showAllTooltips: true,
+    responsive: true,
+    maintainAspectRatio: false,
     tooltips: {
       mode: 'nearest',
       callbacks: {

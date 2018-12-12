@@ -1,0 +1,12 @@
+h1 区間 - 新規作成
+
+= form_for([:admin, @ekiden, @point], html: { class: 'ui form' })  do |f|
+  .ui.stackable.grid
+    .row
+      .ten.wide.column
+        = render 'form', f: f
+    .row
+      .five.wide.column
+        = f.submit '保存', class: 'ui button primary'
+      .five.wide.column
+        = link_to '一覧へ', admin_ekiden_points_path(@ekiden), class: 'ui gray button'

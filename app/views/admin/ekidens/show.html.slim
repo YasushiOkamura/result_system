@@ -1,0 +1,34 @@
+h1 大会詳細
+h2 情報
+.ui.segment
+  h3.ui.item
+    = @ekiden.name
+  .ui.item
+    | スタート日時：
+    = l @ekiden.start_at
+  .ui.item
+    | 場所：
+    = @ekiden.place
+
+
+h2 区間情報
+- @ekiden.kukans.order('kukan_number').each do |kukan|
+  .ui.segment
+    .ui.item
+      | 区間：
+      = kukan.kukan_number
+    .ui.item
+      | 選手：
+      = kukan.athlete
+    .ui.item
+      | 距離：
+      = kukan.distance
+    .ui.item
+      | メモ：
+      = kukan.memo
+
+h2 チェックポイント情報
+- @ekiden.points.each do |point|
+  .ui.segment
+    h3.ui.item
+      = point.name

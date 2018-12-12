@@ -1,0 +1,22 @@
+- if @kukan.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(@kukan.errors.count, "error")} prohibited this kukan from being saved:"
+    ul
+      - @kukan.errors.full_messages.each do |message|
+        li = message
+
+.field
+  = f.label :kukan_number
+  = f.number_field :kukan_number
+
+.field
+  = f.label :athlete
+  = f.text_field :athlete
+
+.field
+  = f.label :distance
+  = f.number_field :distance, step: 0.001
+
+.field
+  = f.label :memo
+  = f.text_field :memo

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_12_144755) do
+ActiveRecord::Schema.define(version: 2018_12_11_065524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2018_11_12_144755) do
     t.boolean "official"
   end
 
+  create_table "ekidens", force: :cascade do |t|
+    t.string "name"
+    t.datetime "start_at"
+    t.string "place"
+    t.integer "kukans_count"
+    t.integer "points_count"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "field_results", force: :cascade do |t|
     t.string "competition"
     t.float "result"
@@ -76,6 +86,14 @@ ActiveRecord::Schema.define(version: 2018_11_12_144755) do
     t.string "information"
     t.string "condition"
     t.boolean "official"
+  end
+
+  create_table "kukans", force: :cascade do |t|
+    t.integer "ekiden_id"
+    t.string "athlete"
+    t.integer "kukan_number"
+    t.float "distance"
+    t.text "memo"
   end
 
   create_table "load_results", force: :cascade do |t|
@@ -102,6 +120,22 @@ ActiveRecord::Schema.define(version: 2018_11_12_144755) do
   create_table "managers", force: :cascade do |t|
     t.string "login_id", null: false
     t.string "password_digest", null: false
+  end
+
+  create_table "points", force: :cascade do |t|
+    t.integer "ekiden_id"
+    t.string "name"
+  end
+
+  create_table "raps", force: :cascade do |t|
+    t.integer "ekiden_id"
+    t.string "point"
+    t.string "athlete"
+    t.integer "rap_time"
+    t.text "memo"
+    t.boolean "broadcasted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relay_results", force: :cascade do |t|

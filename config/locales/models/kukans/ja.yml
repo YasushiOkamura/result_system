@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      kukan: 区間
+    attributes:
+      kukan:
+        kukan_number: 区間
+        athlete: 選手
+        distance: 距離
+        memo: メモ

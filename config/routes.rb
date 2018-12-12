@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     resources :field_results
     resources :relay_results
     resources :decathlon_results
+    resources :ekidens do
+      resources :raps
+      resources :kukans
+      resources :points
+    end
   end
 
   root 'errors#routing_error'

@@ -1,0 +1,23 @@
+h1 #{@ekiden.name} - チェックポイント
+
+.ui.stackable.grid
+  .five.wide.column
+    = link_to '登録', new_admin_ekiden_point_path(@ekiden), class: 'ui button green'
+  .five.wide.column
+    = link_to '駅伝一覧へ', admin_ekidens_path(@ekiden), class: 'ui button'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th ID
+      th チェックポイント名
+      th
+      th
+
+  tbody
+    - @points.each do |point|
+      tr
+        td = point.id
+        td = point.name
+        td = link_to '編集', edit_admin_ekiden_point_path(@ekiden, point), class: 'ui green button'
+        td = link_to '削除', admin_ekiden_point_path(@ekiden, point), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

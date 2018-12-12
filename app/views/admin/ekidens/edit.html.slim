@@ -1,0 +1,17 @@
+h1 駅伝 - 編集
+
+= form_for([:admin, @ekiden], html: { class: 'ui form' })  do |f|
+  .ui.stackable.grid
+    .row
+      .five.wide.column
+        = link_to '区間の設定', admin_ekiden_kukans_path(@ekiden), class: 'ui green button'
+      .five.wide.column
+        = link_to 'チェックポイントの設定', admin_ekiden_points_path(@ekiden), class: 'ui green button'
+    .row
+      .ten.wide.column
+        = render 'form', f: f
+    .row
+      .five.wide.column
+        = f.submit '更新', class: 'ui button primary'
+      .five.wide.column
+        = link_to '一覧へ', admin_ekidens_path, class: 'ui gray button'

@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      point: チェックポイント
+    attributes:
+      point:
+        name: チェックポイント名

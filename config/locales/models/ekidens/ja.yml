@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      ekiden: 駅伝
+    attributes:
+      ekiden:
+        name: 大会名
+        start_at: 開始時刻
+        place: 場所
+        kukans_count: 区間数
+        points_count: チェックポイント数

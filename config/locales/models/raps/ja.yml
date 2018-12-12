@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      rap: ラップ
+    attributes:
+      rap:
+        point: チェックポイント
+        athlete: 選手名
+        rap: ラップタイム[s]
+        memo: メモ
+        broadcasted: 配信済
+        created_at: 生成時刻

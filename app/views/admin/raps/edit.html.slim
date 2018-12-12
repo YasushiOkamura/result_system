@@ -1,0 +1,23 @@
+h1 ラップ - 編集 or 配信
+
+.ui.stackable.segment
+  .ui.form
+    = form_tag admin_ekiden_rap_broadcast_path(@ekiden, @rap), method: :post do
+      = label_tag '配信文章'
+      .field
+        = text_area_tag :broadcast_message, "地点：#{@rap.point}" + "\n選手：#{@rap.athlete}" + "\n通過時刻：#{@rap.created_at.strftime("%H:%M:%S")}" + "\n前回ポイントからのラップ：#{show_result(@rap.rap_time)}"
+      .field
+        =  submit_tag' slackに配信する', class: 'ui button green'
+        - if @rap.broadcasted
+          p.ui.header.red ※配信済みです 
+
+= form_for([:admin, @ekiden, @rap], html: { class: 'ui form' })  do |f|
+  .ui.stackable.grid
+    .row
+      .ten.wide.column
+        = render 'form', f: f
+    .row
+      .five.wide.column
+        = f.submit '保存', class: 'ui button primary'
+      .five.wide.column
+        = link_to '一覧へ', admin_ekiden_raps_path(@ekiden), class: 'ui gray button'

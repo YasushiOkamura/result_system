@@ -8,7 +8,7 @@ table.ui.celled.small.table
       th = sort_link(@q, :id, 'ID')
       th 大会名
       th スタート日時
-      th
+      th ラップ画面
       th
 
   tbody
@@ -17,7 +17,9 @@ table.ui.celled.small.table
         td = ekiden.id
         td = link_to ekiden.name, admin_ekiden_path(ekiden)
         td = l ekiden.start_at
-        td = link_to '編集', edit_admin_ekiden_path(ekiden), class: 'ui green button'
-        td = link_to '削除', admin_ekiden_path(ekiden), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+        td = link_to 'ラップ画面へ', admin_ekiden_raps_path(ekiden), class: 'ui blue button'
+        td
+          = link_to '編集', edit_admin_ekiden_path(ekiden), class: 'ui green button'
+          = link_to '削除', admin_ekiden_path(ekiden), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
 
 = paginate @ekidens

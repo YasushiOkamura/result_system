@@ -1,0 +1,31 @@
+h1 #{@ekiden.name} - これまでのラップ - スタート：#{l @ekiden.start_at}
+
+.ui.stackable.grid
+  .five.wide.column
+    = link_to '登録', new_admin_ekiden_rap_path(@ekiden), class: 'ui button green'
+  .five.wide.column
+    = link_to '駅伝一覧へ', admin_ekidens_path(@ekiden), class: 'ui button'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th 通過地点
+      th 選手
+      th ラップタイム(前回のチェックポイントから)
+      th 通過タイム
+      th 配信済?
+      th
+      th
+
+  tbody
+    - @raps.each do |rap|
+      tr
+        td = rap.point
+        td = rap.athlete
+        td = show_result(rap.rap_time)
+        td = l rap.created_at
+        td 
+          - if rap.broadcasted
+            | ✓
+        td = link_to '編集 & 発信', edit_admin_ekiden_rap_path(@ekiden, rap), class: 'ui green button'
+        td = link_to '削除', admin_ekiden_rap_path(@ekiden, rap), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

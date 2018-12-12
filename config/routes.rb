@@ -25,7 +25,9 @@ Rails.application.routes.draw do
     resources :relay_results
     resources :decathlon_results
     resources :ekidens do
-      resources :raps
+      resources :raps do
+        post :broadcast, to: 'raps#broadcast'
+      end
       resources :kukans
       resources :points
     end

@@ -1,0 +1,14 @@
+- if @rap.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(@rap.errors.count, "error")} prohibited this rap from being saved:"
+    ul
+      - @rap.errors.full_messages.each do |message|
+        li = message
+
+.field
+  = f.label :point
+  = f.select :point, @point_options, {}, class: 'ui dropdown'
+
+.field
+  = f.label :athlete
+  = f.select :athlete, @athlete_options, {}, class: 'ui dropdown'

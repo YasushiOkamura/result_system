@@ -1,0 +1,12 @@
+h1 ラップ - 作成
+
+= form_for([:admin, @ekiden, @rap], html: { class: 'ui form' })  do |f|
+  .ui.stackable.grid
+    .row
+      .ten.wide.column
+        = render 'form', f: f
+    .row
+      .five.wide.column
+        = f.submit 'ラップをとる！！！', class: 'ui huge button red'
+      .five.wide.column
+        = link_to '一覧へ', admin_ekiden_raps_path(@ekiden), class: 'ui gray button'

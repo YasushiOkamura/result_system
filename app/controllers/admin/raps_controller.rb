@@ -12,6 +12,7 @@ class Admin::RapsController < Admin::BaseController
   end
 
   def edit
+    @time_sum = Rap.where(ekiden_id: @ekiden.id, athlete: @rap.athlete).sum(:rap_time)
   end
 
   def create
@@ -19,7 +20,7 @@ class Admin::RapsController < Admin::BaseController
     @rap.rap_time = get_rap_time
     if @rap.save
       flash[:notice] = '新規作成しました'
-      redirect_to edit_admin_ekiden_raps_path(@ekiden, @rap)
+      redirect_to edit_admin_ekiden_rap_path(@ekiden, @rap)
     else
       flash[:notice] = '新規作成に失敗しました'
       render :new
@@ -29,7 +30,7 @@ class Admin::RapsController < Admin::BaseController
   def update
     if @rap.update(rap_params)
       flash[:notice] = '更新しました'
-      redirect_to edit_admin_ekiden_raps_path(@ekiden, @rap)
+      redirect_to edit_admin_ekiden_rap_path(@ekiden, @rap)
     else
       flash[:notice] = '更新に失敗しました'
       render :edit
@@ -39,15 +40,16 @@ class Admin::RapsController < Admin::BaseController
   def destroy
     if @rap.destroy
       flash[:notice] = '削除しました'
-      redirect_to admin_ekiden_raps_path(@ekiden)
+      redirect_to admin_ekiden_rap_path(@ekiden)
     else
       flash[:notice] = '削除に失敗しました'
-      redirect_to admin_ekiden_raps_path(@ekiden)
+      redirect_to admin_ekiden_rap_path(@ekiden)
     end
   end
 
   def broadcast
     if @rap.update(broadcasted: true)
+      Slack::Notifier.new(Settings.webhook_url, username: "駅伝速報", icon_emoji: ":obama:").ping(params[:broadcast_message])
       flash[:notice] = '配信しました'
       redirect_to admin_ekiden_raps_path(@ekiden, @rap)
     else

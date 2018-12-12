@@ -5,7 +5,7 @@ h1 ラップ - 編集 or 配信
     = form_tag admin_ekiden_rap_broadcast_path(@ekiden, @rap), method: :post do
       = label_tag '配信文章'
       .field
-        = text_area_tag :broadcast_message, "地点：#{@rap.point}" + "\n選手：#{@rap.athlete}" + "\n通過時刻：#{@rap.created_at.strftime("%H:%M:%S")}" + "\n前回ポイントからのラップ：#{show_result(@rap.rap_time)}"
+        = text_area_tag :broadcast_message, "地点：#{@rap.point}" + "\n選手：#{@rap.athlete}" + "\n通過時刻：#{@rap.created_at.strftime("%H:%M:%S")}" + "\nタイム：#{show_result(@time_sum)}" + "\n前回ポイントからのラップ：#{show_result(@rap.rap_time)}"
       .field
         =  submit_tag' slackに配信する', class: 'ui button green'
         - if @rap.broadcasted

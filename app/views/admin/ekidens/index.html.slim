@@ -20,6 +20,6 @@ table.ui.celled.small.table
         td = link_to 'ラップ画面へ', admin_ekiden_raps_path(ekiden), class: 'ui blue button'
         td
           = link_to '編集', edit_admin_ekiden_path(ekiden), class: 'ui green button'
-          = link_to '削除', admin_ekiden_path(ekiden), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+          /= link_to '削除', admin_ekiden_path(ekiden), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
 
 = paginate @ekidens

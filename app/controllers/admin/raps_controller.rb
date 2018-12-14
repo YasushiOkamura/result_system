@@ -40,10 +40,10 @@ class Admin::RapsController < Admin::BaseController
   def destroy
     if @rap.destroy
       flash[:notice] = '削除しました'
-      redirect_to admin_ekiden_rap_path(@ekiden)
+      redirect_to admin_ekiden_raps_path(@ekiden)
     else
       flash[:notice] = '削除に失敗しました'
-      redirect_to admin_ekiden_rap_path(@ekiden)
+      redirect_to admin_ekiden_raps_path(@ekiden)
     end
   end
 
@@ -73,7 +73,7 @@ class Admin::RapsController < Admin::BaseController
   end
 
   def set_options
-    @point_options = @ekiden.points.pluck(:name, :name)
+    @point_options = @ekiden.points.order('id').pluck(:name, :name)
     @athlete_options =  athlete_options
   end
 
@@ -100,7 +100,7 @@ class Admin::RapsController < Admin::BaseController
 
   def athlete_options
     options = ['わからん']
-    @ekiden.kukans.each { |kukan| options << [kukan.kukan_number.to_s + "区 " + kukan.athlete] }
+    @ekiden.kukans.order('kukan_number').each { |kukan| options << [kukan.kukan_number.to_s + "区 " + kukan.athlete] }
     options
   end
 end

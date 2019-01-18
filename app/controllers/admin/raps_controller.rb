@@ -88,7 +88,8 @@ class Admin::RapsController < Admin::BaseController
     p Time.zone.now
     p @ekiden.start_at
     if last_rap.nil?
-      time_distance_milli_second(Time.zone.now, @ekiden.start_at)
+      #time_distance_milli_second(Time.zone.now, @ekiden.start_at)
+      nil
     else
       time_distance_milli_second(Time.zone.now, last_rap.created_at)
     end

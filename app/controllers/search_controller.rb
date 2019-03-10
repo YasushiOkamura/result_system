@@ -34,8 +34,8 @@ class SearchController < ApplicationController
 
     if params[:competition].present?
       if result.nil?
-        if class_name == 'DecathlonResult'
-          result = DecathlonResult.all
+        if class_name == 'DecathlonResult' 
+          result = DecathlonResult.all if params[:competition] == 'decathlon'
         else
           result = Object.const_get(class_name).where(competition: params[:competition])
         end
@@ -43,8 +43,9 @@ class SearchController < ApplicationController
         result = result.where(competition: params[:competition]) unless class_name == 'DecathlonResult'
       end
     end
+    
     result = result.where(official: true).where.not(result: nil) if result.present? && params[:official]
-    result = result.limit(params[:num].to_i) if params[:num].present?
+    result = result.limit(params[:num].to_i) if params[:num].present? && result.present?
     result
   end
 

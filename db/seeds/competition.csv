@@ -52,3 +52,6 @@ id,name,type
 51,decathlon,decathlon
 52,heptathlon,heptathlon
 53,road,road
+54,man_5000mW,long
+55,man_10000mW,long
+56,woman_5000mW,long

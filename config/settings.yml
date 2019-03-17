@@ -1,2 +1,2 @@
 homepage: http://www.uectf.jp
-webhook_url: WEBHOOK_URL
+webhook_url: ENV['WEBHOOK_URL']

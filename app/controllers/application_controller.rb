@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   layout 'application'
   before_action :check_mobile
+  before_action :check_mentenance
 
   class Forbidden < ActionController::ActionControllerError; end
 
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
 
   def check_mobile
     @smartphone = request.from_smartphone?
+  end
+
+  def check_mentenance
+    redirect_to mentenance_path if Settings.mentenace
   end
 end

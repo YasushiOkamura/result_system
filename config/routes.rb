@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/mentenance', to: 'mentenance#index', as: 'mentenance'
   root 'errors#routing_error'
   get '*anything' => 'errors#routing_error'
 end

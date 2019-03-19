@@ -6,3 +6,6 @@ COPY Gemfile /result_system/Gemfile
 COPY Gemfile.lock /result_system/Gemfile.lock
 RUN bundle install
 COPY . /result_system
+ADD . $HOME
+
+CMD ["rails", "server", "-b", "0.0.0.0"]

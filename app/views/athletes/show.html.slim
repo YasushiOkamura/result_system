@@ -54,7 +54,7 @@ h2 PB（大学記録のみ）
         th 樹立日
     tbody
     - @pb[:short].each do |result|
-      tr class=(result.established_date.year == 2018 ? 'negative' : '')
+      tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
         td = link_to t("enumerize.competition.name.#{result.competition}"), graph_athlete_path(@athlete, type: 'short', competition: result.competition)
         td 
           = show_result(result.result)
@@ -76,7 +76,7 @@ h2 PB（大学記録のみ）
         th 樹立日
     tbody
     - @pb[:long].each do |result|
-      tr class=(result.established_date.year == 2018 ? 'negative' : '')
+      tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
         td = link_to t("enumerize.competition.name.#{result.competition}"), graph_athlete_path(@athlete, type: 'long', competition: result.competition)
         td = show_result(result.result)
         td = result&.tournament.name
@@ -95,7 +95,7 @@ h2 PB（大学記録のみ）
         th 樹立日
     tbody
      - @pb[:field].each do |result|
-      tr class=(result.established_date.year == 2018 ? 'negative' : '')
+      tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
         td = link_to t("enumerize.competition.name.#{result.competition}"), graph_athlete_path(@athlete, type: 'field', competition: result.competition)
         td 
           = show_field_result(result.result)
@@ -125,7 +125,7 @@ h2 PB（大学記録のみ）
 
     tbody
       - decathlon_result = @pb[:decathlon]
-      tr class=(decathlon_result.established_date.year== 2018 ? 'negative' : '')
+      tr class=(decathlon_result.established_date.year== Time.zone.now.year ? 'negative' : '')
         td = decathlon_result.total_score
         td
           = show_result(decathlon_result&.short_100m_result&.result)

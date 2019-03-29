@@ -33,7 +33,7 @@ h1
 
     tbody
       - @all_results[0].each do |decathlon_result|
-        tr class=(decathlon_result.established_date.year == 2018 ? 'negative' : '')
+        tr class=(decathlon_result.established_date.year == Time.zone.now.year ? 'negative' : '')
           td
             - if decathlon_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{decathlon_result.grade}")
@@ -103,7 +103,7 @@ h1
 
         tbody
           - results.each do |result|
-            tr class=(result.established_date.year == 2018 ? 'negative' : '')
+            tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
               td
                 - if @kind == 'relay'
                   - if result.first_athlete_grade

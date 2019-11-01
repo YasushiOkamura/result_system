@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DecathlonResult < ApplicationRecord
   belongs_to :athlete
   belongs_to :tournament
@@ -18,6 +20,6 @@ class DecathlonResult < ApplicationRecord
   private
 
   def set_grade
-    self.grade = self.athlete.grade
+    self.grade = athlete.grade
   end
 end

@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 class Admin::TournamentsController < Admin::BaseController
-  before_action :set_tournament, only: [:edit, :update, :destroy, :show]
+  before_action :set_tournament, only: %i[edit update destroy show]
 
   def index
     @q = Tournament.ransack(params[:q])
     @q.sorts = 'id desc' if @q.sorts.empty?
     @tournaments = @q.result(distinct: true).page(params[:page])
   end
-  
+
   def new
     @tournament = Tournament.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @tournament = Tournament.new(tournament_params)
@@ -46,15 +47,15 @@ class Admin::TournamentsController < Admin::BaseController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
-    def set_tournament
-      @tournament = Tournament.find(params[:id])
-    end
 
-    def tournament_params
-      params.require(:tournament).permit(:name, :place, :start_day, :end_day)
-    end
+  def set_tournament
+    @tournament = Tournament.find(params[:id])
+  end
+
+  def tournament_params
+    params.require(:tournament).permit(:name, :place, :start_day, :end_day)
+  end
 end

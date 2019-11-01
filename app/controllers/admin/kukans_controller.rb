@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::KukansController < Admin::BaseController
   before_action :set_ekiden
-  before_action :set_kukan, only: [:edit, :update, :destroy]
+  before_action :set_kukan, only: %i[edit update destroy]
 
   def index
     @kukans = Kukan.where(ekiden_id: @ekiden.id).order('kukan_number asc')
@@ -10,11 +12,10 @@ class Admin::KukansController < Admin::BaseController
     @kukan = Kukan.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    @kukan = Kukan.new(kukan_params.merge({ekiden_id: @ekiden.id}))
+    @kukan = Kukan.new(kukan_params.merge(ekiden_id: @ekiden.id))
     if @kukan.save
       flash[:notice] = '新規作成しました'
       redirect_to admin_ekiden_kukans_path(@ekiden)
@@ -45,6 +46,7 @@ class Admin::KukansController < Admin::BaseController
   end
 
   private
+
   def set_ekiden
     @ekiden = Ekiden.find(params[:ekiden_id])
   end

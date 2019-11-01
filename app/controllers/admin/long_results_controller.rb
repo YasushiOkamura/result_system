@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::LongResultsController < Admin::BaseController
-  before_action :set_long_result, only: [:edit, :update, :destroy]
-  before_action :long_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
+  before_action :set_long_result, only: %i[edit update destroy]
+  before_action :long_competition_options, only: %i[new edit create update edit destroy]
 
   def index
     @q = LongResult.ransack(params[:q])
@@ -12,8 +14,7 @@ class Admin::LongResultsController < Admin::BaseController
     @long_result = LongResult.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @long_result = LongResult.new(long_result_params)

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Admin::DecathlonResultsController < Admin::BaseController
-  before_action :set_decathlon_result, only: [:edit, :update, :destroy]
+  before_action :set_decathlon_result, only: %i[edit update destroy]
 
   def index
     @q = DecathlonResult.ransack(params[:q])
@@ -11,8 +13,7 @@ class Admin::DecathlonResultsController < Admin::BaseController
     @decathlon_result = DecathlonResult.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @decathlon_result = DecathlonResult.new(create_decathlon_result_params)
@@ -65,7 +66,7 @@ class Admin::DecathlonResultsController < Admin::BaseController
       :official
     )
   end
-  
+
   def update_decathlon_result_params
     params.require(:decathlon_result).permit(
       :total_score,
@@ -96,7 +97,7 @@ class Admin::DecathlonResultsController < Admin::BaseController
       :field_jt_id,
       :score_jt,
       :long_1500m_id,
-      :score_1500m,
+      :score_1500m
     )
   end
 end

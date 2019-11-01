@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tournament < ApplicationRecord
   has_many :short_results
   has_many :long_results
@@ -8,6 +10,6 @@ class Tournament < ApplicationRecord
   validates :name, :start_day, :end_day, presence: true
 
   def get_result_num
-    self.short_results.size + self.long_results.size + self.field_results.size + self.relay_results.size + self.decathlon_results.size
+    short_results.size + long_results.size + field_results.size + relay_results.size + decathlon_results.size
   end
 end

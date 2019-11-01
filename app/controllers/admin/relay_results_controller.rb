@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::RelayResultsController < Admin::BaseController
-  before_action :set_relay_result, only: [:edit, :update, :destroy]
-  before_action :relay_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
+  before_action :set_relay_result, only: %i[edit update destroy]
+  before_action :relay_competition_options, only: %i[new edit create update edit destroy]
 
   def index
     @relay_results = RelayResult.page(params[:page])
@@ -13,8 +15,7 @@ class Admin::RelayResultsController < Admin::BaseController
     @relay_result = RelayResult.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @relay_result = RelayResult.new(relay_result_params)
@@ -85,5 +86,4 @@ class Admin::RelayResultsController < Admin::BaseController
       @competition_options << [competition.name.text, competition.name]
     end
   end
-
 end

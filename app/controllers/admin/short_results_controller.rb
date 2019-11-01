@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::ShortResultsController < Admin::BaseController
-  before_action :set_short_result, only: [:edit, :update, :destroy]
-  before_action :short_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
+  before_action :set_short_result, only: %i[edit update destroy]
+  before_action :short_competition_options, only: %i[new edit create update edit destroy]
 
   def index
     @q = ShortResult.ransack(params[:q])
@@ -12,8 +14,7 @@ class Admin::ShortResultsController < Admin::BaseController
     @short_result = ShortResult.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @short_result = ShortResult.new(short_result_params)
@@ -79,5 +80,4 @@ class Admin::ShortResultsController < Admin::BaseController
       @competition_options << [competition.name.text, competition.name]
     end
   end
-
 end

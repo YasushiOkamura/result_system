@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: 'home#index', as: :root
-  resources :tournaments, only: [:index, :show]
+  resources :tournaments, only: %i[index show]
   get '/ranking', to: 'ranking#index', as: 'ranking'
   get '/search', to: 'search#index', as: 'search'
 
-  resources :athletes, only: [:index, :show] do
+  resources :athletes, only: %i[index show] do
     member do
       get 'graph'
     end
@@ -12,7 +14,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'home#index', as: :root
-    get 'login', to: 'sessions#new',  as: :new_session
+    get 'login', to: 'sessions#new', as: :new_session
     post 'login', to: 'sessions#create', as: :session
     delete 'logout', to: 'sessions#destroy', as: :destroy_session
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Athlete < ApplicationRecord
   has_many :short_results
   has_many :long_results
@@ -8,8 +10,8 @@ class Athlete < ApplicationRecord
   has_many :fourth_relay_results, class_name: :RelayResult, foreign_key: :fourth_athlete_id, dependent: :nullify, inverse_of: :fourth_athlete
 
   validates :name, :grade, :sex, presence: true
-  validates :active, inclusion:  {in: [true, false] }
+  validates :active, inclusion:  { in: [true, false] }
 
-  enumerize :grade, in: [:b1, :b2, :b3, :b4, :m1, :m2, :d, :ob]
-  enumerize :sex, in: [:man, :woman]
+  enumerize :grade, in: %i[b1 b2 b3 b4 m1 m2 d ob]
+  enumerize :sex, in: %i[man woman]
 end

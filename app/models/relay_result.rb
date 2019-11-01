@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RelayResult < ApplicationRecord
   belongs_to :tournament
 
@@ -11,9 +13,9 @@ class RelayResult < ApplicationRecord
   private
 
   def set_grade
-    self.first_athlete_grade  = self.first_athlete.grade if self.first_athlete_grade.blank?
-    self.second_athlete_grade = self.second_athlete.grade if self.second_athlete_grade.blank?
-    self.third_athlete_grade  = self.third_athlete.grade if self.third_athlete_grade.blank?
-    self.fourth_athlete_grade = self.fourth_athlete.grade if self.fourth_athlete_grade.blank?
+    self.first_athlete_grade  = first_athlete.grade if first_athlete_grade.blank?
+    self.second_athlete_grade = second_athlete.grade if second_athlete_grade.blank?
+    self.third_athlete_grade  = third_athlete.grade if third_athlete_grade.blank?
+    self.fourth_athlete_grade = fourth_athlete.grade if fourth_athlete_grade.blank?
   end
 end

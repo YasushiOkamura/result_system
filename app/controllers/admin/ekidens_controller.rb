@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Admin::EkidensController < Admin::BaseController
-  before_action :set_ekiden, only: [:edit, :update, :destroy, :show]
+  before_action :set_ekiden, only: %i[edit update destroy show]
 
   def index
     @q = Ekiden.ransack(params[:q])
@@ -11,8 +13,7 @@ class Admin::EkidensController < Admin::BaseController
     @ekiden = Ekiden.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @ekiden = Ekiden.new(ekiden_params)
@@ -45,10 +46,10 @@ class Admin::EkidensController < Admin::BaseController
     end
   end
 
-  def show
-  end
+  def show; end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_ekiden
     @ekiden = Ekiden.find(params[:id])

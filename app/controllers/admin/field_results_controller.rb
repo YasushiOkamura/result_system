@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::FieldResultsController < Admin::BaseController
-  before_action :set_field_result, only: [:edit, :update, :destroy]
-  before_action :field_competition_options, only: [:new, :edit, :create, :update, :edit, :destroy]
+  before_action :set_field_result, only: %i[edit update destroy]
+  before_action :field_competition_options, only: %i[new edit create update edit destroy]
 
   def index
     @q = FieldResult.ransack(params[:q])
@@ -12,8 +14,7 @@ class Admin::FieldResultsController < Admin::BaseController
     @field_result = FieldResult.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @field_result = FieldResult.new(field_result_params)
@@ -76,5 +77,4 @@ class Admin::FieldResultsController < Admin::BaseController
       @competition_options << [competition.name.text, competition.name]
     end
   end
-
 end

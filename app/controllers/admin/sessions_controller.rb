@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::SessionsController < Admin::BaseController
   layout 'application'
-  skip_before_action :authenticate!, only: [:new, :create], raise: false
+  skip_before_action :authenticate!, only: %i[new create], raise: false
 
   def new
     @manager = Manager.new
@@ -31,4 +33,3 @@ class Admin::SessionsController < Admin::BaseController
     params.require(:manager).permit(:login_id, :password)
   end
 end
-

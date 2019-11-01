@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Admin::AthletesController < Admin::BaseController
-  before_action :set_athlete, only: [:edit, :update, :destroy]
+  before_action :set_athlete, only: %i[edit update destroy]
 
   def index
     @q = Athlete.ransack(params[:q])
@@ -11,8 +13,7 @@ class Admin::AthletesController < Admin::BaseController
     @athlete = Athlete.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @athlete = Athlete.new(athlete_params)
@@ -46,13 +47,14 @@ class Admin::AthletesController < Admin::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_athlete
-      @athlete = Athlete.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def athlete_params
-      params.require(:athlete).permit(:name, :grade, :sex, :major, :active, :memo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_athlete
+    @athlete = Athlete.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def athlete_params
+    params.require(:athlete).permit(:name, :grade, :sex, :major, :active, :memo)
+  end
 end

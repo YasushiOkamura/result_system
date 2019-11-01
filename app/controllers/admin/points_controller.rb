@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Admin::PointsController < Admin::BaseController
   before_action :set_ekiden
-  before_action :set_point, only: [:edit, :update, :destroy]
+  before_action :set_point, only: %i[edit update destroy]
 
   def index
     @points = Point.where(ekiden_id: @ekiden.id)
@@ -10,11 +12,10 @@ class Admin::PointsController < Admin::BaseController
     @point = Point.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
-    @point = Point.new(point_params.merge({ekiden_id: @ekiden.id}))
+    @point = Point.new(point_params.merge(ekiden_id: @ekiden.id))
     if @point.save
       flash[:notice] = '新規作成しました'
       redirect_to admin_ekiden_points_path(@ekiden)
@@ -45,6 +46,7 @@ class Admin::PointsController < Admin::BaseController
   end
 
   private
+
   def set_ekiden
     @ekiden = Ekiden.find(params[:ekiden_id])
   end

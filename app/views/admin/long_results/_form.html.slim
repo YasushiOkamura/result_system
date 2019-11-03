@@ -8,7 +8,7 @@
         strong 以下の入力値を訂正してください。
         ul
         - @long_result.errors.full_messages.each do |message|
-          li 
+          li
             = message
 
   .six.wide.column
@@ -37,17 +37,17 @@
     .field
       = f.label :round
       = f.text_field :round, placeholder: '決勝とか記録会とか'
-      
+
   .six.wide.column
     .field
       = f.label :group
       = f.number_field :group
-      
+
   .six.wide.column
     .field
       = f.label :rane
       = f.text_field :rane
-      
+
   .six.wide.column
     .field
       = f.label :finish

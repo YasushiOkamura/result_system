@@ -6,7 +6,7 @@
       strong 以下の入力値を訂正してください。
       ul
       - @field_result.errors.full_messages.each do |message|
-        li 
+        li
           = message
 
 .ui.stackable.segment
@@ -29,7 +29,7 @@
     .six.wide.column
       .field
         = f.label :result
-        = f.number_field :result, step: 0.01, placeholder: '10.00' 
+        = f.number_field :result, step: 0.01, placeholder: '10.00'
 
     .six.wide.column
       .field
@@ -40,7 +40,7 @@
       .field
         = f.label :round
         = f.text_field :round
-        
+
     .six.wide.column
       .field
         = f.label :finish

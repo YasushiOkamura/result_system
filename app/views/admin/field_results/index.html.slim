@@ -23,11 +23,11 @@ table.ui.celled.small.table
       tr
         td = field_result.id
         td = I18n.t("enumerize.competition.name.#{field_result.competition}")
-        td 
+        td
           - if field_result.grade.present?
             = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
           = field_result&.athlete.name
-        td 
+        td
           = show_field_result(field_result.result)
           - if field_result.wind.present?
             = "(#{show_wind(field_result.wind)})"

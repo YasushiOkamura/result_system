@@ -29,7 +29,7 @@ table.ui.celled.small.table
           - if short_result.grade.present?
             = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
           = short_result&.athlete&.name
-        td 
+        td
           = show_result(short_result.result)
           - if short_result.wind.present?
             = "(#{show_wind(short_result.wind)})"

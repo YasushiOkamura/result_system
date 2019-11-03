@@ -11,7 +11,7 @@ class Admin::ShortResultsController < Admin::BaseController
   end
 
   def new
-    @short_result = ShortResult.new
+    @short_result = ShortResult.new(official: true)
   end
 
   def edit; end

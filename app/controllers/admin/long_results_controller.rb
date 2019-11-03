@@ -11,7 +11,7 @@ class Admin::LongResultsController < Admin::BaseController
   end
 
   def new
-    @long_result = LongResult.new
+    @long_result = LongResult.new(official: true)
   end
 
   def edit; end

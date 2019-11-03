@@ -11,7 +11,7 @@ class Admin::FieldResultsController < Admin::BaseController
   end
 
   def new
-    @field_result = FieldResult.new
+    @field_result = FieldResult.new(official: true)
   end
 
   def edit; end

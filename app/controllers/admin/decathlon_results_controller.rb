@@ -10,7 +10,7 @@ class Admin::DecathlonResultsController < Admin::BaseController
   end
 
   def new
-    @decathlon_result = DecathlonResult.new
+    @decathlon_result = DecathlonResult.new(official: true)
   end
 
   def edit; end

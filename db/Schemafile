@@ -1,0 +1,170 @@
+create_table "athletes", force: :cascade do |t|
+  t.string "name"
+  t.string "grade"
+  t.string "sex"
+  t.string "major"
+  t.text "memo"
+  t.boolean "active"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end
+
+create_table "competitions", force: :cascade do |t|
+  t.string "name"
+  t.string "kind"
+end
+
+create_table "decathlon_results", force: :cascade do |t|
+  t.integer "total_score"
+  t.integer "finish"
+  t.integer "athlete_id"
+  t.integer "tournament_id"
+  t.string "grade"
+  t.date "established_date"
+  t.string "information"
+  t.string "condition"
+  t.integer "sprint_100m_id"
+  t.integer "score_100m"
+  t.integer "field_lj_id"
+  t.integer "score_lj"
+  t.integer "field_sp_id"
+  t.integer "score_sp"
+  t.integer "field_hj_id"
+  t.integer "score_hj"
+  t.integer "sprint_400m_id"
+  t.integer "score_400m"
+  t.integer "sprint_110mh_id"
+  t.integer "score_110mh"
+  t.integer "field_dt_id"
+  t.integer "score_dt"
+  t.integer "field_pj_id"
+  t.integer "score_pj"
+  t.integer "field_jt_id"
+  t.integer "score_jt"
+  t.integer "long_1500m_id"
+  t.integer "score_1500m"
+  t.boolean "official"
+end
+
+create_table "ekidens", force: :cascade do |t|
+  t.string "name"
+  t.datetime "start_at"
+  t.string "place"
+  t.integer "kukans_count"
+  t.integer "points_count"
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end
+
+create_table "field_results", force: :cascade do |t|
+  t.string "competition"
+  t.float "result"
+  t.float "wind"
+  t.string "round"
+  t.integer "finish"
+  t.integer "athlete_id"
+  t.integer "tournament_id"
+  t.string "grade"
+  t.date "established_date"
+  t.string "information"
+  t.string "condition"
+  t.boolean "official"
+end
+
+create_table "kukans", force: :cascade do |t|
+  t.integer "ekiden_id"
+  t.string "athlete"
+  t.integer "kukan_number"
+  t.float "distance"
+  t.text "memo"
+end
+
+create_table "load_results", force: :cascade do |t|
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end
+
+create_table "long_results", force: :cascade do |t|
+  t.string "competition"
+  t.bigint "result"
+  t.string "round"
+  t.string "group"
+  t.string "rane"
+  t.integer "finish"
+  t.integer "athlete_id"
+  t.integer "tournament_id"
+  t.string "grade"
+  t.date "established_date"
+  t.string "information"
+  t.string "condition"
+  t.boolean "official"
+end
+
+create_table "managers", force: :cascade do |t|
+  t.string "login_id", null: false
+  t.string "password_digest", null: false
+end
+
+create_table "points", force: :cascade do |t|
+  t.integer "ekiden_id"
+  t.string "name"
+end
+
+create_table "raps", force: :cascade do |t|
+  t.integer "ekiden_id"
+  t.string "point"
+  t.string "athlete"
+  t.integer "rap_time"
+  t.text "memo"
+  t.boolean "broadcasted", default: false
+  t.datetime "created_at", null: false
+  t.datetime "updated_at", null: false
+end
+
+create_table "relay_results", force: :cascade do |t|
+  t.string "competition"
+  t.bigint "result"
+  t.string "round"
+  t.string "group"
+  t.string "rane"
+  t.integer "finish"
+  t.integer "first_athlete_id"
+  t.integer "second_athlete_id"
+  t.integer "third_athlete_id"
+  t.integer "fourth_athlete_id"
+  t.integer "tournament_id"
+  t.string "first_athlete_grade"
+  t.string "second_athlete_grade"
+  t.string "third_athlete_grade"
+  t.string "fourth_athlete_grade"
+  t.date "established_date"
+  t.string "information"
+  t.string "condition"
+  t.boolean "official"
+end
+
+create_table "short_results", force: :cascade do |t|
+  t.string "competition"
+  t.bigint "result"
+  t.float "wind"
+  t.string "round"
+  t.string "group"
+  t.string "rane"
+  t.integer "finish"
+  t.integer "athlete_id"
+  t.integer "tournament_id"
+  t.string "grade"
+  t.date "established_date"
+  t.string "information"
+  t.string "condition"
+  t.boolean "official"
+  t.index ["athlete_id"], name: "index_short_results_on_athlete_id"
+  t.index ["tournament_id"], name: "index_short_results_on_tournament_id"
+end
+
+create_table "tournaments", force: :cascade do |t|
+  t.string "name"
+  t.string "place"
+  t.date "start_day"
+  t.date "end_day"
+end

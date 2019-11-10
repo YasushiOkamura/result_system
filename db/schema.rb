@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
   create_table "competitions", force: :cascade do |t|
     t.string "name"
     t.string "kind"
+    t.integer "position", default: 0
   end
 
   create_table "decathlon_results", force: :cascade do |t|
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
     t.string "information"
     t.string "condition"
     t.boolean "official"
+    t.integer "competition_id"
   end
 
   create_table "kukans", force: :cascade do |t|
@@ -94,11 +96,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
     t.integer "kukan_number"
     t.float "distance"
     t.text "memo"
-  end
-
-  create_table "load_results", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "long_results", force: :cascade do |t|
@@ -115,6 +112,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
     t.string "information"
     t.string "condition"
     t.boolean "official"
+    t.integer "competition_id"
   end
 
   create_table "managers", force: :cascade do |t|
@@ -158,6 +156,22 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
     t.string "information"
     t.string "condition"
     t.boolean "official"
+    t.integer "competition_id"
+  end
+
+  create_table "road_results", force: :cascade do |t|
+    t.string "competition"
+    t.bigint "result"
+    t.string "round"
+    t.integer "finish"
+    t.integer "athlete_id"
+    t.integer "tournament_id"
+    t.string "grade"
+    t.date "established_date"
+    t.string "information"
+    t.string "condition"
+    t.boolean "official"
+    t.integer "competition_id"
   end
 
   create_table "short_results", force: :cascade do |t|
@@ -175,6 +189,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
     t.string "information"
     t.string "condition"
     t.boolean "official"
+    t.integer "competition_id"
     t.index ["athlete_id"], name: "index_short_results_on_athlete_id"
     t.index ["tournament_id"], name: "index_short_results_on_tournament_id"
   end

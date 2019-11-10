@@ -23,13 +23,13 @@ h1.ui.header 記録検索
     tbody
       - @short_results.order(sort).each do |short_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{short_result.competition}")
-          td 
+          td = short_result.competition
+          td
             - if short_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
               = ' '
             = short_result&.athlete.name
-          td 
+          td
             = show_result(short_result.result)
             - if short_result.wind.present?
               = "(#{show_wind(short_result.wind)})"
@@ -62,11 +62,11 @@ h1.ui.header 記録検索
     tbody
       - @long_results.order(sort).each do |long_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{long_result.competition}")
-          td 
+          td = long_result.competition
+          td
             - if long_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
-              = ' '  
+              = ' '
             = long_result&.athlete.name
           td = show_result(long_result.result)
           td = long_result.tournament.name
@@ -96,13 +96,13 @@ h1.ui.header 記録検索
     tbody
       - @field_results.order(sort).each do |field_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{field_result.competition}")
-          td 
+          td = field_result.competition
+          td
             - if field_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
               = ' '
             = field_result&.athlete.name
-          td 
+          td
             = show_field_result(field_result.result)
             - if field_result.wind.present?
               = "(#{show_wind(field_result.wind)})"
@@ -133,7 +133,7 @@ h1.ui.header 記録検索
     tbody
       - @relay_results.order(sort).each do |relay_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
+          td = relay_result.competition
           td
             - if relay_result.first_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
@@ -150,7 +150,7 @@ h1.ui.header 記録検索
             - if relay_result.fourth_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
             = relay_result&.fourth_athlete.name
-          td 
+          td
             = show_result(relay_result.result)
           td = relay_result.tournament.name
           td = relay_result.round

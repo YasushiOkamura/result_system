@@ -8,7 +8,7 @@ h2
     = l @tournament.end_day
 
 
-= link_to '大会一覧へ', tournaments_path, class: 'ui button'
+= link_to '大会一覧へ', admin_tournaments_path, class: 'ui button'
 
 - unless @tournament.short_results.empty?
   h3 短距離
@@ -25,11 +25,12 @@ h2
         th 樹立日
         th 情報
         th 環境
+        th
 
     tbody
       - @tournament.short_results.order('competition desc, result asc').each do |short_result|
         tr
-          td = short_result.competition.name
+          td = I18n.t("enumerize.competition.name.#{short_result.competition}")
           td
             - if short_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
@@ -46,6 +47,9 @@ h2
           td = short_result.established_date
           td = short_result.information
           td = short_result.condition
+          td
+            = link_to '編集', edit_admin_short_result_path(short_result), class: 'ui green button'
+            = link_to '削除', admin_short_result_path(short_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
 
 - unless @tournament.long_results.empty?
   h3 長距離
@@ -62,11 +66,12 @@ h2
         th 樹立日
         th 情報
         th 環境
+        th
 
     tbody
       - @tournament.long_results.order('competition desc, result asc').each do |long_result|
         tr
-          td = long_result.competition.name
+          td = I18n.t("enumerize.competition.name.#{long_result.competition}")
           td
             - if long_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
@@ -80,6 +85,9 @@ h2
           td = long_result.established_date
           td = long_result.information
           td = long_result.condition
+          td
+            = link_to '編集', edit_admin_long_result_path(long_result), class: 'ui green button'
+            = link_to '削除', admin_long_result_path(long_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
 
 - unless @tournament.field_results.empty?
   h3 フィールド
@@ -94,11 +102,12 @@ h2
         th 樹立日
         th 情報
         th 環境
+        th
 
     tbody
       - @tournament.field_results.order('competition desc, result desc').each do |field_result|
         tr
-          td = field_result.competition
+          td = I18n.t("enumerize.competition.name.#{field_result.competition}")
           td
             - if field_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
@@ -113,6 +122,9 @@ h2
           td = field_result.established_date
           td = field_result.information
           td = field_result.condition
+          td
+            = link_to '編集', edit_admin_field_result_path(field_result), class: 'ui green button'
+            = link_to '削除', admin_field_result_path(field_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
 
 - unless @tournament.relay_results.empty?
   h3 リレー
@@ -129,11 +141,12 @@ h2
         th 樹立日
         th 情報
         th 環境
+        th
 
     tbody
       - @tournament.relay_results.order('competition desc, result asc').each do |relay_result|
         tr
-          td = relay_result.competition.name
+          td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
           td
             - if relay_result.first_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
@@ -159,81 +172,6 @@ h2
           td = relay_result.established_date
           td = relay_result.information
           td = relay_result.condition
-
-- unless @tournament.decathlon_results.empty?
-  h3 十種
-  table.ui.celled.selectable.small.table
-    thead
-      tr
-        th 選手
-        th 総合点
-        th 着順
-        th 100m
-        th 走幅跳
-        th 砲丸投
-        th 走高跳
-        th 400m
-        th 110mH
-        th 円盤投
-        th 棒高跳
-        th やり投
-        th 1500m
-        th 樹立日
-        th 情報
-        th 環境
-
-    tbody
-      - @tournament.decathlon_results.order('total_score desc').each do |decathlon_result|
-        tr
           td
-            - if decathlon_result.grade.present?
-              = I18n.t("enumerize.athlete.grade.#{decathlon_result.grade}")
-            = decathlon_result&.athlete.name
-          td = decathlon_result.total_score
-          td = decathlon_result.finish
-          td
-            = show_result(decathlon_result&.short_100m_result&.result)
-            - if decathlon_result&.short_100m_result&.wind.present?
-              = "(#{show_wind(decathlon_result&.short_100m_result.wind)})"
-            br
-            = decathlon_result&.score_100m
-          td
-            = show_field_result(decathlon_result&.field_lj_result&.result)
-            - if decathlon_result&.field_lj_result&.wind.present?
-              = "(#{show_wind(decathlon_result&.field_lj_result.wind)})"
-            br
-            = decathlon_result&.score_lj
-          td
-            = show_field_result(decathlon_result&.field_sp_result&.result)
-            br
-            = decathlon_result&.score_sp
-          td
-            = show_field_result(decathlon_result&.field_hj_result&.result)
-            br
-            = decathlon_result&.score_hj
-          td = show_result(decathlon_result&.short_400m_result&.result)
-          td
-            = show_result(decathlon_result&.short_110mh_result&.result)
-            - if decathlon_result&.short_110mh_result&.wind.present?
-              = "(#{show_wind(decathlon_result&.short_110mh_result.wind)})"
-            br
-            = decathlon_result&.score_110mh
-          td
-            = show_field_result(decathlon_result&.field_dt_result&.result)
-            br
-            = decathlon_result&.score_dt
-          td
-            = show_field_result(decathlon_result&.field_pj_result&.result)
-            br
-            = decathlon_result&.score_pj
-          td
-            = show_field_result(decathlon_result&.field_jt_result&.result)
-            br
-            = decathlon_result&.score_jt
-          td
-            = show_result(decathlon_result&.long_1500m_result&.result)
-            br
-            = decathlon_result&.score_1500m
-          td = decathlon_result.established_date
-          td = decathlon_result.information
-          td = decathlon_result.condition
+            = link_to '編集', edit_admin_relay_result_path(relay_result), class: 'ui green button'
+            = link_to '削除', admin_relay_result_path(relay_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

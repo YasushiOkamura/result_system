@@ -3,8 +3,8 @@
 .ui.stackable.container
   h1
     = @athlete.name
-    | - 記録推移 - 
-    = t("enumerize.competition.name.#{@competition}")
+    | - 記録推移 -
+    = @competition.name
   .ui.segment
     .row
       = link_to 'all', graph_athlete_path(@athlete, type: @type, competition: @competition), class: 'ui button green'

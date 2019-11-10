@@ -55,14 +55,14 @@ h2 PB（大学記録のみ）
     tbody
     - @pb[:short].each do |result|
       tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
-        td = link_to t("enumerize.competition.name.#{result.competition}"), graph_athlete_path(@athlete, type: 'short', competition: result.competition)
-        td 
+        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'short', competition: result.competition)
+        td
           = show_result(result.result)
           - if result.wind.present?
             = "(#{show_wind(result.wind)})"
         td = result&.tournament.name
-        td = result.established_date 
-    
+        td = result.established_date
+
 - unless @pb[:long].empty?
   .ui.divider
   h2 長距離種目
@@ -77,15 +77,15 @@ h2 PB（大学記録のみ）
     tbody
     - @pb[:long].each do |result|
       tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
-        td = link_to t("enumerize.competition.name.#{result.competition}"), graph_athlete_path(@athlete, type: 'long', competition: result.competition)
+        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'long', competition: result.competition)
         td = show_result(result.result)
         td = result&.tournament.name
-        td = result.established_date 
+        td = result.established_date
 
 - unless @pb[:field].empty?
   .ui.divider
   h2 フィールド種目
-  
+
   table.ui.celled.selectable.small.table
     thead
       tr
@@ -96,13 +96,13 @@ h2 PB（大学記録のみ）
     tbody
      - @pb[:field].each do |result|
       tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
-        td = link_to t("enumerize.competition.name.#{result.competition}"), graph_athlete_path(@athlete, type: 'field', competition: result.competition)
-        td 
+        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'field', competition: result.competition)
+        td
           = show_field_result(result.result)
           - if result.wind.present?
             = "(#{show_wind(result.wind)})"
         td = result&.tournament.name
-        td = result.established_date 
+        td = result.established_date
 
 - unless @pb[:decathlon].blank?
   .ui.divider

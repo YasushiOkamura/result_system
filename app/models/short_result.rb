@@ -3,6 +3,7 @@
 class ShortResult < ApplicationRecord
   belongs_to :athlete, optional: true
   belongs_to :tournament, optional: true
+  # belongs_to :competition, optional: true
 
   before_save :set_grade
   before_save :set_official

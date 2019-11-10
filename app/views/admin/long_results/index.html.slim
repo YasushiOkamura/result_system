@@ -24,7 +24,7 @@ table.ui.celled.small.table
     - @long_results.each do |long_result|
       tr
         td = long_result.id
-        td = I18n.t("enumerize.competition.name.#{long_result.competition}")
+        td = long_result.competition.name
         td
           - if long_result.grade.present?
             = I18n.t("enumerize.athlete.grade.#{long_result.grade}")

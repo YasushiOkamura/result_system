@@ -12,7 +12,13 @@ module ApplicationHelper
     s = s % 60
     return "#{s.to_s[0, 2]}.#{ms.to_s[0, 2].rjust(2, '0')}" if m.zero?
 
-    "#{m.to_s[0, 2]}.#{s.to_s[0, 2].rjust(2, '0')}.#{ms.to_s[0, 2].rjust(2, '0')}" unless m.zero?
+    if m < 60
+      "#{m.to_s[0, 2]}.#{s.to_s[0, 2].rjust(2, '0')}.#{ms.to_s[0, 2].rjust(2, '0')}" unless m.zero?
+    else
+      h = m / 60
+      m = m % 60
+      "#{h}.#{m.to_s[0, 2]}.#{s.to_s[0, 2].rjust(2, '0')}.#{ms.to_s[0, 2].rjust(2, '0')}"
+    end
   end
 
   def show_field_result(result)

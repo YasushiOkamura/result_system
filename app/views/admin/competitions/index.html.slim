@@ -1,0 +1,23 @@
+h1 種目一覧
+
+= link_to '種目登録', new_admin_competition_path, class: 'ui button green'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th ID
+      th 種類
+      th 種目名
+      th 表示順番
+      th
+      th
+
+  tbody
+    - @competitions.each do |competition|
+      tr
+        td = competition.id
+        td = competition.kind_text
+        td = competition.name
+        td = competition.position
+        td = link_to '編集', edit_admin_competition_path(competition), class: 'ui green button'
+        td = link_to '削除', admin_competition_path(competition), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'

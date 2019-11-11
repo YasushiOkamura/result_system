@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :long_results
     resources :field_results
     resources :relay_results
+    resources :road_results
     resources :decathlon_results
     resources :ekidens do
       resources :raps do

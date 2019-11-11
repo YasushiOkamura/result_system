@@ -3,7 +3,7 @@
 class RoadResult < ApplicationRecord
   belongs_to :athlete
   belongs_to :tournament
-  # belongs_to :competition, optional: true
+  belongs_to :competition
 
   before_save :set_grade
 

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class LongResult < ApplicationRecord
-  belongs_to :athlete, optional: true
-  belongs_to :tournament, optional: true
-  # belongs_to :competition, optional: true
+  belongs_to :athlete
+  belongs_to :tournament
+  belongs_to :competition
 
   before_save :set_grade
 

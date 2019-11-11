@@ -9,7 +9,7 @@ h3 （トラックの単位ミリ秒になってるけど気にしないで）
         strong 以下の入力値を訂正してください。
         ul
         - @decathlon_result.errors.full_messages.each do |message|
-          li 
+          li
             = message
   .six.wide.column
     .field
@@ -46,11 +46,12 @@ h3 （トラックの単位ミリ秒になってるけど気にしないで）
     .field
       = f.label :condition
       = f.text_field :condition, placeholder: '豪雨, めっちゃ暑い'
-  
+
+  - competitions = Competition.all.index_by(&:name)
   .six.wide.column
     .field
       = f.label :sprint_100m_id
-      = f.select :sprint_100m_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_100m').pluck(:result, :id), {}, class: 'ui dropdown'
+      = f.select :sprint_100m_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子100m']).pluck(:result, :id), {}, class: 'ui dropdown'
 
   .six.wide.column
     .field
@@ -60,37 +61,37 @@ h3 （トラックの単位ミリ秒になってるけど気にしないで）
   .six.wide.column
     .field
       = f.label :field_lj_id
-      = f.select :field_lj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_LJ').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :field_lj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子走幅跳']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_lj
       = f.number_field :score_lj
-  
+
   .six.wide.column
     .field
       = f.label :field_sp_id
-      = f.select :field_sp_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_SP').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :field_sp_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子砲丸投']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_sp
       = f.number_field :score_sp
-  
+
   .six.wide.column
     .field
       = f.label :field_hj_id
-      = f.select :field_hj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_HJ').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :field_hj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子走高跳']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_hj
       = f.number_field :score_hj
-  
+
   .six.wide.column
     .field
       = f.label :sprint_400m_id
-      = f.select :sprint_400m_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_400m').pluck(:result, :id), {}, class: 'ui dropdown'
+      = f.select :sprint_400m_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子400m']).pluck(:result, :id), {}, class: 'ui dropdown'
 
   .six.wide.column
     .field
@@ -99,60 +100,50 @@ h3 （トラックの単位ミリ秒になってるけど気にしないで）
 
   .six.wide.column
     .field
-      = f.label :field_hj_id
-      = f.select :field_hj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_HJ').pluck(:result, :id), {}, class: 'ui dropdown'
-  
-  .six.wide.column
-    .field
-      = f.label :score_hj
-      = f.number_field :score_hj
- 
-  .six.wide.column
-    .field
       = f.label :sprint_110mh_id
-      = f.select :sprint_110mh_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_110mH').pluck(:result, :id), {}, class: 'ui dropdown'
+      = f.select :sprint_110mh_id, ShortResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子110mH']).pluck(:result, :id), {}, class: 'ui dropdown'
 
   .six.wide.column
     .field
       = f.label :score_110mh
       = f.number_field :score_110mh
-  
-  
+
+
   .six.wide.column
     .field
       = f.label :field_dt_id
-      = f.select :field_dt_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_DT').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :field_dt_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子円盤投']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_dt
       = f.number_field :score_dt
-  
+
   .six.wide.column
     .field
       = f.label :field_pj_id
-      = f.select :field_pj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_PJ').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :field_pj_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子棒高跳']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_pj
       = f.number_field :score_pj
-  
+
   .six.wide.column
     .field
       = f.label :field_jt_id
-      = f.select :field_jt_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_JT').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :field_jt_id, FieldResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子やり投']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_jt
       = f.number_field :score_jt
-  
+
   .six.wide.column
     .field
       = f.label :long_1500m_id
-      = f.select :long_1500m_id, LongResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: 'man_1500m').pluck(:result, :id), {}, class: 'ui dropdown'
-  
+      = f.select :long_1500m_id, LongResult.where(athlete_id: @decathlon_result.athlete_id, tournament_id: @decathlon_result.tournament_id, competition: competitions['男子1500m']).pluck(:result, :id), {}, class: 'ui dropdown'
+
   .six.wide.column
     .field
       = f.label :score_1500m

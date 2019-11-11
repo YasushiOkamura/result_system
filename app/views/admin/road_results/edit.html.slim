@@ -1,0 +1,12 @@
+h1 ロード種目結果 - 編集
+= form_for([:admin, @road_result], html: { class: 'ui form' })  do |f|
+  = render 'form', f: f
+
+  .ui.stackable.grid
+    .five.wide.column
+      = f.submit '更新', class: 'ui button primary'
+    .five.wide.column
+      = link_to 'ロード種目結果一覧へ', admin_road_results_path, class: 'ui gray button'
+    - if @road_result.tournament_id.present?
+      .five.wide.column
+        = link_to '大会画面へ', admin_tournament_path(@road_result.tournament), class: 'ui gray button'

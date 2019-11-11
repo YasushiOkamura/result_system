@@ -1,0 +1,39 @@
+h1 ロード種目 結果一覧
+
+= link_to 'ロード種目 結果登録', new_admin_road_result_path, class: 'ui button green'
+
+table.ui.celled.small.table
+  thead
+    tr
+      th = sort_link(@q, :id, 'ID')
+      th = sort_link(@q, :competition, '種目')
+      th = sort_link(@q, :athlete_id, '選手')
+      th = sort_link(@q, :result, '結果')
+      th ラウンド
+      th 着順
+      th 大会
+      th = sort_link(@q, :established_date, '樹立日')
+      th 情報
+      th 環境
+      th
+      th
+
+  tbody
+    - @road_results.each do |road_result|
+      tr
+        td = road_result.id
+        td = road_result.competition.name
+        td
+          - if road_result.grade.present?
+            = I18n.t("enumerize.athlete.grade.#{road_result.grade}")
+          = road_result&.athlete&.name
+        td = show_result(road_result.result)
+        td = road_result.round
+        td = road_result.finish
+        td = road_result&.tournament&.name
+        td = road_result.established_date
+        td = road_result.information
+        td = road_result.condition
+        td = link_to '編集', edit_admin_road_result_path(road_result), class: 'ui green button'
+        td = link_to '削除', admin_road_result_path(road_result), data: { confirm: '本当に消します。よろしいですか1?' }, method: :delete, class: 'ui red button'
+= paginate @road_results

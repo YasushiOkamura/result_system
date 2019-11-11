@@ -56,7 +56,7 @@ class Admin::FieldResultsController < Admin::BaseController
   # Never trust parameters from the scary internet, only allow the white list through.
   def field_result_params
     params.require(:field_result).permit(
-      :competition,
+      :competition_id,
       :result,
       :wind,
       :round,
@@ -72,9 +72,9 @@ class Admin::FieldResultsController < Admin::BaseController
   end
 
   def field_competition_options
-    @competition_options = []
-    Competition.where(kind: :field).each do |competition|
-      @competition_options << [competition.name.text, competition.name]
-    end
+    @competition_options =
+      Competition.where(kind: :field).order(:position).each_with_object([]) do |competition, arr|
+        arr << [competition.name, competition.id]
+      end
   end
 end

@@ -55,7 +55,7 @@ h2 PB（大学記録のみ）
     tbody
     - @pb[:short].each do |result|
       tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
-        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'short', competition: result.competition)
+        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'short', competition_id: result.competition_id)
         td
           = show_result(result.result)
           - if result.wind.present?
@@ -77,7 +77,7 @@ h2 PB（大学記録のみ）
     tbody
     - @pb[:long].each do |result|
       tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
-        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'long', competition: result.competition)
+        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'long', competition_id: result.competition_id)
         td = show_result(result.result)
         td = result&.tournament.name
         td = result.established_date
@@ -96,7 +96,7 @@ h2 PB（大学記録のみ）
     tbody
      - @pb[:field].each do |result|
       tr class=(result.established_date.year == Time.zone.now.year ? 'negative' : '')
-        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'field', competition: result.competition)
+        td = link_to result.competition.name, graph_athlete_path(@athlete, type: 'field', competition_id: result.competition_id)
         td
           = show_field_result(result.result)
           - if result.wind.present?

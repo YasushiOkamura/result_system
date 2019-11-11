@@ -4,7 +4,7 @@ class Admin::CompetitionsController < Admin::BaseController
   before_action :set_competition, only: %i[edit update destroy]
 
   def index
-    @competitions = Competition.order(:kind, :position)
+    @competitions = Competition.order(:position)
   end
 
   def new
@@ -24,9 +24,9 @@ class Admin::CompetitionsController < Admin::BaseController
       render :new
     end
   end
-
+Competition.all.each { |c| c.update(position: c.id)}
   def update
-    if @competition.save
+    if @competition.update(competition_params)
       flash[:notice] = '更新しました'
       redirect_to edit_admin_competition_path(@competition)
     else
@@ -48,7 +48,7 @@ class Admin::CompetitionsController < Admin::BaseController
   private
 
   def set_competition
-    @competition = competition.find(params[:id])
+    @competition = Competition.find(params[:id])
   end
 
   def competition_params

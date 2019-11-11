@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
   end
 
   create_table "field_results", force: :cascade do |t|
-    t.string "competition"
     t.float "result"
     t.float "wind"
     t.string "round"
@@ -99,7 +98,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
   end
 
   create_table "long_results", force: :cascade do |t|
-    t.string "competition"
     t.bigint "result"
     t.string "round"
     t.string "group"
@@ -137,7 +135,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
   end
 
   create_table "relay_results", force: :cascade do |t|
-    t.string "competition"
     t.bigint "result"
     t.string "round"
     t.string "group"
@@ -160,7 +157,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
   end
 
   create_table "road_results", force: :cascade do |t|
-    t.string "competition"
     t.bigint "result"
     t.string "round"
     t.integer "finish"
@@ -175,7 +171,6 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
   end
 
   create_table "short_results", force: :cascade do |t|
-    t.string "competition"
     t.bigint "result"
     t.float "wind"
     t.string "round"
@@ -199,6 +194,7 @@ ActiveRecord::Schema.define(version: 2018_12_11_065524) do
     t.string "place"
     t.date "start_day"
     t.date "end_day"
+    t.integer "count", default: 0
   end
 
 end

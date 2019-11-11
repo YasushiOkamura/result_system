@@ -2,7 +2,7 @@ h1.ui.header 記録検索
 .item 記録検索ができます
 
 = render 'search_form'
-- sort = "competition asc, #{ params[:sort].present? ? params[:sort] : 'established_date asc' }"
+- sort = "competition_id asc, #{ params[:sort].present? ? params[:sort] : 'established_date asc' }"
 - unless @short_results.blank?
   h3 短距離
   table.ui.celled.selectable.small.table
@@ -23,7 +23,7 @@ h1.ui.header 記録検索
     tbody
       - @short_results.order(sort).each do |short_result|
         tr
-          td = short_result.competition
+          td = short_result.competition.name
           td
             - if short_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
@@ -62,7 +62,7 @@ h1.ui.header 記録検索
     tbody
       - @long_results.order(sort).each do |long_result|
         tr
-          td = long_result.competition
+          td = long_result.competition.name
           td
             - if long_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
@@ -96,7 +96,7 @@ h1.ui.header 記録検索
     tbody
       - @field_results.order(sort).each do |field_result|
         tr
-          td = field_result.competition
+          td = field_result.competition.name
           td
             - if field_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
@@ -133,7 +133,7 @@ h1.ui.header 記録検索
     tbody
       - @relay_results.order(sort).each do |relay_result|
         tr
-          td = relay_result.competition
+          td = relay_result.competition.name
           td
             - if relay_result.first_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")

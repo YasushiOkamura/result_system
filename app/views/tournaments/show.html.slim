@@ -10,7 +10,7 @@ h2
 
 = link_to '大会一覧へ', tournaments_path, class: 'ui button'
 
-- unless @tournament.short_results.empty?
+- unless @short_results.empty?
   h3 短距離
   table.ui.celled.selectable.small.table
     thead
@@ -27,7 +27,7 @@ h2
         th 環境
 
     tbody
-      - @tournament.short_results.order('competition desc, result asc').each do |short_result|
+      - @short_results.each do |short_result|
         tr
           td = short_result.competition.name
           td
@@ -47,7 +47,7 @@ h2
           td = short_result.information
           td = short_result.condition
 
-- unless @tournament.long_results.empty?
+- unless @long_results.empty?
   h3 長距離
   table.ui.celled.selectable.small.table
     thead
@@ -64,7 +64,7 @@ h2
         th 環境
 
     tbody
-      - @tournament.long_results.order('competition desc, result asc').each do |long_result|
+      - @long_results.each do |long_result|
         tr
           td = long_result.competition.name
           td
@@ -96,9 +96,9 @@ h2
         th 環境
 
     tbody
-      - @tournament.field_results.order('competition desc, result desc').each do |field_result|
+      - @field_results.each do |field_result|
         tr
-          td = field_result.competition
+          td = field_result.competition.name
           td
             - if field_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
@@ -114,7 +114,7 @@ h2
           td = field_result.information
           td = field_result.condition
 
-- unless @tournament.relay_results.empty?
+- unless @relay_results.empty?
   h3 リレー
   table.ui.celled.selectable.small.table
     thead
@@ -131,7 +131,7 @@ h2
         th 環境
 
     tbody
-      - @tournament.relay_results.order('competition desc, result asc').each do |relay_result|
+      - @relay_results.each do |relay_result|
         tr
           td = relay_result.competition.name
           td
@@ -160,7 +160,7 @@ h2
           td = relay_result.information
           td = relay_result.condition
 
-- unless @tournament.decathlon_results.empty?
+- unless @decathlon_results.empty?
   h3 十種
   table.ui.celled.selectable.small.table
     thead
@@ -183,7 +183,7 @@ h2
         th 環境
 
     tbody
-      - @tournament.decathlon_results.order('total_score desc').each do |decathlon_result|
+      - @decathlon_results.each do |decathlon_result|
         tr
           td
             - if decathlon_result.grade.present?

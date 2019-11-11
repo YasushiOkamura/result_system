@@ -58,7 +58,7 @@ class Admin::RelayResultsController < Admin::BaseController
   def relay_result_params
     params[:relay_result][:result] = result_parse(params[:relay_result][:result])
     params.require(:relay_result).permit(
-      :competition,
+      :competition_id,
       :result,
       :round,
       :group,
@@ -81,9 +81,9 @@ class Admin::RelayResultsController < Admin::BaseController
   end
 
   def relay_competition_options
-    @competition_options = []
-    Competition.where(kind: :relay).each do |competition|
-      @competition_options << [competition.name.text, competition.name]
-    end
+    @competition_options =
+      Competition.where(kind: :relay).order(:position).each_with_object([]) do |competition, arr|
+        arr << [competition.name, competition.id]
+      end
   end
 end

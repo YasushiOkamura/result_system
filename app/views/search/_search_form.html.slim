@@ -1,9 +1,9 @@
 .ui.segment
-  h2 
+  h2
     i.ui.search.icon
     | 検索条件
   = form_tag search_path, method: 'get', class: 'ui form' do
-    .field 
+    .field
       = label_tag '選手名'
       = select_tag :athlete_id, options_for_select(Athlete.order('active desc, grade asc').pluck(:name, :id), params[:athlete_id]), { include_blank: true, multiple: true, class: 'ui dropdown' }
     .ui.inline.fields
@@ -14,16 +14,16 @@
       .field
         = select_tag :established_to, options_for_select(2000..Time.zone.today.year, selected: params[:established_to]), { include_blank: true, class: 'ui dropdown' }
         | 年
-    
+
     .two.fields
       .field
         = label_tag '種目'
-        = select_tag :competition, options_for_select(Competition.enumerized_attributes[:name].options, selected: params[:competition]), { include_blank: true, class: 'ui dropdown' }
-      
+        = select_tag :competition, options_for_select(Competition.order(:position).pluck(:name, :id), selected: params[:competition]), { include_blank: true, class: 'ui dropdown' }
+
       .field
         = label_tag 'ソート'
         = select_tag :sort, options_for_select(@sort_options, selected: params[:sort]), { include_blank: true, class: 'ui dropdown' }
-    .two.fields 
+    .two.fields
       .field
         = label_tag '表示件数'
         = number_field_tag :num, params[:num].present? ? params[:num].to_i : 50

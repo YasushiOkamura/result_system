@@ -22,7 +22,7 @@ table.ui.celled.small.table
     - @field_results.each do |field_result|
       tr
         td = field_result.id
-        td = I18n.t("enumerize.competition.name.#{field_result.competition}")
+        td = field_result.competition.name
         td
           - if field_result.grade.present?
             = I18n.t("enumerize.athlete.grade.#{field_result.grade}")

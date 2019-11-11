@@ -3,6 +3,7 @@
 class FieldResult < ApplicationRecord
   belongs_to :athlete
   belongs_to :tournament
+  belongs_to :competition
   before_save :set_grade
   before_save :set_official
 

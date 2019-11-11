@@ -57,7 +57,7 @@ class Admin::ShortResultsController < Admin::BaseController
   def short_result_params
     params[:short_result][:result] = result_parse(params[:short_result][:result])
     params.require(:short_result).permit(
-      :competition,
+      :competition_id,
       :result,
       :wind,
       :round,
@@ -75,9 +75,9 @@ class Admin::ShortResultsController < Admin::BaseController
   end
 
   def short_competition_options
-    @competition_options = []
-    Competition.where(kind: :short).each do |competition|
-      @competition_options << [competition.name.text, competition.name]
-    end
+    @competition_options =
+      Competition.where(kind: :short).order(:position).each_with_object([]) do |competition, arr|
+        arr << [competition.name, competition.id]
+      end
   end
 end

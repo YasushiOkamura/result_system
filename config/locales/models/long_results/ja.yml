@@ -4,7 +4,7 @@ ja:
       long_result: 長距離
     attributes:
       long_result:
-        competition: 種目
+        competition_id: 種目
         result: 結果
         round: ラウンド
         group: 組

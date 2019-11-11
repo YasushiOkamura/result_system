@@ -30,7 +30,7 @@ h2
     tbody
       - @tournament.short_results.order('competition desc, result asc').each do |short_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{short_result.competition}")
+          td = short_result.competition.name
           td
             - if short_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
@@ -71,7 +71,7 @@ h2
     tbody
       - @tournament.long_results.order('competition desc, result asc').each do |long_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{long_result.competition}")
+          td = long_result.competition.name
           td
             - if long_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
@@ -107,7 +107,7 @@ h2
     tbody
       - @tournament.field_results.order('competition desc, result desc').each do |field_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{field_result.competition}")
+          td = field_result.competition.name
           td
             - if field_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
@@ -146,7 +146,7 @@ h2
     tbody
       - @tournament.relay_results.order('competition desc, result asc').each do |relay_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
+          td = relay_result.competition.name
           td
             - if relay_result.first_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")

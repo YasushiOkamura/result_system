@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class LongResult < ApplicationRecord
+class RoadResult < ApplicationRecord
   belongs_to :athlete
   belongs_to :tournament
   belongs_to :competition

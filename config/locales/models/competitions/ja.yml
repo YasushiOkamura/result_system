@@ -6,6 +6,7 @@ ja:
       competition:
         name: 競技名
         kind: 競技種別
+        position: 表示順番
   enumerize:
     competition:
       kind:

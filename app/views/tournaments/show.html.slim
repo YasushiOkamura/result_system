@@ -6,11 +6,11 @@ h2
   - unless @tournament.start_day == @tournament.end_day
     | 〜
     = l @tournament.end_day
- 
+
 
 = link_to '大会一覧へ', tournaments_path, class: 'ui button'
 
-- unless @tournament.short_results.empty?
+- unless @short_results.empty?
   h3 短距離
   table.ui.celled.selectable.small.table
     thead
@@ -27,15 +27,15 @@ h2
         th 環境
 
     tbody
-      - @tournament.short_results.order('competition desc, result asc').each do |short_result|
+      - @short_results.each do |short_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{short_result.competition}")
-          td 
+          td = short_result.competition.name
+          td
             - if short_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{short_result.grade}")
               = ' '
             = short_result&.athlete.name
-          td 
+          td
             = show_result(short_result.result)
             - if short_result.wind.present?
               = "(#{show_wind(short_result.wind)})"
@@ -47,7 +47,7 @@ h2
           td = short_result.information
           td = short_result.condition
 
-- unless @tournament.long_results.empty?
+- unless @long_results.empty?
   h3 長距離
   table.ui.celled.selectable.small.table
     thead
@@ -64,13 +64,13 @@ h2
         th 環境
 
     tbody
-      - @tournament.long_results.order('competition desc, result asc').each do |long_result|
+      - @long_results.each do |long_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{long_result.competition}")
-          td 
+          td = long_result.competition.name
+          td
             - if long_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{long_result.grade}")
-              = ' '  
+              = ' '
             = long_result&.athlete.name
           td = show_result(long_result.result)
           td = long_result.round
@@ -96,15 +96,15 @@ h2
         th 環境
 
     tbody
-      - @tournament.field_results.order('competition desc, result desc').each do |field_result|
+      - @field_results.each do |field_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{field_result.competition}")
-          td 
+          td = field_result.competition.name
+          td
             - if field_result.grade.present?
               = I18n.t("enumerize.athlete.grade.#{field_result.grade}")
               = ' '
             = field_result&.athlete.name
-          td 
+          td
             = show_field_result(field_result.result)
             - if field_result.wind.present?
               = "(#{show_wind(field_result.wind)})"
@@ -114,7 +114,7 @@ h2
           td = field_result.information
           td = field_result.condition
 
-- unless @tournament.relay_results.empty?
+- unless @relay_results.empty?
   h3 リレー
   table.ui.celled.selectable.small.table
     thead
@@ -131,9 +131,9 @@ h2
         th 環境
 
     tbody
-      - @tournament.relay_results.order('competition desc, result asc').each do |relay_result|
+      - @relay_results.each do |relay_result|
         tr
-          td = I18n.t("enumerize.competition.name.#{relay_result.competition}")
+          td = relay_result.competition.name
           td
             - if relay_result.first_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.first_athlete_grade}")
@@ -150,7 +150,7 @@ h2
             - if relay_result.fourth_athlete_grade.present?
               = I18n.t("enumerize.athlete.grade.#{relay_result.fourth_athlete_grade}")
             = relay_result&.fourth_athlete.name
-          td 
+          td
             = show_result(relay_result.result)
           td = relay_result.round
           td = relay_result.group
@@ -160,7 +160,7 @@ h2
           td = relay_result.information
           td = relay_result.condition
 
-- unless @tournament.decathlon_results.empty?
+- unless @decathlon_results.empty?
   h3 十種
   table.ui.celled.selectable.small.table
     thead
@@ -183,7 +183,7 @@ h2
         th 環境
 
     tbody
-      - @tournament.decathlon_results.order('total_score desc').each do |decathlon_result|
+      - @decathlon_results.each do |decathlon_result|
         tr
           td
             - if decathlon_result.grade.present?

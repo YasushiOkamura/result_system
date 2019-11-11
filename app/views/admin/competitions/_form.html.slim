@@ -1,0 +1,18 @@
+- if @competition.errors.any?
+  #error_explanation
+    h2 = "#{pluralize(@competition.errors.count, "error")} prohibited this competition from being saved:"
+    ul
+      - @competition.errors.full_messages.each do |message|
+        li = message
+
+.field
+  = f.label :name
+  = f.text_field :name
+
+.field
+  = f.label :kind
+  = f.select :kind, Competition.kind.options, {}, class: 'ui dropdown'
+
+.field
+  = f.label :position
+  = f.number_field :position

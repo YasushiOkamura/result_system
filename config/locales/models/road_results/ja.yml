@@ -1,15 +1,12 @@
 ja:
   activerecord:
     models:
-      short_result: 短距離
+      road_result: ロード種目
     attributes:
-      short_result:
+      road_result:
         competition_id: 種目
         result: 結果
-        wind: 風
         round: ラウンド
-        group: 組
-        rane: レーン
         finish: 着順
         athlete_id:  選手
         tournament_id: 大会

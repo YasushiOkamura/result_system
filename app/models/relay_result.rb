@@ -2,6 +2,7 @@
 
 class RelayResult < ApplicationRecord
   belongs_to :tournament
+  belongs_to :competition
 
   belongs_to :first_athlete,  class_name: :Athlete, foreign_key: :first_athlete_id,  inverse_of: :first_relay_results
   belongs_to :second_athlete, class_name: :Athlete, foreign_key: :second_athlete_id, inverse_of: :second_relay_results

@@ -1,4 +1,4 @@
-h1 
+h1
   i.ui.chess.queen.icon
   - if @kind == 'relay'
     | 10傑 -
@@ -89,7 +89,7 @@ h1
 - else
   - @all_results.each do |results|
     - unless results.empty?
-      h3 = t("enumerize.competition.name.#{results.first.competition}")
+      h3 = results.first.competition.name
 
       table.ui.celled.selectable.small.table
         thead
@@ -131,7 +131,7 @@ h1
                     = I18n.t("enumerize.athlete.grade.#{result.grade}")
                     = ' '
                   = result&.athlete.name
-              td 
+              td
                 - if @kind == 'field'
                   = show_field_result(result.result)
                 - else
@@ -141,6 +141,6 @@ h1
                   - if result.wind.present?
                     = "(#{show_wind(result.wind)})"
               td = result&.tournament.name
-              td = result.established_date 
+              td = result.established_date
               td = result.information
               td = result.condition

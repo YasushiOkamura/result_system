@@ -1,12 +1,13 @@
 .ui.stackable.grid
-  - if @short_result.errors.any?
+
+  - if @road_result.errors.any?
     .ui.segments
       .ui.segment.tertiary.inverted.red
         h2 エラー
       .ui.segment
         strong 以下の入力値を訂正してください。
         ul
-        - @short_result.errors.full_messages.each do |message|
+        - @road_result.errors.full_messages.each do |message|
           li
             = message
 
@@ -28,27 +29,12 @@
   .six.wide.column
     .field
       = f.label :result
-      = f.text_field :result, value: show_result(@short_result&.result), placeholder: '11.00'
-
-  .six.wide.column
-    .field
-      = f.label :wind
-      = f.number_field :wind, step: 0.1, placeholder: '-1.0 風が関係ない種目は空欄で'
+      = f.text_field :result, value: show_result(@road_result&.result), placeholder: '15.30.00'
 
   .six.wide.column
     .field
       = f.label :round
       = f.text_field :round, placeholder: '決勝とか記録会とか'
-
-  .six.wide.column
-    .field
-      = f.label :group
-      = f.number_field :group
-
-  .six.wide.column
-    .field
-      = f.label :rane
-      = f.text_field :rane
 
   .six.wide.column
     .field
@@ -58,7 +44,7 @@
   .six.wide.column
     .field
       = f.label :established_date
-      = f.date_field :established_date, value: @short_result.established_date.present? ? @short_result.established_date : Tournament.all.order('start_day DESC').first.start_day
+      = f.date_field :established_date, value: @road_result.established_date.present? ? @road_result.established_date : Tournament.all.order('start_day DESC').first.start_day
 
   .six.wide.column
     .field

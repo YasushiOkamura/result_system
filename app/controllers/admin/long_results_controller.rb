@@ -57,7 +57,7 @@ class Admin::LongResultsController < Admin::BaseController
   def long_result_params
     params[:long_result][:result] = result_parse(params[:long_result][:result])
     params.require(:long_result).permit(
-      :competition,
+      :competition_id,
       :result,
       :round,
       :group,
@@ -74,9 +74,9 @@ class Admin::LongResultsController < Admin::BaseController
   end
 
   def long_competition_options
-    @competition_options = []
-    Competition.where(kind: :long).each do |competition|
-      @competition_options << [competition.name.text, competition.name]
-    end
+    @competition_options =
+      Competition.where(kind: :long).order(:position).each_with_object([]) do |competition, arr|
+        arr << [competition.name, competition.id]
+      end
   end
 end

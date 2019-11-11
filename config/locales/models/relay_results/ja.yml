@@ -4,7 +4,7 @@ ja:
       relay_result: リレー
     attributes:
       relay_result:
-        competition: 種目
+        competition_id: 種目
         result: 結果
         round: ラウンド
         group: 組

@@ -24,14 +24,17 @@ class AthletesController < ApplicationController
 
   def set_pb
     @pb = {}
-    @pb[:short] = ShortResult.where(athlete_id: @athlete.id, official: true).where.not(result: nil).group_by(&:competition).map { |_competition, results| results.min_by(&:result) }
-    @pb[:long] = LongResult.where(athlete_id: @athlete.id, official: true).where.not(result: nil).group_by(&:competition).map { |_competition, results| results.min_by(&:result) }
-    @pb[:field] = FieldResult.where(athlete_id: @athlete.id, official: true).where.not(result: nil).group_by(&:competition).map { |_competition, results| results.max_by(&:result) }
+    @pb[:short] = ShortResult.includes(:competition).order('competitions.position asc').where(athlete_id: @athlete.id, official: true)
+      .where.not(result: nil).group_by(&:competition_id).map { |_competition, results| results.min_by(&:result) }
+    @pb[:long] = LongResult.includes(:competition).order('competitions.position asc').where(athlete_id: @athlete.id, official: true)
+      .where.not(result: nil).group_by(&:competition_id).map { |_competition, results| results.min_by(&:result) }
+    @pb[:field] = FieldResult.includes(:competition).order('competitions.position asc').where(athlete_id: @athlete.id, official: true)
+      .where.not(result: nil).group_by(&:competition_id).map { |_competition, results| results.max_by(&:result) }
     @pb[:decathlon] = DecathlonResult.where(athlete_id: @athlete.id, official: true).where.not(total_score: nil).order('total_score desc').first
   end
 
   def set_result
-    @competition = params[:competition]
+    @competition = Competition.find(params[:competition_id])
     @type = params[:type]
     return nil unless @competition
 

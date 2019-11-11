@@ -1,0 +1,9 @@
+h1 種目 - 新規登録
+
+= form_for([:admin, @competition], html: { class: 'ui form' })  do |f|
+  = render 'form', f: f
+  .ui.grid
+    .six.wide.column
+      = f.submit '登録', class: 'ui button primary'
+    .six.wide.column
+      = link_to '種目一覧へ', admin_competitions_path, class: 'ui gray button'

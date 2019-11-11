@@ -4,7 +4,7 @@ ja:
       field_result: フィールド
     attributes:
       field_result:
-        competition: 種目
+        competition_id: 種目
         result: 結果
         wind: 風
         round: ラウンド

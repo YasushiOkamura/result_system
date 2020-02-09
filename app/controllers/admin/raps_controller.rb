@@ -51,7 +51,8 @@ class Admin::RapsController < Admin::BaseController
 
   def broadcast
     if @rap.update(broadcasted: true)
-      Slack::Notifier.new(Settings.webhook_url, username: '駅伝速報', icon_emoji: ':obama:').ping(params[:broadcast_message])
+      # Slack::Notifier.new(Settings.webhook_url, username: '駅伝速報', icon_emoji: ':obama:').ping(params[:broadcast_message])
+      Slack::Notifier.new('https://hooks.slack.com/services/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', username: '駅伝速報', icon_emoji: ':obama:').ping(params[:broadcast_message])
       flash[:notice] = '配信しました'
       redirect_to admin_ekiden_raps_path(@ekiden, @rap)
     else

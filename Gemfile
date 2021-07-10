@@ -54,7 +54,7 @@ gem "config"
 
 gem "chart-js-rails", "~> 0.1.4"
 gem "chartkick"
-gem "gon", "~> 6.2.0"
+gem "gon", "~> 6.4.0"
 
 gem "slack-notifier"
 

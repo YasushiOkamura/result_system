@@ -7,10 +7,10 @@
     = @competition.name
   .ui.segment
     .row
-      = link_to 'all', graph_athlete_path(@athlete, type: @type, competition: @competition), class: 'ui button green'
+      = link_to 'all', graph_athlete_path(@athlete, type: @type, competition_id: @competition.id), class: 'ui button green'
     .row
       - @years.each do |year|
-        = link_to year.to_s + '年', graph_athlete_path(@athlete, type: @type, competition: @competition, year: year), class: 'ui button'
+        = link_to year.to_s + '年', graph_athlete_path(@athlete, type: @type, competition_id: @competition.id, year: year), class: 'ui button'
   .graph style="padding-bottom: 50px;"
     canvas id="athleteChart" style="height: 400px"
     script draw_graph()

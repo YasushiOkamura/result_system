@@ -8,7 +8,7 @@
       h2 UEC T&F のリザルトページです
       .description
         | 過去の結果・ランキングなどの情報などが閲覧できます
-    
+
     .ui.divider
 
     h2
@@ -30,5 +30,5 @@
             .description
               = tournament.place
               br
-              = tournament.get_result_num
+              = @tournament_ids.select { |id| id == tournament.id}.count
               | 件の結果

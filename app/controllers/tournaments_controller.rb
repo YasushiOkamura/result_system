@@ -5,6 +5,11 @@ class TournamentsController < ApplicationController
 
   def index
     @tournaments = Tournament.order('start_day desc').page(params[:page])
+    @tournament_ids = ShortResult.where(tournament_id: @tournaments.map(&:id)).pluck(:tournament_id)
+    @tournament_ids += LongResult.where(tournament_id: @tournaments.map(&:id)).pluck(:tournament_id)
+    @tournament_ids += FieldResult.where(tournament_id: @tournaments.map(&:id)).pluck(:tournament_id)
+    @tournament_ids += RelayResult.where(tournament_id: @tournaments.map(&:id)).pluck(:tournament_id)
+    @tournament_ids += DecathlonResult.where(tournament_id: @tournaments.map(&:id)).pluck(:tournament_id)
   end
 
   def show

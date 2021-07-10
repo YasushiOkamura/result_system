@@ -21,7 +21,7 @@ h1
             .description
               = tournament.place
               br
-              = tournament.get_result_num
+              = @tournament_ids.select { |id| id == tournament.id}.count
               | 件の結果
 
 .ui.stackale.centered.grid

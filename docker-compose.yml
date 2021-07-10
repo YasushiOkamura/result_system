@@ -1,12 +1,19 @@
 version: '2'
 services:
   db:
-    image: postgres
+    image: postgres:10
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
-  app:
+  app: &app_base
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/result_system:delegated
+      - bundle:/usr/local/bundle:cached
+      - /result_system/vendor
+      - /result_system/tmp
+      - /result_system/log
+      - /result_system/.git
     volumes:
       - .:/result_system
     ports:
@@ -15,3 +22,12 @@ services:
       - db
     environment:
       - "TZ=Japan"
+  spring:
+    <<: *app_base
+    command: ["bundle", "exec", "spring", "server"]
+    ports: []
+    tty: false
+    stdin_open: false
+volumes:
+  bundle:
+    driver: local

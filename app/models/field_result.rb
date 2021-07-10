@@ -1,5 +1,23 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: field_results
+#
+#  id               :bigint           not null, primary key
+#  condition        :string
+#  established_date :date
+#  finish           :integer
+#  grade            :string
+#  information      :string
+#  official         :boolean
+#  result           :float
+#  round            :string
+#  wind             :float
+#  athlete_id       :integer
+#  competition_id   :integer
+#  tournament_id    :integer
+#
 class FieldResult < ApplicationRecord
   belongs_to :athlete
   belongs_to :tournament

@@ -1,5 +1,30 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: relay_results
+#
+#  id                   :bigint           not null, primary key
+#  condition            :string
+#  established_date     :date
+#  finish               :integer
+#  first_athlete_grade  :string
+#  fourth_athlete_grade :string
+#  group                :string
+#  information          :string
+#  official             :boolean
+#  rane                 :string
+#  result               :bigint
+#  round                :string
+#  second_athlete_grade :string
+#  third_athlete_grade  :string
+#  competition_id       :integer
+#  first_athlete_id     :integer
+#  fourth_athlete_id    :integer
+#  second_athlete_id    :integer
+#  third_athlete_id     :integer
+#  tournament_id        :integer
+#
 class RelayResult < ApplicationRecord
   belongs_to :tournament
   belongs_to :competition

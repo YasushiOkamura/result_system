@@ -19,7 +19,7 @@ class DecathlonResult < ApplicationRecord
 
   private
 
-  def set_grade
-    self.grade = athlete.grade
-  end
+    def set_grade
+      self.grade = athlete.grade
+    end
 end

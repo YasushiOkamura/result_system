@@ -9,11 +9,11 @@ class FieldResult < ApplicationRecord
 
   private
 
-  def set_grade
-    self.grade = athlete.grade if grade.blank?
-  end
+    def set_grade
+      self.grade = athlete.grade if grade.blank?
+    end
 
-  def set_official
-    self.official = false if (wind && wind > 2.0) || official.blank?
-  end
+    def set_official
+      self.official = false if (wind && wind > 2.0) || official.blank?
+    end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  layout 'application'
+  layout "application"
   before_action :check_mobile
   before_action :check_mentenance
 
@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   include ErrorHandlers if Rails.env.production?
 
   def result_parse(result)
-    res = result.split('.').reverse
+    res = result.split(".").reverse
     case res.size
     when 1
       res[0].to_i
@@ -23,11 +23,11 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def check_mobile
-    @smartphone = request.from_smartphone?
-  end
+    def check_mobile
+      @smartphone = request.from_smartphone?
+    end
 
-  def check_mentenance
-    redirect_to mentenance_path if Settings.mentenace
-  end
+    def check_mentenance
+      redirect_to mentenance_path if Settings.mentenace
+    end
 end

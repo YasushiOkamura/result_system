@@ -13,10 +13,10 @@ class RelayResult < ApplicationRecord
 
   private
 
-  def set_grade
-    self.first_athlete_grade  = first_athlete.grade if first_athlete_grade.blank?
-    self.second_athlete_grade = second_athlete.grade if second_athlete_grade.blank?
-    self.third_athlete_grade  = third_athlete.grade if third_athlete_grade.blank?
-    self.fourth_athlete_grade = fourth_athlete.grade if fourth_athlete_grade.blank?
-  end
+    def set_grade
+      self.first_athlete_grade  = first_athlete.grade if first_athlete_grade.blank?
+      self.second_athlete_grade = second_athlete.grade if second_athlete_grade.blank?
+      self.third_athlete_grade  = third_athlete.grade if third_athlete_grade.blank?
+      self.fourth_athlete_grade = fourth_athlete.grade if fourth_athlete_grade.blank?
+    end
 end

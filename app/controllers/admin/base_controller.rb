@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::BaseController < ActionController::Base
-  layout 'admin/base'
+  layout "admin/base"
   before_action :authenticate!
   before_action :check_mobile
   helper_method :current_manager
@@ -11,7 +11,7 @@ class Admin::BaseController < ActionController::Base
   include ErrorHandlers if Rails.env.production?
 
   def result_parse(result)
-    res = result.split('.').reverse
+    res = result.split(".").reverse
     case res.size
     when 1
       res[0].to_i
@@ -26,21 +26,21 @@ class Admin::BaseController < ActionController::Base
 
   protected
 
-  def logout!
-    session[:manager_id] = nil
-  end
+    def logout!
+      session[:manager_id] = nil
+    end
 
-  def current_manager
-    @current_manager ||= Manager.find(session[:manager_id]) if session[:manager_id]
-  rescue ActiveRecord::RecordNotFound
-    logout!
-  end
+    def current_manager
+      @current_manager ||= Manager.find(session[:manager_id]) if session[:manager_id]
+    rescue ActiveRecord::RecordNotFound
+      logout!
+    end
 
-  def authenticate!
-    redirect_to admin_new_session_path unless current_manager
-  end
+    def authenticate!
+      redirect_to admin_new_session_path unless current_manager
+    end
 
-  def check_mobile
-    @smartphone = request.from_smartphone?
-  end
+    def check_mobile
+      @smartphone = request.from_smartphone?
+    end
 end

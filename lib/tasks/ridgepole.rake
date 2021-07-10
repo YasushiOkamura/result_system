@@ -5,6 +5,7 @@ namespace :ridgepole do
   task apply: :environment do
     ridgepole('--apply', "--file #{schema_file}")
     Rake::Task['db:schema:dump'].invoke
+    Rake::Task['annotate_models'].invoke if Rails.env.development?
   end
 
   desc 'Apply database schema for heroku'

@@ -1,5 +1,19 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: athletes
+#
+#  id         :bigint           not null, primary key
+#  active     :boolean
+#  grade      :string
+#  major      :string
+#  memo       :text
+#  name       :string
+#  sex        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Athlete < ApplicationRecord
   has_many :short_results
   has_many :long_results
